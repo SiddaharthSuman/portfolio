@@ -1,0 +1,21 @@
+.box {
+  position: absolute;
+  inline-size: 100px;
+  margin-inline-start: 0;
+  color: red;
+}
+
+.container {
+  align-content: flex-start;
+  block-size: 100dvh;
+  margin-block-start: 80px;
+}
+
+.heading {
+  padding-block: 24px;
+  text-align: center;
+}
+
+.pricingContainer {
+  margin-block-start: 0;
+}

@@ -1,3 +1,6 @@
 onlyBuiltDependencies:
   - '@vercel/speed-insights'
+  - '@parcel/watcher'
+  - core-js-pure
+  - esbuild
   - sharp

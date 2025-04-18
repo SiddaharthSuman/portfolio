@@ -1,0 +1,79 @@
+{
+  // Basic editor setup
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "jsonc",
+    "json5"
+  ],
+
+  // Respect your project's Prettier config
+  "prettier.requireConfig": true,
+  "prettier.useEditorConfig": false,
+
+  // Auto-format these file types
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "[scss]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+  "[json]": {
+    "editor.formatOnSave": true
+  },
+
+  "stylelint.enable": true,
+  "stylelint.config": {
+    "extends": [
+      "stylelint-config-standard-scss",
+      "stylelint-config-recess-order",
+      "stylelint-prettier/recommended",
+      "stylelint-config-css-modules"
+    ],
+    "files": ["**/*.scss"],
+    "plugins": [
+      "stylelint-prettier",
+      "stylelint-high-performance-animation",
+      "stylelint-use-logical"
+    ],
+    "rules": {
+      // "a11y/media-prefers-reduced-motion": true,
+      // "a11y/no-outline-none": true,
+      // "a11y/selector-pseudo-class-focus": true,
+      "csstools/use-logical": "always",
+      "plugin/no-low-performance-animation-properties": true,
+      "scss/at-rule-no-unknown": [
+        true,
+        {
+          "ignoreAtRules": ["tailwind", "apply", "layer"]
+        }
+      ],
+      "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$"
+    }
+  },
+  // Disable conflicting default formatters
+  "css.validate": false,
+  "scss.validate": false,
+  "stylelint.validate": ["css", "scss"],
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
