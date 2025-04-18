@@ -1,0 +1,42 @@
+@use 'sass:map';
+
+// Spacing system
+$spacing: (
+  xs: 0.25rem,
+  sm: 0.5rem,
+  md: 1rem,
+  lg: 1.5rem,
+  xl: 2rem,
+  xxl: 3rem,
+  xxxl: 5rem,
+);
+
+// Breakpoints
+$breakpoints: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1536px,
+);
+
+// Z-index layers
+$z-index: (
+  base: 1,
+  header: 10,
+  modal: 100,
+  tooltip: 200,
+);
+
+// Border radius
+$border-radius: (
+  sm: 4px,
+  md: 8px,
+  lg: 16px,
+  full: 9999px,
+);
+
+// Function to access spacing
+@function spacing($size) {
+  @return map.get($spacing, $size);
+}

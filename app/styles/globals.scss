@@ -1,11 +1,45 @@
-:root {
-  --background: #fff;
-  --foreground: #171717;
-  --color-primary: #fff;
-  --color-focus: #171717;
+@use 'sass:map';
+@use './spacings' as spacings;
+@use './mixins' as *;
+@use './colors';
 
-  // --color-primary: #3b82f6;
-  // --color-focus: #2563eb;
+// Default theme (dark mode)
+:root {
+  // Color scheme CSS variables
+  --color-primary-dark: #{color-dark(primary-dark)};
+  --color-primary-light: #{color-dark(primary-light)};
+  --color-accent: #{color-dark(accent)};
+  --color-secondary-bg: #{color-dark(secondary-bg)};
+  --color-text-primary: #{color-dark(text-primary)};
+  --color-text-secondary: #{color-dark(text-secondary)};
+  --color-background: #{color-dark(background)};
+  --color-card-background: #{color-dark(card-background)};
+  --color-border: #{color-dark(border)};
+  --color-hover: #{color-dark(hover)};
+  --color-focus: #{color-dark(focus)};
+  --color-success: #{color-dark(success)};
+  --color-error: #{color-dark(error)};
+  --color-warning: #{color-dark(warning)};
+}
+
+// Light mode styles
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-primary-dark: #{color-light(primary-dark)};
+    --color-primary-light: #{color-light(primary-light)};
+    --color-accent: #{color-light(accent)};
+    --color-secondary-bg: #{color-light(secondary-bg)};
+    --color-text-primary: #{color-light(text-primary)};
+    --color-text-secondary: #{color-light(text-secondary)};
+    --color-background: #{color-light(background)};
+    --color-card-background: #{color-light(card-background)};
+    --color-border: #{color-light(border)};
+    --color-hover: #{color-light(hover)};
+    --color-focus: #{color-light(focus)};
+    --color-success: #{color-light(success)};
+    --color-error: #{color-light(error)};
+    --color-warning: #{color-light(warning)};
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,6 +49,12 @@
   }
 }
 
+// Apply the fonts to elements
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   max-inline-size: 100vw;
@@ -22,10 +62,11 @@ body {
 }
 
 body {
-  // font-family: Arial, Helvetica, sans-serif;
-  font-family: var(--font-manrope);
-  color: var(--foreground);
-  background: var(--background);
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  background-color: var(--color-background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -40,13 +81,112 @@ body {
   isolation: isolate;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+// Apply Geist to all heading elements
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-primary);
 }
 
+h1 {
+  margin-block-end: 1.5rem;
+  font-size: 2.5rem;
+}
+
+h2 {
+  margin-block-end: 1.25rem;
+  font-size: 2rem;
+}
+
+h3 {
+  margin-block-end: 1rem;
+  font-size: 1.75rem;
+}
+
+h4 {
+  margin-block-end: 0.75rem;
+  font-size: 1.5rem;
+}
+
+p {
+  margin-block-end: 1rem;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+
+  @include transition(all, 0.2s, ease);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+button {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  cursor: pointer;
+}
+
+// Container class for section content
+.container {
+  inline-size: 100%;
+  max-inline-size: 1200px;
+  padding: 0 spacings.spacing(lg);
+  margin: 0 auto;
+
+  @include breakpoint(sm) {
+    padding: 0 spacings.spacing(xl);
+  }
+}
+
+// Section styling
+section {
+  padding: spacings.spacing(xl) 0;
+
+  @include breakpoint(md) {
+    padding: spacings.spacing(xxl) 0;
+  }
+
+  @include breakpoint(lg) {
+    padding: spacings.spacing(xxxl) 0;
+  }
+}
+
+// Utility classes
+/* stylelint-disable-next-line selector-class-pattern */
+.accent-text {
+  color: var(--color-accent);
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+}
+
+// Keep existing media queries for system preference
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  html {
+    color-scheme: light;
   }
 }
