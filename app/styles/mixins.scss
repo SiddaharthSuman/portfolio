@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use './spacings' as *;
+@use './spacings' as spacings;
 
 // Transition mixin
 @mixin transition($property: all, $duration: 0.3s, $timing: ease) {
@@ -8,7 +8,7 @@
 
 // Mixins for responsive design
 @mixin breakpoint($point) {
-  $breakpoint-value: map.get($breakpoints, $point);
+  $breakpoint-value: map.get(spacings.$breakpoints, $point);
 
   @media (min-width: $breakpoint-value) {
     @content;

@@ -1,0 +1,45 @@
+@use '../../styles/spacings' as spacings;
+@use '../../styles/mixins' as *;
+
+.themeToggle {
+  display: flex;
+  gap: spacings.spacing(xs);
+  align-items: center;
+  margin-inline-start: spacings.spacing(md);
+
+  @media (width <= 767px) {
+    justify-content: center;
+    margin-block-start: spacings.spacing(md);
+    margin-inline-start: 0;
+  }
+}
+
+.themeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 36px;
+  block-size: 36px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+
+  @include transition;
+
+  &:hover {
+    color: var(--color-accent);
+    background-color: var(--color-hover);
+  }
+
+  &.active {
+    color: var(--color-accent);
+    background-color: var(--color-hover);
+  }
+
+  svg {
+    inline-size: 18px;
+    block-size: 18px;
+  }
+}

@@ -1,52 +1,84 @@
+/* stylelint-disable scss/at-function-pattern */
+/* stylelint-disable selector-class-pattern */
 @use 'sass:map';
+@use 'sass:color';
 @use './spacings' as spacings;
 @use './mixins' as *;
-@use './colors';
+@use './colors' as colors;
+
+// Function to convert hex to rgb (helper)
+@function hexToRGB($hex) {
+  @return color.channel($hex, 'red'), color.channel($hex, 'green'), color.channel($hex, 'blue');
+}
 
 // Default theme (dark mode)
 :root {
   // Color scheme CSS variables
-  --color-primary-dark: #{color-dark(primary-dark)};
-  --color-primary-light: #{color-dark(primary-light)};
-  --color-accent: #{color-dark(accent)};
-  --color-secondary-bg: #{color-dark(secondary-bg)};
-  --color-text-primary: #{color-dark(text-primary)};
-  --color-text-secondary: #{color-dark(text-secondary)};
-  --color-background: #{color-dark(background)};
-  --color-card-background: #{color-dark(card-background)};
-  --color-border: #{color-dark(border)};
-  --color-hover: #{color-dark(hover)};
-  --color-focus: #{color-dark(focus)};
-  --color-success: #{color-dark(success)};
-  --color-error: #{color-dark(error)};
-  --color-warning: #{color-dark(warning)};
+  --color-primary-dark: #{colors.color-dark(primary-dark)};
+  --color-primary-light: #{colors.color-dark(primary-light)};
+  --color-accent: #{colors.color-dark(accent)};
+  --color-secondary-bg: #{colors.color-dark(secondary-bg)};
+  --color-text-primary: #{colors.color-dark(text-primary)};
+  --color-text-secondary: #{colors.color-dark(text-secondary)};
+  --color-background: #{colors.color-dark(background)};
+  --color-background-rgb: #{hexToRGB(colors.color-dark(background))};
+  --color-card-background: #{colors.color-dark(card-background)};
+  --color-border: #{colors.color-dark(border)};
+  --color-hover: #{colors.color-dark(hover)};
+  --color-focus: #{colors.color-dark(focus)};
+  --color-success: #{colors.color-dark(success)};
+  --color-error: #{colors.color-dark(error)};
+  --color-warning: #{colors.color-dark(warning)};
 }
 
-// Light mode styles
-@media (prefers-color-scheme: light) {
-  :root {
-    --color-primary-dark: #{color-light(primary-dark)};
-    --color-primary-light: #{color-light(primary-light)};
-    --color-accent: #{color-light(accent)};
-    --color-secondary-bg: #{color-light(secondary-bg)};
-    --color-text-primary: #{color-light(text-primary)};
-    --color-text-secondary: #{color-light(text-secondary)};
-    --color-background: #{color-light(background)};
-    --color-card-background: #{color-light(card-background)};
-    --color-border: #{color-light(border)};
-    --color-hover: #{color-light(hover)};
-    --color-focus: #{color-light(focus)};
-    --color-success: #{color-light(success)};
-    --color-error: #{color-light(error)};
-    --color-warning: #{color-light(warning)};
-  }
+// Set color-scheme based on theme
+.theme-dark {
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.theme-light {
+  color-scheme: light;
+}
+
+// Theme class overrides (controlled by ThemeProvider)
+:root.theme-light {
+  // $bg-color: colors.color-light(background);
+
+  --color-primary-dark: #{colors.color-light(primary-dark)};
+  --color-primary-light: #{colors.color-light(primary-light)};
+  --color-accent: #{colors.color-light(accent)};
+  --color-secondary-bg: #{colors.color-light(secondary-bg)};
+  --color-text-primary: #{colors.color-light(text-primary)};
+  --color-text-secondary: #{colors.color-light(text-secondary)};
+  --color-background: #{colors.color-light(background)};
+  --color-background-rgb: #{hexToRGB(colors.color-light(background))};
+  --color-card-background: #{colors.color-light(card-background)};
+  --color-border: #{colors.color-light(border)};
+  --color-hover: #{colors.color-light(hover)};
+  --color-focus: #{colors.color-light(focus)};
+  --color-success: #{colors.color-light(success)};
+  --color-error: #{colors.color-light(error)};
+  --color-warning: #{colors.color-light(warning)};
+}
+
+:root.theme-dark {
+  // $bg-color: colors.color-dark(background);
+
+  --color-primary-dark: #{colors.color-dark(primary-dark)};
+  --color-primary-light: #{colors.color-dark(primary-light)};
+  --color-accent: #{colors.color-dark(accent)};
+  --color-secondary-bg: #{colors.color-dark(secondary-bg)};
+  --color-text-primary: #{colors.color-dark(text-primary)};
+  --color-text-secondary: #{colors.color-dark(text-secondary)};
+  --color-background: #{colors.color-dark(background)};
+  --color-background-rgb: #{hexToRGB(colors.color-dark(background))};
+  --color-card-background: #{colors.color-dark(card-background)};
+  --color-border: #{colors.color-dark(border)};
+  --color-hover: #{colors.color-dark(hover)};
+  --color-focus: #{colors.color-dark(focus)};
+  --color-success: #{colors.color-dark(success)};
+  --color-error: #{colors.color-dark(error)};
+  --color-warning: #{colors.color-dark(warning)};
 }
 
 // Apply the fonts to elements
@@ -69,6 +101,8 @@ body {
   background-color: var(--color-background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  @include transition(background-color);
 }
 
 * {
@@ -160,12 +194,10 @@ section {
 }
 
 // Utility classes
-/* stylelint-disable-next-line selector-class-pattern */
 .accent-text {
   color: var(--color-accent);
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
 .visually-hidden {
   position: absolute;
   inline-size: 1px;

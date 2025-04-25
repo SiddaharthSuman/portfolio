@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Manrope } from 'next/font/google';
-
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+
 import './styles/globals.scss';
+import { ThemeProvider } from './context/ThemeContext';
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -38,13 +39,13 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} ${manrope.variable}`}>
         <Analytics />
         <SpeedInsights />
-        {/* <ThemeRegistry> */}
-        {/* <Header /> */}
-        {/* <Container component={'main'} maxWidth="lg"> */}
-        <div className="root">{children}</div>
-        {/* </Container> */}
-        {/* <Footer /> */}
-        {/* </ThemeRegistry> */}
+        <ThemeProvider>
+          {/* <Header /> */}
+          {/* <Container component={'main'} maxWidth="lg"> */}
+          <div className="root">{children}</div>
+          {/* </Container> */}
+          {/* <Footer /> */}
+        </ThemeProvider>
       </body>
     </html>
   );
