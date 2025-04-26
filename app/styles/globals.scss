@@ -98,11 +98,17 @@ body {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--color-text-secondary);
+  cursor: none;
   background-color: var(--color-background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   @include transition(background-color);
+
+  // Show cursor on touch devices
+  @media (hover: none) {
+    cursor: auto;
+  }
 }
 
 * {
@@ -152,6 +158,21 @@ p {
   margin-block-end: 1rem;
 }
 
+// Handle interactive elements
+a,
+button,
+input,
+textarea,
+select,
+[role='button'] {
+  cursor: none;
+
+  // Show pointer on touch devices
+  @media (hover: none) {
+    cursor: pointer;
+  }
+}
+
 a {
   color: var(--color-accent);
   text-decoration: none;
@@ -165,7 +186,8 @@ a {
 
 button {
   font-family: var(--font-manrope), system-ui, sans-serif;
-  cursor: pointer;
+
+  // cursor: pointer;
 }
 
 // Container class for section content

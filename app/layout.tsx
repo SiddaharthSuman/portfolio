@@ -4,7 +4,9 @@ import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import './styles/globals.scss';
+
 import { ThemeProvider } from './context/ThemeContext';
+import CustomCursor from './components/Cursor2';
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -39,6 +41,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} ${manrope.variable}`}>
         <Analytics />
         <SpeedInsights />
+        <CustomCursor />
         <ThemeProvider>
           {/* <Header /> */}
           {/* <Container component={'main'} maxWidth="lg"> */}

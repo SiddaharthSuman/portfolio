@@ -1,0 +1,23 @@
+.cursor {
+  position: fixed;
+  z-index: 9999;
+  inline-size: 20px;
+  block-size: 20px;
+  pointer-events: none;
+  background-color: white;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease-in-out;
+  will-change: transform;
+
+  // Remove transition for reduced motion preference
+  &.reducedMotion {
+    transition: none;
+  }
+
+  // Hide on touch devices
+  @media (hover: none) {
+    display: none;
+  }
+}

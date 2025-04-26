@@ -1,0 +1,64 @@
+// components/CustomCursor/CustomCursor.module.scss
+
+.cursor {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 20px;
+  block-size: 20px;
+  pointer-events: none;
+  background-color: white;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  transform-origin: center center;
+
+  // Use CSS for the scale transition, not GSAP
+  // transition: transform 0.3s ease-in-out;
+  // will-change: transform;
+
+  // Hide on touch devices
+  @media (hover: none) {
+    display: none;
+  }
+}
+
+.cursorText {
+  font-family: var(--font-geist); // Use your primary font
+  font-size: 0.2rem; // Small size that will scale with the cursor
+  font-weight: 300; // Bold text
+  line-height: 1;
+  color: black; // This will show as white due to mix-blend-mode: difference
+  text-align: center;
+  text-transform: uppercase; // Uppercase for better visibility
+  letter-spacing: 0.5px; // Slight letter spacing for readability
+  white-space: nowrap; // Keep text on one line
+  pointer-events: none; // Make sure text doesn't interfere with interactions
+  user-select: none; // Prevent text selection
+  opacity: 0; // Hidden by default, shown by GSAP
+  translate: -50%, 40%; // Center the text within the cursor
+}
+
+// Add these to your global styles (globals.scss)
+// /*
+// // Hide default cursor on elements
+// body {
+//   cursor: none;
+
+//   // Show cursor on touch devices
+//   @media (hover: none) {
+//     cursor: auto;
+//   }
+// }
+
+// // Ensure links and interactive elements show appropriate cursor behavior
+// a, button, input, textarea, select, [role="button"] {
+//   cursor: none;
+
+//   // Show pointer on touch devices
+//   @media (hover: none) {
+//     cursor: pointer;
+//   }
+// }
+// */
