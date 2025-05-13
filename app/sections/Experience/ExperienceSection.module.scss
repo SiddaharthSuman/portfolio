@@ -1,0 +1,241 @@
+// sections/ExperienceSection/ExperienceSection.module.scss
+@use '../../styles/spacings' as spacings;
+@use '../../styles/mixins' as *;
+
+.experienceSection {
+  padding: spacings.spacing(xxxl) 0;
+
+  @include breakpoint(md) {
+    padding: spacings.spacing(xxxl) 0;
+  }
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: center;
+  margin-block-end: spacings.spacing(xxl);
+  opacity: 0;
+  transform: translateY(20px);
+
+  @include transition(all, 0.5s, cubic-bezier(0.645, 0.045, 0.355, 1));
+
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heading {
+  margin-block-end: 0;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  white-space: nowrap;
+}
+
+.sectionNumber {
+  margin-inline-end: spacings.spacing(sm);
+  font-family: var(--font-geist-sans);
+  font-weight: 400;
+  color: var(--color-accent);
+}
+
+.headingLine {
+  flex-grow: 1;
+  block-size: 1px;
+  margin-inline-start: spacings.spacing(md);
+  background-color: var(--color-border);
+}
+
+.experienceContainer {
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(20px);
+
+  @include transition(all, 0.5s, cubic-bezier(0.645, 0.045, 0.355, 1));
+
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @include breakpoint(md) {
+    flex-direction: row;
+  }
+}
+
+.tabsContainer {
+  position: relative;
+  display: flex;
+  margin-block-end: spacings.spacing(lg);
+  overflow-x: auto;
+  border-block-end: 2px solid var(--color-border);
+
+  @include breakpoint(md) {
+    flex-direction: column;
+    min-inline-size: 200px;
+    max-inline-size: 200px;
+    margin-block-end: 0;
+    margin-inline-end: spacings.spacing(xl);
+    overflow-x: visible;
+    border-block-end: none;
+    border-inline-start: 2px solid var(--color-border);
+  }
+}
+
+.tabList {
+  display: flex;
+  inline-size: 100%;
+
+  @include breakpoint(md) {
+    flex-direction: column;
+  }
+}
+
+.tabButton {
+  display: flex;
+  align-items: center;
+  min-inline-size: 120px;
+  block-size: 42px;
+  padding: spacings.spacing(md) spacings.spacing(lg);
+  font-family: var(--font-manrope);
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  text-align: start;
+  white-space: nowrap;
+  background-color: transparent;
+  border: none;
+
+  @include transition;
+
+  &:hover {
+    color: var(--color-accent);
+    background-color: var(--color-hover);
+  }
+
+  &.active {
+    color: var(--color-accent);
+  }
+
+  @include breakpoint(md) {
+    justify-content: flex-start;
+    margin-inline-start: -2px;
+    border-inline-start: 2px solid transparent;
+
+    &.active {
+      background-color: var(--color-hover);
+      border-inline-start-color: var(--color-accent);
+    }
+  }
+}
+
+.tabHighlight {
+  display: none;
+
+  @include breakpoint(md) {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: -2px;
+    display: block;
+    inline-size: 2px;
+    block-size: 42px;
+    background-color: var(--color-accent);
+
+    @include transition(transform, 0.25s, cubic-bezier(0.645, 0.045, 0.355, 1));
+  }
+}
+
+.tabContent {
+  flex-grow: 1;
+  min-block-size: 250px;
+}
+
+.tabPanel {
+  display: none;
+  animation: fadeIn 0.5s forwards;
+
+  &.active {
+    display: block;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.positionTitle {
+  margin-block-end: spacings.spacing(xs);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.companyName {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-accent);
+}
+
+.companyLink {
+  display: inline-flex;
+  align-items: center;
+  margin-inline-start: spacings.spacing(xs);
+  color: var(--color-accent);
+
+  @include transition;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+.duration {
+  margin-block-end: spacings.spacing(md);
+  font-family: var(--font-manrope);
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.responsibilitiesList {
+  padding: 0;
+  margin-block-end: spacings.spacing(lg);
+  list-style: none;
+}
+
+.responsibilityItem {
+  display: flex;
+  margin-block-end: spacings.spacing(md);
+  line-height: 1.6;
+
+  &:last-child {
+    margin-block-end: 0;
+  }
+}
+
+.bullet {
+  flex-shrink: 0;
+  margin-inline-end: spacings.spacing(sm);
+  color: var(--color-accent);
+}
+
+.technologiesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacings.spacing(sm);
+}
+
+.technologyTag {
+  padding: spacings.spacing(xs) spacings.spacing(sm);
+  font-family: var(--font-manrope);
+  font-size: 0.8rem;
+  color: var(--color-text-primary);
+  background-color: var(--color-hover);
+  border-radius: 4px;
+}

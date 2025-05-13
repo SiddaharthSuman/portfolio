@@ -1,0 +1,75 @@
+// components/Footer/Footer.module.scss
+@use '../../styles/spacings' as spacings;
+@use '../../styles/mixins' as *;
+
+.footer {
+  padding: spacings.spacing(xxl) 0 spacings.spacing(lg);
+  background-color: var(--color-primary-dark);
+}
+
+.footerContent {
+  display: flex;
+  flex-direction: column;
+  gap: spacings.spacing(lg);
+  align-items: center;
+  justify-content: center;
+}
+
+.socialLinks {
+  display: flex;
+  gap: spacings.spacing(lg);
+  align-items: center;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+
+  @include transition;
+
+  &:hover {
+    color: var(--color-accent);
+    transform: translateY(-3px);
+  }
+}
+
+.credits {
+  text-align: center;
+}
+
+.designed {
+  margin-block-end: spacings.spacing(xs);
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.backToTop {
+  position: relative;
+  margin-block-start: spacings.spacing(md);
+}
+
+.topButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 44px;
+  block-size: 44px;
+  color: var(--color-text-secondary);
+  background-color: var(--color-card-background);
+  border-radius: 50%;
+
+  @include transition;
+
+  &:hover {
+    color: var(--color-accent);
+    background-color: var(--color-hover);
+    transform: translateY(-3px);
+  }
+}

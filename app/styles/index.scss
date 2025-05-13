@@ -1,0 +1,13 @@
+// 1. Variables and configuration
+@import './colors';
+@import './spacings';
+@import './mixins';
+
+// 2. Base styles and resets from globals.scss
+@import './globals';
+
+// 3. Grid system
+@import './grid';
+
+// 4. Utility classes
+@import './spacing-utils';

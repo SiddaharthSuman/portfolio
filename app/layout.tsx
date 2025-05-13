@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Manrope } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
-import './styles/globals.scss';
+import './styles/index.scss';
 
 import { ThemeProvider } from './context/ThemeContext';
 import CustomCursor from './components/Cursor2';
@@ -24,8 +24,41 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Siddaharth Suman | Portfolio',
-  description: 'Personal portfolio of Siddaharth Suman, Senior Software Engineer',
+  title: {
+    default: 'Siddaharth Suman | Lead Software Engineer',
+    template: '%s | Siddaharth Suman',
+  },
+  description:
+    'Siddaharth Suman is a lead software engineer with over 8 years of experience specializing in creating exceptional digital experiences.',
+  keywords: [
+    'software engineer',
+    'web developer',
+    'frontend developer',
+    'React developer',
+    'portfolio',
+  ],
+  authors: [{ name: 'Siddaharth Suman' }],
+  creator: 'Siddaharth Suman',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://siddaharthsuman.com',
+    title: 'Siddaharth Suman | Lead Software Engineer',
+    description:
+      'Lead Software Engineer with expertise in frontend development and user experience.',
+    siteName: 'Siddaharth Suman Portfolio',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Siddaharth Suman | Lead Software Engineer',
+    description:
+      'Lead Software Engineer with expertise in frontend development and user experience.',
+    creator: '@siddaharthsuman',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

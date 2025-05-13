@@ -2,9 +2,9 @@
 /* stylelint-disable selector-class-pattern */
 @use 'sass:map';
 @use 'sass:color';
+@use './colors' as colors;
 @use './spacings' as spacings;
 @use './mixins' as *;
-@use './colors' as colors;
 
 // Function to convert hex to rgb (helper)
 @function hexToRGB($hex) {

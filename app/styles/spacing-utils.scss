@@ -1,0 +1,217 @@
+// spacing-utilities.scss
+// Utility classes for margin and padding based on the existing spacing system
+
+@use 'sass:map';
+@use './spacings' as spacings;
+@use './mixins' as *;
+
+// Generate margin utility classes
+@each $size, $value in spacings.$spacing {
+  // Margin - all sides
+  .m-#{$size} {
+    margin: spacings.spacing($size) !important;
+  }
+  
+  // Margin - top
+  .mt-#{$size} {
+    margin-top: spacings.spacing($size) !important;
+  }
+  
+  // Margin - right
+  .mr-#{$size} {
+    margin-right: spacings.spacing($size) !important;
+  }
+  
+  // Margin - bottom
+  .mb-#{$size} {
+    margin-bottom: spacings.spacing($size) !important;
+  }
+  
+  // Margin - left
+  .ml-#{$size} {
+    margin-left: spacings.spacing($size) !important;
+  }
+  
+  // Margin - x-axis (left and right)
+  .mx-#{$size} {
+    margin-left: spacings.spacing($size) !important;
+    margin-right: spacings.spacing($size) !important;
+  }
+  
+  // Margin - y-axis (top and bottom)
+  .my-#{$size} {
+    margin-top: spacings.spacing($size) !important;
+    margin-bottom: spacings.spacing($size) !important;
+  }
+}
+
+// Generate padding utility classes
+@each $size, $value in spacings.$spacing {
+  // Padding - all sides
+  .p-#{$size} {
+    padding: spacings.spacing($size) !important;
+  }
+  
+  // Padding - top
+  .pt-#{$size} {
+    padding-top: spacings.spacing($size) !important;
+  }
+  
+  // Padding - right
+  .pr-#{$size} {
+    padding-right: spacings.spacing($size) !important;
+  }
+  
+  // Padding - bottom
+  .pb-#{$size} {
+    padding-bottom: spacings.spacing($size) !important;
+  }
+  
+  // Padding - left
+  .pl-#{$size} {
+    padding-left: spacings.spacing($size) !important;
+  }
+  
+  // Padding - x-axis (left and right)
+  .px-#{$size} {
+    padding-left: spacings.spacing($size) !important;
+    padding-right: spacings.spacing($size) !important;
+  }
+  
+  // Padding - y-axis (top and bottom)
+  .py-#{$size} {
+    padding-top: spacings.spacing($size) !important;
+    padding-bottom: spacings.spacing($size) !important;
+  }
+}
+
+// Auto margins
+.m-auto {
+  margin: auto !important;
+}
+
+.mt-auto {
+  margin-top: auto !important;
+}
+
+.mr-auto {
+  margin-right: auto !important;
+}
+
+.mb-auto {
+  margin-bottom: auto !important;
+}
+
+.ml-auto {
+  margin-left: auto !important;
+}
+
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.my-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
+// Responsive spacing classes
+@each $breakpoint-name, $breakpoint-value in spacings.$breakpoints {
+  @include breakpoint($breakpoint-name) {
+    @each $size, $value in spacings.$spacing {
+      // Margin classes
+      .m-#{$breakpoint-name}-#{$size} {
+        margin: spacings.spacing($size) !important;
+      }
+      
+      .mt-#{$breakpoint-name}-#{$size} {
+        margin-top: spacings.spacing($size) !important;
+      }
+      
+      .mr-#{$breakpoint-name}-#{$size} {
+        margin-right: spacings.spacing($size) !important;
+      }
+      
+      .mb-#{$breakpoint-name}-#{$size} {
+        margin-bottom: spacings.spacing($size) !important;
+      }
+      
+      .ml-#{$breakpoint-name}-#{$size} {
+        margin-left: spacings.spacing($size) !important;
+      }
+      
+      .mx-#{$breakpoint-name}-#{$size} {
+        margin-left: spacings.spacing($size) !important;
+        margin-right: spacings.spacing($size) !important;
+      }
+      
+      .my-#{$breakpoint-name}-#{$size} {
+        margin-top: spacings.spacing($size) !important;
+        margin-bottom: spacings.spacing($size) !important;
+      }
+      
+      // Padding classes
+      .p-#{$breakpoint-name}-#{$size} {
+        padding: spacings.spacing($size) !important;
+      }
+      
+      .pt-#{$breakpoint-name}-#{$size} {
+        padding-top: spacings.spacing($size) !important;
+      }
+      
+      .pr-#{$breakpoint-name}-#{$size} {
+        padding-right: spacings.spacing($size) !important;
+      }
+      
+      .pb-#{$breakpoint-name}-#{$size} {
+        padding-bottom: spacings.spacing($size) !important;
+      }
+      
+      .pl-#{$breakpoint-name}-#{$size} {
+        padding-left: spacings.spacing($size) !important;
+      }
+      
+      .px-#{$breakpoint-name}-#{$size} {
+        padding-left: spacings.spacing($size) !important;
+        padding-right: spacings.spacing($size) !important;
+      }
+      
+      .py-#{$breakpoint-name}-#{$size} {
+        padding-top: spacings.spacing($size) !important;
+        padding-bottom: spacings.spacing($size) !important;
+      }
+    }
+    
+    // Auto margin classes at each breakpoint
+    .m-#{$breakpoint-name}-auto {
+      margin: auto !important;
+    }
+    
+    .mt-#{$breakpoint-name}-auto {
+      margin-top: auto !important;
+    }
+    
+    .mr-#{$breakpoint-name}-auto {
+      margin-right: auto !important;
+    }
+    
+    .mb-#{$breakpoint-name}-auto {
+      margin-bottom: auto !important;
+    }
+    
+    .ml-#{$breakpoint-name}-auto {
+      margin-left: auto !important;
+    }
+    
+    .mx-#{$breakpoint-name}-auto {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    
+    .my-#{$breakpoint-name}-auto {
+      margin-top: auto !important;
+      margin-bottom: auto !important;
+    }
+  }
+}
