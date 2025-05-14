@@ -1,0 +1,66 @@
+[
+  {
+    "description": "Instructed students in Cyber Forensics and programming with practical, real-world applications.",
+    "details": [
+      "Instructed students in Cyber Forensics and programming",
+      "Incorporated practical, real-world forensic challenges into coursework",
+      "Developed curriculum materials for technical subjects"
+    ],
+    "endDate": "Oct 2015",
+    "id": "work-4",
+    "location": "Mumbai, India",
+    "organization": "Institute of Forensic Science",
+    "startDate": "Aug 2015",
+    "technologies": ["Cyber Forensics", "Programming", "Education"],
+    "title": "Assistant Professor",
+    "url": null
+  },
+  {
+    "description": "Developed and maintained backend systems for web applications, improving performance and reliability.",
+    "details": [
+      "Developed and maintained backend systems for web applications",
+      "Improved server-side performance by 20%",
+      "Reduced system downtime through optimized code and infrastructure improvements"
+    ],
+    "endDate": "Oct 2014",
+    "id": "work-5",
+    "location": "Mumbai, India",
+    "organization": "Palmate Solutions",
+    "startDate": "May 2014",
+    "technologies": ["PHP", "SQL", "Backend Development"],
+    "title": "Backend Developer",
+    "url": null
+  },
+  {
+    "description": "Gained hands-on experience in Android application development during this internship.",
+    "details": [
+      "Developed Android applications under mentorship",
+      "Implemented UI designs and functionality",
+      "Collaborated with team members on application features"
+    ],
+    "endDate": "Mar 2014",
+    "id": "work-6",
+    "location": "Mumbai, India",
+    "organization": "TechMeet",
+    "startDate": "Jan 2014",
+    "technologies": ["Java", "Android", "Mobile Development"],
+    "title": "Android Developer Intern",
+    "url": null
+  },
+  {
+    "description": "Early career internship focused on mobile application development for Android platforms.",
+    "details": [
+      "Contributed to Android application development projects",
+      "Learned mobile development best practices",
+      "Implemented features for client applications"
+    ],
+    "endDate": "Oct 2013",
+    "id": "work-7",
+    "location": "Mumbai, India",
+    "organization": "Opine Solutions",
+    "startDate": "Jun 2013",
+    "technologies": ["Java", "Android", "Mobile Development"],
+    "title": "Android Developer Intern",
+    "url": null
+  }
+]

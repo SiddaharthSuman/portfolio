@@ -1,0 +1,214 @@
+@use '@/app/styles/spacings' as spacings;
+@use '@/app/styles/mixins' as *;
+
+.card {
+  position: relative;
+  inline-size: 100%;
+  padding: spacings.spacing(md) spacings.spacing(lg);
+  background-color: var(--color-card-background);
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
+  transition: transform 0.3s ease;
+
+  // box-shadow 0.3s ease;
+
+  will-change: transform; /* Optimization for animations */
+
+  @include breakpoint(md) {
+    grid-area: content;
+
+    // Position within the grid
+    inline-size: auto; // Allow the card to size with the grid
+    max-inline-size: 95%; // Prevent from being too wide
+
+    &.work {
+      justify-self: flex-start; // Align to left of grid cell
+      border-inline-start: 2px solid var(--color-accent);
+    }
+
+    &.education {
+      justify-self: flex-end; // Align to right of grid cell
+      text-align: end;
+      border-inline-end: 2px solid var(--color-education);
+    }
+  }
+
+  // Hover effect
+  &:hover {
+    box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
+    transform: translateY(-5px);
+  }
+}
+
+.title {
+  margin-block-end: spacings.spacing(xs);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-text-primary);
+
+  @include breakpoint(sm) {
+    font-size: 1.2rem;
+  }
+}
+
+.organization {
+  display: block;
+  margin-block-start: spacings.spacing(xxs);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-accent);
+
+  .education & {
+    color: var(--color-education);
+  }
+}
+
+.organizationLink {
+  display: inline-flex;
+  align-items: center;
+  margin-inline-start: spacings.spacing(xs);
+  color: inherit;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  svg {
+    inline-size: 14px;
+    block-size: 14px;
+  }
+}
+
+.description {
+  margin-block-end: spacings.spacing(md);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  text-wrap: balance;
+}
+
+.details {
+  margin-block-start: spacings.spacing(md);
+}
+
+.expandButton {
+  display: inline-flex;
+  align-items: center;
+  padding: spacings.spacing(xs) spacings.spacing(sm);
+  font-family: var(--font-manrope);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+
+  // transition: background-color 0.2s ease;
+
+  .education & {
+    color: var(--color-education);
+    border-color: var(--color-education);
+  }
+
+  &:hover {
+    background-color: rgba(var(--color-accent-rgb), 0.1);
+  }
+
+  &::after {
+    margin-inline-start: spacings.spacing(xs);
+    font-size: 0.6rem;
+    content: '▼';
+    transition: transform 0.3s ease;
+  }
+
+  .expanded &::after {
+    transform: rotate(180deg);
+  }
+}
+
+.detailsContent {
+  max-block-size: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    // max-height 0.3s ease,
+    opacity 0.3s ease;
+
+  // margin 0.3s ease;
+
+  .expanded & {
+    max-block-size: 1000px; // Larger than content will ever be
+    margin-block-start: spacings.spacing(md);
+    opacity: 1;
+  }
+}
+
+.detailsList {
+  padding: 0;
+  margin: 0 0 spacings.spacing(md) 0;
+  list-style: none;
+}
+
+.detailItem {
+  display: flex;
+  margin-block-end: spacings.spacing(sm);
+  font-size: 0.9rem;
+  line-height: 1.5;
+
+  // For right-aligned education items
+  @include breakpoint(md) {
+    .education & {
+      flex-direction: row-reverse;
+      text-align: end;
+
+      .bullet {
+        margin-inline: spacings.spacing(xs) 0;
+      }
+    }
+  }
+
+  &:last-child {
+    margin-block-end: 0;
+  }
+}
+
+.bullet {
+  flex-shrink: 0;
+  margin-inline-end: spacings.spacing(xs);
+  color: var(--color-accent);
+
+  .education & {
+    color: var(--color-education);
+  }
+}
+
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacings.spacing(xs);
+
+  // For right-aligned education items
+  @include breakpoint(md) {
+    .education & {
+      justify-content: flex-end;
+    }
+  }
+}
+
+.technologyTag {
+  display: inline-block;
+  padding: spacings.spacing(xxs) spacings.spacing(xs);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  background-color: rgba(var(--color-accent-rgb), 0.1);
+  border-radius: 4px;
+
+  .education & {
+    color: var(--color-education);
+    background-color: rgba(var(--color-education-rgb), 0.1);
+  }
+}

@@ -128,7 +128,7 @@ const ProjectsSection = () => {
   projectsRef.current = new Array(projects.length).fill(null);
 
   return (
-    <section ref={sectionRef} className={styles.projectsSection} id="projects">
+    <section ref={sectionRef} className={`${styles.projectsSection}`} id="projects">
       <div className="container">
         <div ref={headingRef} className={styles.sectionHeading}>
           <h2 className={styles.heading}>

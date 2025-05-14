@@ -29,7 +29,8 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className={styles.heroSection} id="home">
+    <section className={`${styles.heroSection}`} id="hero">
+      {/* <SnapSection className={styles.heroSection} id="hero"> */}
       <div className="container">
         <div className={styles.heroContent}>
           <p ref={nameRef} className={styles.greeting}>
@@ -63,6 +64,7 @@ const HeroSection = () => {
         </div>
         <div className={styles.scrollText}>Scroll Down</div>
       </div>
+      {/* </SnapSection> */}
     </section>
   );
 };

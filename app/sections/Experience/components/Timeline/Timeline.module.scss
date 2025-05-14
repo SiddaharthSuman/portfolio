@@ -1,0 +1,168 @@
+/* stylelint-disable plugin/no-low-performance-animation-properties */
+// sections/ExperienceSection/components/Timeline/Timeline.module.scss
+@use '@/app/styles/spacings' as spacings;
+@use '@/app/styles/mixins' as *;
+
+.timelineContainer {
+  position: relative;
+  max-inline-size: 1200px;
+  padding-block-end: spacings.spacing(xxl);
+
+  // Default single-column layout for mobile
+  padding-inline-start: 30px; // Space for timeline
+  margin: spacings.spacing(xxl) auto 0;
+
+  @include breakpoint(md) {
+    padding-inline-start: 0;
+  }
+}
+
+.timelineLine {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inline-size: 2px;
+
+  // CSS Animation for line drawing
+  background: linear-gradient(to bottom, var(--color-text-secondary) 50%, transparent 50%) repeat-y;
+  background-color: var(--color-text-secondary);
+  background-size: 2px 16px; // Dashed line effect
+  opacity: 0.5;
+
+  @include breakpoint(md) {
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+  }
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    background-color: var(--color-background);
+    animation: draw-line 2s ease-out forwards;
+  }
+}
+
+.timelineItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-block-end: spacings.spacing(xl);
+
+  // Pre-animation state
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  // Specific to filtering
+  transition:
+    opacity 0.3s ease,
+    transform 0.5s ease,
+    height 0.3s ease;
+  transition-delay: calc(var(--item-index) * 0.1s);
+
+  // Visible state
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  // Desktop layout with proper positioning
+  @include breakpoint(md) {
+    display: grid;
+    grid-template-columns: 1fr 50px 1fr; // Left content, timeline, right content
+
+    // Work (right side)
+    &.work {
+      grid-template-areas: 'meta node content';
+
+      .metaContainer {
+        grid-area: meta;
+        justify-self: flex-end;
+        padding-inline-end: spacings.spacing(xl);
+        text-align: end;
+      }
+    }
+
+    // Education (left side)
+    &.education {
+      grid-template-areas: 'content node meta';
+
+      .metaContainer {
+        grid-area: meta;
+        justify-self: flex-start;
+        padding-inline-start: spacings.spacing(xl);
+        text-align: start;
+      }
+    }
+  }
+}
+
+// Combined meta container (date and logo)
+.metaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: spacings.spacing(md);
+
+  // transform: translateY(var(--parallax-offset, 0));
+  // transition: transform 0.1s ease-out;
+  // will-change: transform;
+
+  // On mobile, position differently
+  @media (width <= 767px) {
+    flex-direction: column-reverse;
+    gap: spacings.spacing(sm);
+    margin-block: spacings.spacing(sm) spacings.spacing(md);
+  }
+
+  // Desktop layout
+  @include breakpoint(md) {
+    // For work experiences (right side)
+    .work & {
+      align-items: flex-end; // Align children to the right
+    }
+
+    // For education (left side)
+    .education & {
+      align-items: flex-start; // Align children to the left
+    }
+  }
+}
+
+.timelineDate {
+  inline-size: 100%;
+  font-family: var(--font-manrope);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.timelineLocation {
+  display: block;
+  margin-block-start: spacings.spacing(xxs);
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+// Organization logo area
+.logoArea {
+  position: relative;
+
+  // On mobile, position differently
+  @media (width <= 767px) {
+    align-self: flex-start;
+    margin-inline-start: spacings.spacing(lg);
+  }
+}
+
+@keyframes draw-line {
+  from {
+    transform: scaleY(1);
+    transform-origin: top center;
+  }
+
+  to {
+    transform: scaleY(0);
+    transform-origin: top center;
+  }
+}

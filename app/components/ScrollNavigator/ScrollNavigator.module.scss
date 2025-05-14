@@ -1,0 +1,123 @@
+// components/ScrollNavigator/ScrollNavigator.module.scss
+@use '../../styles/spacings' as spacings;
+@use '../../styles/mixins' as *;
+
+.navigator {
+  position: fixed;
+  inset-block-start: 50%;
+  inset-inline-end: spacings.spacing(md);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: spacings.spacing(md);
+  align-items: center;
+  transform: translateY(-50%);
+
+  @include breakpoint(lg) {
+    inset-inline-end: spacings.spacing(lg);
+  }
+
+  // Hide on mobile
+  @media (width <= 767px) {
+    display: none;
+  }
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 36px;
+  block-size: 36px;
+  color: var(--color-text-secondary);
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  opacity: 0.7;
+
+  @include transition;
+
+  &:hover {
+    color: var(--color-accent);
+    background-color: var(--color-hover);
+    opacity: 1;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+
+    &:hover {
+      color: var(--color-text-secondary);
+      background-color: var(--color-card-background);
+    }
+  }
+}
+
+.indicators {
+  display: flex;
+  flex-direction: column;
+  gap: spacings.spacing(sm);
+}
+
+.indicatorTooltip {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 24px;
+  padding: spacings.spacing(xs) spacings.spacing(sm);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  pointer-events: none;
+  background-color: var(--color-card-background);
+  border-radius: 4px;
+  opacity: 0;
+  transform: translateX(10px);
+
+  @include transition;
+}
+
+.indicator {
+  position: relative;
+  inline-size: 12px;
+  block-size: 12px;
+  background-color: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+
+  @include transition;
+
+  &::before {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    inline-size: 6px;
+    block-size: 6px;
+    content: '';
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+
+    @include transition;
+  }
+
+  &:hover {
+    &::before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .indicatorTooltip {
+      opacity: 1;
+      transform: translateX(-10px);
+    }
+  }
+
+  &.active {
+    border-color: var(--color-accent);
+
+    &::before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}

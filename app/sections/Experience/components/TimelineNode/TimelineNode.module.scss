@@ -1,0 +1,74 @@
+// sections/ExperienceSection/components/TimelineNode/TimelineNode.module.scss
+@use '@/app/styles/spacings' as spacings;
+@use '@/app/styles/mixins' as *;
+
+.node {
+  inline-size: 16px;
+  block-size: 16px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.connector {
+  position: absolute;
+  inset-block-start: 50%;
+  inline-size: 24px; // Responsive on mobile
+  block-size: 2px;
+  transform: translateY(-50%);
+
+  @include breakpoint(md) {
+    inline-size: 40px; // Longer on desktop
+
+    // Switch sides for work & education
+    .work & {
+      inset-inline-start: 100%;
+    }
+
+    .education & {
+      inset-inline-end: 100%;
+    }
+  }
+}
+
+.nodeWrapper {
+  position: absolute;
+  inset-block-start: 5px; // Align with flex content
+  inset-inline-start: 0;
+  z-index: 2;
+  transform: translateX(-50%);
+
+  // On desktop, it should be in the center column of the grid
+  @include breakpoint(md) {
+    position: relative;
+    inset-block-start: auto;
+    inset-inline-start: auto;
+    grid-area: node;
+    place-self: center;
+    transform: none;
+  }
+
+  // Different colors based on type
+  &.work {
+    .node {
+      background-color: var(--color-accent);
+    }
+
+    .connector {
+      background-color: var(--color-accent);
+    }
+  }
+
+  &.education {
+    .node {
+      background-color: var(--color-education);
+    }
+
+    .connector {
+      background-color: var(--color-education);
+    }
+  }
+}

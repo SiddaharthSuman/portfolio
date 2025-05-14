@@ -1,0 +1,63 @@
+// sections/ExperienceSection/components/FilterControls/FilterControls.module.scss
+@use '@/app/styles/spacings' as spacings;
+@use '@/app/styles/mixins' as *;
+
+.filterContainer {
+  display: flex;
+  gap: spacings.spacing(md);
+  justify-content: center;
+  margin-block-end: spacings.spacing(xl);
+
+  // Fade-in animation
+  opacity: 0;
+  animation: fade-in 0.5s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.filterButton {
+  min-inline-size: 80px;
+  padding: spacings.spacing(sm) spacings.spacing(md);
+  font-family: var(--font-manrope);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  /* stylelint-disable-next-line plugin/no-low-performance-animation-properties */
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: var(--color-accent);
+    background-color: rgba(var(--color-accent-rgb), 0.05);
+    border-color: var(--color-accent);
+  }
+
+  &.active {
+    color: var(--color-background);
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+
+    &:hover {
+      background-color: var(--color-accent);
+      opacity: 0.9;
+    }
+
+    // Special styling for education filter
+    &[aria-pressed='true']:nth-child(3) {
+      background-color: var(--color-education);
+      border-color: var(--color-education);
+    }
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

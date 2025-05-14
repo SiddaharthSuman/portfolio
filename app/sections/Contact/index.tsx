@@ -120,7 +120,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className={styles.contactSection} id="contact">
+    <section ref={sectionRef} className={`${styles.contactSection}`} id="contact">
       <div className="container">
         <div ref={contentRef} className={styles.contactContent}>
           <h2 className={styles.heading}>

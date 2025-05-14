@@ -1,0 +1,15 @@
+/* SnapContainer.module.scss */
+
+.scrollSnapContainer {
+  block-size: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 80px; /* Should match your header height */
+  scroll-behavior: smooth;
+}
+
+@media (width <= 767px) {
+  .scrollSnapContainer {
+    scroll-snap-type: none; /* Disable on mobile */
+  }
+}

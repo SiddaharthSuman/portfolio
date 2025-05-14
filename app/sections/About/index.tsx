@@ -41,7 +41,8 @@ const AboutSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className={styles.aboutSection} id="about">
+    <section ref={sectionRef} className={`${styles.aboutSection}`} id="about">
+      {/* <SnapSection ref={sectionRef} className={`${styles.aboutSection} snapSection`} id="about"> */}
       <div className="container">
         <div ref={headingRef} className={styles.sectionHeading}>
           <h2 className={styles.heading}>
@@ -107,6 +108,7 @@ const AboutSection = () => {
           ))}
         </div>
       </div>
+      {/* </SnapSection> */}
     </section>
   );
 };

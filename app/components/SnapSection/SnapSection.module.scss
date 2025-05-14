@@ -1,0 +1,34 @@
+/* SnapSection.module.scss */
+
+/* Use this as a separate module for scroll snapping sections */
+
+.scrollSnapSection {
+  /* Add a z-index to ensure proper stacking */
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100vh;
+  padding-block-start: 80px; /* Adjust based on your header height */
+  margin-block-start: -80px; /* Counteract the padding-top */
+  scroll-snap-align: start;
+}
+
+/* Main scrolling container style - add this to your globals.scss or use the SnapContainer component */
+.scrollSnapContainer {
+  block-size: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 80px; /* Should match your header height */
+  scroll-behavior: smooth;
+}
+
+@media (width <= 767px) {
+  .scrollSnapContainer {
+    scroll-snap-type: none; /* Disable on mobile */
+  }
+
+  .scrollSnapSection {
+    min-block-size: auto;
+  }
+}

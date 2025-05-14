@@ -1,0 +1,49 @@
+// app/styles/scroll-snap.scss
+@use './mixins' as *;
+
+// Main scrolling container
+html {
+  scroll-behavior: smooth;
+
+  // Enable scroll snapping on larger screens
+  @include breakpoint(md) {
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 80px; // Adjust this to match your header height
+  }
+}
+
+// Apply to all full-height sections that should snap
+.snapSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-block-size: 100vh; // Ensure sections are at least full viewport height
+
+  // Add some padding for header
+  padding-block-start: 80px; // Adjust to match your header height
+
+  // We add a negative margin to offset the padding and keep vertical centering
+  margin-block-start: -80px; // Same as padding-top
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+
+  // Ensure last sections can be scrolled to properly for smaller content
+  &:last-of-type {
+    padding-block-end: 100px;
+    margin-block-end: 0;
+  }
+}
+
+// Disable snap on smaller screens for better mobile experience
+@media (width <= 767px) {
+  html {
+    scroll-snap-type: none;
+  }
+
+  .snapSection {
+    min-block-size: auto;
+    padding-block-start: 50px; // Smaller padding for mobile
+    margin-block-start: -50px; // Offset padding
+    scroll-snap-align: none;
+  }
+}

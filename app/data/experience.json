@@ -1,0 +1,127 @@
+{
+  "education": [
+    {
+      "description": "Currently pursuing a Master's degree in Informatics with a focus on advanced software development practices and information architecture.",
+      "details": [
+        "Focusing on advanced software development methodologies",
+        "Studying information architecture and system design",
+        "Developing skills in data visualization and analysis"
+      ],
+      "endDate": "Present",
+      "id": "education-1",
+      "img": {
+        "alt": "Northeastern University Logo",
+        "ratio": "1/1",
+        "src": "NU_logo.jpg"
+      },
+      "location": "Boston, MA",
+      "organization": "Northeastern University",
+      "startDate": "Jan 2024",
+      "technologies": ["JavaScript", "React", "Data Visualization", "System Design"],
+      "title": "Master of Professional Studies - Informatics",
+      "url": "https://www.northeastern.edu/"
+    },
+    {
+      "description": "Completed a Bachelor's degree in Computer Engineering, focusing on software development and systems design.",
+      "details": [
+        "Specialized in software development and systems engineering",
+        "Completed coursework in algorithms, data structures, and database systems",
+        "Developed strong foundation in computer science fundamentals"
+      ],
+      "endDate": "May 2015",
+      "id": "education-2",
+      "img": {
+        "alt": "University of Mumbai Logo",
+        "ratio": "100/101",
+        "src": "MU_logo.png"
+      },
+      "location": "Mumbai, India",
+      "organization": "Mumbai University",
+      "startDate": "Jun 2011",
+      "technologies": ["Java", "SQL", "Data Structures", "Algorithms"],
+      "title": "Bachelor of Engineering - Computer Engineering",
+      "url": "https://www.mu.ac.in/"
+    }
+  ],
+  "work": [
+    {
+      "description": "Led frontend development teams and established architecture for scalable web applications, focusing on performance and accessibility.",
+      "details": [
+        "Led a team of frontend web developers, delivering a high-performance mental health application, improving accessibility by 20% and increasing user engagement by 15%",
+        "Developed a reusable component library that reduced development time by 30% and improved consistency across multiple projects",
+        "Conducted framework feasibility studies and established architecture for scalable frontend projects, reducing future technical debt",
+        "Collaborated with cross-functional teams to integrate frontend solutions with backend services, reducing errors by 25% and improving system scalability",
+        "Mentored junior developers, resulting in a 15% improvement in code quality and faster turnaround on code reviews"
+      ],
+      "endDate": "Nov 2023",
+      "id": "work-1",
+      "img": {
+        "alt": "Code and Theory Logo",
+        "ratio": "1/1",
+        "src": "cnt_logo.jpeg"
+      },
+      "location": "Bengaluru, India",
+      "organization": "Code and Theory (formerly Y Media Labs)",
+      "startDate": "Nov 2021",
+      "technologies": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Angular",
+        "Frontend Architecture",
+        "Accessibility",
+        "Component Libraries"
+      ],
+      "title": "Senior Software Engineer",
+      "url": "https://www.codeandtheory.com/"
+    },
+    {
+      "description": "Developed financial data APIs and tools, optimizing performance and data integration for financial applications.",
+      "details": [
+        "Developed and optimized client-facing endpoints using JavaScript and NodeJS, reducing query latency by 40%, enhancing client satisfaction",
+        "Created a custom Oracle SQL data import package that cut data integration time by 35%, streamlining internal workflows",
+        "Spearheaded the development of a financial data tool, improving system responsiveness and handling complex queries efficiently"
+      ],
+      "endDate": "Oct 2021",
+      "id": "work-2",
+      "img": {
+        "alt": "FactSet Logo",
+        "ratio": "1/1",
+        "src": "Factset_logo.png"
+      },
+      "location": "Hyderabad, India",
+      "organization": "FactSet",
+      "startDate": "Dec 2018",
+      "technologies": [
+        "JavaScript",
+        "NodeJS",
+        "Oracle SQL",
+        "REST APIs",
+        "Financial Data Processing"
+      ],
+      "title": "Software Engineer III",
+      "url": "https://www.factset.com/"
+    },
+    {
+      "description": "Automated reporting systems and developed productivity-enhancing applications for enterprise environments.",
+      "details": [
+        "Automated report generation for 80+ production applications, reducing manual effort from 1 hour to 5 minutes and improving operational efficiency by 90%",
+        "Developed mobile device management and workspace reservation systems, boosting employee productivity by 25%",
+        "Recognized for delivering high-impact solutions that enhanced employee workflows and reduced downtime"
+      ],
+      "endDate": "Dec 2018",
+      "id": "work-3",
+      "img": {
+        "alt": "Infosys Logo",
+        "ratio": "5/2",
+        "src": "Infosys_logo.png"
+      },
+      "location": "Hyderabad, India",
+      "organization": "Infosys",
+      "startDate": "Dec 2015",
+      "technologies": ["Java", "JavaScript", "Automation", "Enterprise Systems"],
+      "title": "Senior Systems Engineer",
+      "url": "https://www.infosys.com/"
+    }
+  ]
+}

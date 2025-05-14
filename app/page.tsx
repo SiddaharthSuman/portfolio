@@ -3,6 +3,8 @@
 import EmailSidebar from './components/EmailSidebar';
 import Footer from './components/Footer';
 import Header from './components/Header2';
+import ScrollNavigator from './components/ScrollNavigator';
+// import SnapContainer from './components/SnapContainer';
 import SocialSidebar from './components/SocialSidebar';
 // import ThemeToggle from './components/ThemeToggle/ThemeToggle';
 import AboutSection from './sections/About';
@@ -19,26 +21,33 @@ export default function Home() {
   //   }
   // }
 
+  const sections = [
+    { id: 'hero', name: 'Home' },
+    { id: 'about', name: 'About' },
+    { id: 'experience', name: 'Experience' },
+    { id: 'projects', name: 'Projects' },
+    { id: 'contact', name: 'Contact' },
+  ];
+
   return (
     // <Container >
     <div>
       <Header></Header>
-      {/* <h1>Hello From Next.js 13.4</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi assumenda facere amet sed
-        sit! Eligendi itaque harum nobis? Reprehenderit id perspiciatis et molestias animi
-        asperiores numquam ratione nam expedita repellendus?
-      </p> */}
-      {/* <button onClick={toggleLightDark}>Light/Dark Mode</button>*/}
+
+      {/* <SnapContainer> */}
       <HeroSection></HeroSection>
       <AboutSection></AboutSection>
-      <ExperienceSection></ExperienceSection>
+      <ExperienceSection />
       <ProjectsSection></ProjectsSection>
       <ContactSection></ContactSection>
+
       <SocialSidebar></SocialSidebar>
       <EmailSidebar></EmailSidebar>
+      <ScrollNavigator sections={sections}></ScrollNavigator>
       {/* <ThemeToggle /> */}
       <Footer></Footer>
+
+      {/* </SnapContainer> */}
     </div>
     // </Container>
   );

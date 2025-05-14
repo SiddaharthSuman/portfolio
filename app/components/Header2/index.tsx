@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, MouseEvent } from 'react';
 import Link from 'next/link';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 
 import { useTheme } from '@/app/context/ThemeContext';
+import { handleSmoothScroll } from '@/app/utils/scrollUtils';
 
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 
@@ -54,10 +55,16 @@ const Header = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [isMenuOpen]);
 
+  // Handle smooth scrolling for nav links
+  const handleNavClick = (e: MouseEvent) => {
+    handleSmoothScroll({ e, offset: 0 });
+    closeMenu();
+  };
+
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.headerContainer}`}>
-        <Link className={styles.logo} href="/">
+        <Link className={styles.logo} href="#hero" onClick={handleNavClick}>
           <span className={styles.logoText}>SS</span>
         </Link>
 
@@ -66,7 +73,7 @@ const Header = () => {
           <ul className={styles.navList}>
             {navItems.map((item, index) => (
               <li key={item.name} className={styles.navItem}>
-                <Link className={styles.navLink} href={item.href}>
+                <Link className={styles.navLink} href={item.href} onClick={handleNavClick}>
                   <span className={styles.navNumber}>0{index + 1}.</span>
                   {item.name}
                 </Link>
@@ -118,7 +125,7 @@ const Header = () => {
           <ul className={styles.mobileNavList}>
             {navItems.map((item, index) => (
               <li key={item.name} className={styles.mobileNavItem}>
-                <Link className={styles.mobileNavLink} href={item.href} onClick={closeMenu}>
+                <Link className={styles.mobileNavLink} href={item.href} onClick={handleNavClick}>
                   <span className={styles.navNumber}>0{index + 1}.</span>
                   {item.name}
                 </Link>

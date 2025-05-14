@@ -1,0 +1,79 @@
+/* stylelint-disable plugin/no-low-performance-animation-properties */
+// sections/ExperienceSection/components/OrganizationLogo/OrganizationLogo.module.scss
+@use '@/app/styles/spacings' as spacings;
+@use '@/app/styles/mixins' as *;
+
+.logoContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: hidden;
+  background-color: white;
+  border-radius: unset;
+
+  &:has(img[style*='aspect-ratio:1/1']),
+  &:has(img[style*='aspect-ratio: 1/1']),
+  &:has(img[style*='aspect-ratio:1']),
+  &:has(img[style*='aspect-ratio: 1']) {
+    border-radius: 50%;
+  }
+}
+
+.logoInitials {
+  font-family: var(--font-geist-sans);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.logoContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 100px;
+  block-size: 100px;
+
+  // background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  // Mobile styles - smaller and positioned below card
+  @media (width <= 767px) {
+    inline-size: 60px;
+    block-size: 60px;
+    margin-block-start: spacings.spacing(md);
+  }
+
+  // Hover effect
+  &:hover {
+    box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
+    transform: translateY(-5px);
+  }
+
+  // Work logo styling
+  &.work {
+    // border-inline-start: 2px solid var(--color-accent);
+
+    .logoInitials {
+      color: var(--color-accent);
+    }
+  }
+
+  // Education logo styling
+  &.education {
+    // border-inline-end: 2px solid var(--color-education);
+
+    .logoInitials {
+      color: var(--color-education);
+    }
+  }
+
+  // :has([style*='aspect-ratio: 1/1']) .logoContent {
+  //   border-radius: 50%;
+  // }
+}
