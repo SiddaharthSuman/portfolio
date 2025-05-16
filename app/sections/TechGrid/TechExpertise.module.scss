@@ -128,10 +128,17 @@
   margin-inline-end: spacings.spacing(md);
   border-radius: 8px;
 
-  @include transition(transform, 0.3s, ease);
+  @include transition(all, 0.3s, ease);
 
   &.iconSmaller {
-    transform: scale(0.9);
+    transform: scale(1.1);
+  }
+}
+
+.primarySkill:hover,
+.skillBadge:hover {
+  .iconContainer {
+    box-shadow: 0 0 52px 22px var(--color-glow);
   }
 }
 
@@ -203,20 +210,43 @@
   // gap: 8px;
 }
 
+.skillBadgeDescription,
+.skillBadgeTitle {
+  @include transition;
+}
+
+.skillBadgeTitle {
+  font-size: 0.9rem;
+}
+
 .skillBadgeContainer {
   padding-inline: 4px;
   margin-block-end: 8px;
+
+  &:hover {
+    .skillBadgeDescription {
+      color: var(--secondary-hover-color);
+    }
+
+    .skillBadgeTitle {
+      color: var(--color-text-primary);
+    }
+  }
 }
 
 .skillBadge {
   display: flex;
 
   // align-items: center;
-  padding: 4px 10px;
+  padding: 4px;
   font-size: 0.75rem;
   color: var(--color-text-secondary);
   background-color: rgb(17 24 39 / 60%);
   border-radius: 8px;
+
+  &:hover .iconContainer {
+    transform: scale(1.1);
+  }
 }
 
 .smallIcon {
@@ -246,8 +276,4 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.skillBadgeTitle {
-  font-size: 0.9rem;
 }

@@ -4,6 +4,7 @@
  */
 
 export interface Skill {
+  color: string;
   description?: string;
   icon?: string;
   name: string;

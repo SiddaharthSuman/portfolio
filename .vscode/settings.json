@@ -76,5 +76,9 @@
   "scss.validate": false,
   "stylelint.validate": ["css", "scss"],
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["Siddaharth", "Suman"]
+  "cSpell.words": ["Siddaharth", "Suman"],
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  },
+  "svg.preview.background": "editor"
 }

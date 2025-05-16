@@ -30,7 +30,12 @@ export const SecondarySkills: React.FC<SecondarySkillsProps> = ({
               <div className={` ${styles.skillBadge}`}>
                 <div
                   className={`${styles.iconContainer}`}
-                  style={{ backgroundColor: `${color}15` }}
+                  style={
+                    {
+                      '--color-glow': `${skill.color}90`,
+                      backgroundColor: `${skill.color}15`,
+                    } as React.CSSProperties
+                  }
                 >
                   {skill.icon ? (
                     <Image
@@ -53,7 +58,12 @@ export const SecondarySkills: React.FC<SecondarySkillsProps> = ({
                 </div>
                 <div className={styles.skillBadgeTextContainer}>
                   <span className={styles.skillBadgeTitle}>{skill.name}</span>
-                  <span>{skill.description}</span>
+                  <span
+                    className={styles.skillBadgeDescription}
+                    style={{ '--secondary-hover-color': skill.color } as React.CSSProperties}
+                  >
+                    {skill.description}
+                  </span>
                 </div>
               </div>
             </div>

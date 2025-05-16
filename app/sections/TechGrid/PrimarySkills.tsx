@@ -19,7 +19,12 @@ export const PrimarySkills: React.FC<PrimarySkillProps> = ({ color, isExpanded, 
     <div className={styles.primarySkill}>
       <div
         className={`${styles.iconContainer} ${isExpanded ? styles.iconSmaller : ''}`}
-        style={{ backgroundColor: `${color}15` }}
+        style={
+          {
+            '--color-glow': `${primarySkill.color}90`,
+            backgroundColor: `${primarySkill.color}15`,
+          } as React.CSSProperties
+        }
       >
         {primarySkill.icon ? (
           <Image

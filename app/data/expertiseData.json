@@ -5,6 +5,7 @@
       "id": "languages",
       "name": "Languages",
       "primarySkill": {
+        "color": "#007acc",
         "description": "Strongly typed JavaScript",
         "experience": "5+ years",
         "icon": "/icons/typescript.svg",
@@ -12,15 +13,41 @@
       },
       "secondarySkills": [
         {
+          "color": "#F7DF1E",
           "description": "Web's essential language",
           "icon": "/icons/javascript.svg",
           "name": "JavaScript"
         },
-        { "description": "Modern markup language", "icon": "/icons/html5.svg", "name": "HTML5" },
-        { "description": "Style sheet language", "icon": "/icons/css3.svg", "name": "CSS3" },
-        { "description": "Server-side scripting", "icon": "/icons/php.svg", "name": "PHP" },
-        { "description": "Database query language", "icon": "/icons/sql.svg", "name": "SQL" },
-        { "description": "Object-oriented language", "icon": "/icons/java.svg", "name": "Java" }
+        {
+          "color": "#EF652A",
+          "description": "Modern markup language",
+          "icon": "/icons/html5.svg",
+          "name": "HTML5"
+        },
+        {
+          "color": "#1172B8",
+          "description": "Style sheet language",
+          "icon": "/icons/css3.svg",
+          "name": "CSS3"
+        },
+        {
+          "color": "#777bb3",
+          "description": "Server-side scripting",
+          "icon": "/icons/php.svg",
+          "name": "PHP"
+        },
+        {
+          "color": "#00bcf2",
+          "description": "Database query language",
+          "icon": "/icons/sql.svg",
+          "name": "SQL"
+        },
+        {
+          "color": "#73A1FB",
+          "description": "Object-oriented language",
+          "icon": "/icons/java.svg",
+          "name": "Java"
+        }
       ]
     },
     {
@@ -28,20 +55,33 @@
       "id": "libraries",
       "name": "Libraries/Frameworks",
       "primarySkill": {
+        "color": "#ffffff",
         "description": "React framework for production",
         "experience": "5+ years",
         "icon": "/icons/nextjs.svg",
         "name": "Next.js"
       },
       "secondarySkills": [
-        { "description": "UI component library", "icon": "/icons/react.svg", "name": "React" },
         {
+          "color": "#00d8ff",
+          "description": "UI component library",
+          "icon": "/icons/react.svg",
+          "name": "React"
+        },
+        {
+          "color": "#FF31D9",
           "description": "Full-featured framework",
           "icon": "/icons/angular.svg",
           "name": "Angular"
         },
-        { "description": "CSS framework", "icon": "/icons/bootstrap.svg", "name": "Bootstrap" },
         {
+          "color": "#9561fb",
+          "description": "CSS framework",
+          "icon": "/icons/bootstrap.svg",
+          "name": "Bootstrap"
+        },
+        {
+          "color": "#2CB134",
           "description": "Automated testing tool",
           "icon": "/icons/selenium.svg",
           "name": "Selenium"
@@ -53,34 +93,67 @@
       "id": "cloud",
       "name": "Cloud / Tools",
       "primarySkill": {
+        "color": "#FF9900",
         "description": "Cloud computing platform",
         "experience": "8+ years",
         "icon": "/icons/aws.svg",
         "name": "Amazon Web Services (AWS)"
       },
       "secondarySkills": [
-        { "description": "Version control system", "icon": "/icons/git.svg", "name": "Git" },
-        { "description": "Container platform", "icon": "/icons/docker.svg", "name": "Docker" },
-        { "description": "Microsoft cloud services", "icon": "/icons/azure.svg", "name": "Azure" },
-        { "description": "Serverless computing", "icon": "/icons/lambda.svg", "name": "Lambda" },
-        { "description": "Version control system", "icon": "/icons/svn.svg", "name": "SVN" }
+        {
+          "color": "#DE4C36",
+          "description": "Version control system",
+          "icon": "/icons/git.svg",
+          "name": "Git"
+        },
+        {
+          "color": "#1d63ed",
+          "description": "Container platform",
+          "icon": "/icons/docker.svg",
+          "name": "Docker"
+        },
+        {
+          "color": "#3ccbf4",
+          "description": "Microsoft cloud services",
+          "icon": "/icons/azure.svg",
+          "name": "Azure"
+        },
+        {
+          "color": "#FF9900",
+          "description": "Serverless computing",
+          "icon": "/icons/lambda.svg",
+          "name": "Lambda"
+        },
+        {
+          "color": "#809cc9",
+          "description": "Version control system",
+          "icon": "/icons/svn.svg",
+          "name": "SVN"
+        }
       ]
     },
     {
-      "color": "#FF9900",
+      "color": "#f0d6b7",
       "id": "devops",
       "name": "DevOps",
       "primarySkill": {
+        "color": "#f0d6b7",
         "description": "Infrastructure automation",
         "experience": "4+ years",
         "icon": "/icons/aws.svg",
         "name": "AWS"
       },
       "secondarySkills": [
-        { "description": "Automation server", "icon": "/icons/jenkins.svg", "name": "Jenkins" },
         {
+          "color": "#f0d6b7",
+          "description": "Automation server",
+          "icon": "/icons/jenkins.svg",
+          "name": "Jenkins"
+        },
+        {
+          "color": "#f0d6b7",
           "description": "Continuous integration/delivery",
-          "icon": "/icons/cicd.svg",
+
           "name": "CI/CD"
         }
       ]
