@@ -17,7 +17,6 @@ const ProjectsSection = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            console.log('entry is ', entry.target);
             entry.target.classList.add(styles.animate);
             observer.unobserve(entry.target);
           }

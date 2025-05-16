@@ -62,7 +62,6 @@ export default function Home() {
         // Get the id from the section's data attribute
         const sectionId = entry.target.getAttribute('data-section');
         if (sectionId && entry.isIntersecting) {
-          console.log('enabling', sectionId);
           setVisibleSections((prev) => ({ ...prev, [sectionId]: true }));
           // Unobserve after loading
           sectionObserver.unobserve(entry.target);

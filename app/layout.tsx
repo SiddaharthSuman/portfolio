@@ -9,6 +9,7 @@ import Head from 'next/head';
 
 import { ThemeProvider } from './context/ThemeContext';
 import CustomCursor from './components/Cursor2';
+import SmoothScroll from './components/SmoothScroll';
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -89,14 +90,12 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} ${manrope.variable}`}>
         <Analytics />
         <SpeedInsights />
-        <CustomCursor />
-        <ThemeProvider>
-          {/* <Header /> */}
-          {/* <Container component={'main'} maxWidth="lg"> */}
-          <div className="root">{children}</div>
-          {/* </Container> */}
-          {/* <Footer /> */}
-        </ThemeProvider>
+        <SmoothScroll>
+          <CustomCursor />
+          <ThemeProvider>
+            <div className="root">{children}</div>
+          </ThemeProvider>
+        </SmoothScroll>
       </body>
     </html>
   );

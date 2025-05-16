@@ -3,6 +3,10 @@
 // components/CustomCursor/index.tsx
 // GSAP implementation for Next.js custom cursor with mix-blend-mode difference effect
 
+// TODO: Expand on non-obvious cues
+// TODO: Disable on smaller screens
+// TODO: Implement animated view and scroll cues
+
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
@@ -15,8 +19,6 @@ const CustomCursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   // Reference to the text element inside the cursor
   const textRef = useRef<HTMLDivElement>(null);
-
-  // console.log('hovering ' + isHovering);
 
   // Check if device is touch-based
   const isTouchDevice = () => {

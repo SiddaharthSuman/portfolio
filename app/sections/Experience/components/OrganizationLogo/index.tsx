@@ -19,7 +19,6 @@ interface OrganizationLogoProps {
 const OrganizationLogo: React.FC<OrganizationLogoProps> = ({ experience }) => {
   const ratio =
     experience.img.ratio === 'original' ? experience.img.width! / experience.img.height! : 1;
-  // console.log('ratio is ', ratio, num, den, experience.img.ratio);
 
   return (
     <div className={`${styles.logoContainer} ${styles[experience.type]}`}>
