@@ -1,4 +1,4 @@
-// sections/ProjectsSection/index.jsx
+// sections/ProjectsSection/index.tsx
 'use client';
 
 import React, { useEffect, useRef } from 'react';
@@ -17,6 +17,7 @@ const ProjectsSection = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            console.log('entry is ', entry.target);
             entry.target.classList.add(styles.animate);
             observer.unobserve(entry.target);
           }
@@ -120,10 +121,6 @@ const ProjectsSection = () => {
     },
   ];
 
-  // Split projects into featured and other projects
-  const featuredProjects = projects.filter((project) => project.featured);
-  const otherProjects = projects.filter((project) => !project.featured);
-
   // Set up project refs
   projectsRef.current = new Array(projects.length).fill(null);
 
@@ -137,134 +134,77 @@ const ProjectsSection = () => {
           <div className={styles.headingLine}></div>
         </div>
 
-        {/* Featured Projects */}
-        <div className={styles.featuredProjects}>
-          {featuredProjects.map((project, index) => (
-            <div
-              key={index}
-              ref={(el) => {
-                projectsRef.current[index] = el;
-              }}
-              className={styles.featuredProject}
-            >
-              <div className={styles.projectContent}>
-                <p className={styles.projectOverline}>Featured Project</p>
-                <h3 className={styles.projectTitle}>{project.title}</h3>
-                <div className={styles.projectDescription}>
-                  <p>{project.description}</p>
-                </div>
-                <ul className={styles.projectTechList}>
-                  {project.technologies.map((tech, i) => (
-                    <li key={i} className={styles.projectTechItem}>
-                      {tech}
-                    </li>
-                  ))}
-                </ul>
-                <div className={styles.projectLinks}>
-                  {project.github && (
-                    <a
-                      aria-label={`GitHub repository for ${project.title}`}
-                      className={styles.projectLink}
-                      href={project.github}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <Github size={20} />
-                    </a>
-                  )}
-                  {project.external && (
-                    <a
-                      aria-label={`Live site for ${project.title}`}
-                      className={styles.projectLink}
-                      href={project.external}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
-                  )}
-                </div>
-              </div>
-              <div className={styles.projectImageContainer}>
-                <div className={styles.projectImageWrapper}>
+        {/* All Projects Grid */}
+        <div className="row">
+          {projects.map((project, index) => (
+            <div key={index} className={`col-sm-12 col-md-6 ${styles.projectCardWrapper}`}>
+              <div
+                ref={(el) => {
+                  projectsRef.current[index] = el;
+                }}
+                className={`${styles.projectCard} ${project.featured ? styles.featuredCard : ''}`}
+              >
+                <div className={styles.projectCardImage}>
                   <Image
                     alt={project.title}
-                    className={styles.projectImage}
-                    height={400}
-                    src="/api/placeholder/600/400"
+                    className={styles.cardImage}
+                    height={300}
+                    src="/api/placeholder/600/300"
                     width={600}
                   />
+                  <div className={styles.cardImageOverlay}></div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
 
-        {/* Other Projects Grid */}
-        <h3 className={styles.otherProjectsHeading}>Other Noteworthy Projects</h3>
-        <div className={styles.projectsGrid}>
-          {otherProjects.map((project, index) => (
-            <div
-              key={index + featuredProjects.length}
-              ref={(el) => {
-                projectsRef.current[index + featuredProjects.length] = el;
-              }}
-              className={styles.projectCard}
-            >
-              <div className={styles.projectCardTop}>
-                <div className={styles.projectCardFolder}>
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                  </svg>
+                <div className={styles.projectCardContent}>
+                  <div className={styles.projectCardHeader}>
+                    {project.featured && <span className={styles.featuredBadge}>Featured</span>}
+                    <h3 className={styles.projectCardTitle}>{project.title}</h3>
+                  </div>
+
+                  <div className={styles.projectCardDescription}>
+                    <p>{project.description}</p>
+                  </div>
+
+                  <div className={styles.projectCardFooter}>
+                    <ul className={styles.projectCardTechList}>
+                      {project.technologies.slice(0, 5).map((tech, i) => (
+                        <li key={i} className={styles.projectCardTechItem}>
+                          {tech}
+                        </li>
+                      ))}
+                      {project.technologies.length > 5 && (
+                        <li className={styles.projectCardTechItem}>
+                          +{project.technologies.length - 5}
+                        </li>
+                      )}
+                    </ul>
+
+                    <div className={styles.projectCardLinks}>
+                      {project.github && (
+                        <a
+                          aria-label={`GitHub for ${project.title}`}
+                          className={styles.projectCardLink}
+                          href={project.github}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <Github size={20} />
+                        </a>
+                      )}
+                      {project.external && (
+                        <a
+                          aria-label={`Live site for ${project.title}`}
+                          className={styles.projectCardLink}
+                          href={project.external}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <ExternalLink size={20} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
-                <div className={styles.projectCardLinks}>
-                  {project.github && (
-                    <a
-                      aria-label={`GitHub for ${project.title}`}
-                      className={styles.projectCardLink}
-                      href={project.github}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <Github size={18} />
-                    </a>
-                  )}
-                  {project.external && (
-                    <a
-                      aria-label={`Live site for ${project.title}`}
-                      className={styles.projectCardLink}
-                      href={project.external}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      <ExternalLink size={18} />
-                    </a>
-                  )}
-                </div>
-              </div>
-              <h3 className={styles.projectCardTitle}>{project.title}</h3>
-              <p className={styles.projectCardDescription}>{project.description}</p>
-              <div className={styles.projectCardFooter}>
-                <ul className={styles.projectCardTechList}>
-                  {project.technologies.slice(0, 4).map((tech, i) => (
-                    <li key={i} className={styles.projectCardTechItem}>
-                      {tech}
-                    </li>
-                  ))}
-                  {project.technologies.length > 4 && (
-                    <li className={styles.projectCardTechItem}>
-                      +{project.technologies.length - 4}
-                    </li>
-                  )}
-                </ul>
               </div>
             </div>
           ))}

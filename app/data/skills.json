@@ -1,0 +1,199 @@
+{
+  "categories": [
+    { "id": "languages", "name": "Languages" },
+    { "id": "frontend", "name": "Frontend" },
+    { "id": "backend", "name": "Backend" },
+    { "id": "tools", "name": "Tools & DevOps" }
+  ],
+  "skills": [
+    {
+      "category": "languages",
+      "color": "#F7DF1E",
+      "icon": "/icons/javascript.svg",
+      "id": "javascript",
+      "name": "JavaScript"
+    },
+    {
+      "category": "languages",
+      "color": "#3178C6",
+      "icon": "/icons/typescript.svg",
+      "id": "typescript",
+      "name": "TypeScript"
+    },
+    {
+      "category": "languages",
+      "color": "#E34F26",
+      "icon": "/icons/html5.svg",
+      "id": "html5",
+      "name": "HTML5"
+    },
+    {
+      "category": "languages",
+      "color": "#1572B6",
+      "icon": "/icons/css3.svg",
+      "id": "css3",
+      "name": "CSS3"
+    },
+    {
+      "category": "languages",
+      "color": "#777BB4",
+      "icon": "/icons/php.svg",
+      "id": "php",
+      "name": "PHP"
+    },
+    {
+      "category": "languages",
+      "color": "#4479A1",
+      "icon": "/icons/sql.svg",
+      "id": "sql",
+      "name": "SQL"
+    },
+    {
+      "category": "languages",
+      "color": "#007396",
+      "icon": "/icons/java.svg",
+      "id": "java",
+      "name": "Java"
+    },
+    {
+      "category": "frontend",
+      "color": "#61DAFB",
+      "icon": "/icons/react.svg",
+      "id": "react",
+      "name": "React"
+    },
+    {
+      "category": "frontend",
+      "color": "#DD0031",
+      "icon": "/icons/angular.svg",
+      "id": "angular",
+      "name": "Angular"
+    },
+    {
+      "category": "frontend",
+      "color": "#000000",
+      "icon": "/icons/nextjs.svg",
+      "id": "nextjs",
+      "name": "Next.js"
+    },
+    {
+      "category": "frontend",
+      "color": "#764ABC",
+      "icon": "/icons/redux.svg",
+      "id": "redux",
+      "name": "Redux"
+    },
+    {
+      "category": "frontend",
+      "color": "#CC6699",
+      "icon": "/icons/sass.svg",
+      "id": "sass",
+      "name": "Sass"
+    },
+    {
+      "category": "frontend",
+      "color": "#38B2AC",
+      "icon": "/icons/tailwind.svg",
+      "id": "tailwind",
+      "name": "Tailwind CSS"
+    },
+    {
+      "category": "frontend",
+      "color": "#7952B3",
+      "icon": "/icons/bootstrap.svg",
+      "id": "bootstrap",
+      "name": "Bootstrap"
+    },
+    {
+      "category": "backend",
+      "color": "#339933",
+      "icon": "/icons/nodejs.svg",
+      "id": "nodejs",
+      "name": "Node.js"
+    },
+    {
+      "category": "backend",
+      "color": "#000000",
+      "icon": "/icons/express.svg",
+      "id": "express",
+      "name": "Express"
+    },
+    {
+      "category": "backend",
+      "color": "#47A248",
+      "icon": "/icons/mongodb.svg",
+      "id": "mongodb",
+      "name": "MongoDB"
+    },
+    {
+      "category": "backend",
+      "color": "#4479A1",
+      "icon": "/icons/mysql.svg",
+      "id": "mysql",
+      "name": "MySQL"
+    },
+    {
+      "category": "backend",
+      "color": "#E10098",
+      "icon": "/icons/graphql.svg",
+      "id": "graphql",
+      "name": "GraphQL"
+    },
+    {
+      "category": "backend",
+      "color": "#0096D6",
+      "icon": "/icons/api.svg",
+      "id": "rest",
+      "name": "REST APIs"
+    },
+    {
+      "category": "tools",
+      "color": "#F05032",
+      "icon": "/icons/git.svg",
+      "id": "git",
+      "name": "Git"
+    },
+    {
+      "category": "tools",
+      "color": "#2496ED",
+      "icon": "/icons/docker.svg",
+      "id": "docker",
+      "name": "Docker"
+    },
+    {
+      "category": "tools",
+      "color": "#D24939",
+      "icon": "/icons/jenkins.svg",
+      "id": "jenkins",
+      "name": "Jenkins"
+    },
+    {
+      "category": "tools",
+      "color": "#FF9900",
+      "icon": "/icons/aws.svg",
+      "id": "aws",
+      "name": "AWS"
+    },
+    {
+      "category": "tools",
+      "color": "#0078D4",
+      "icon": "/icons/azure.svg",
+      "id": "azure",
+      "name": "Azure"
+    },
+    {
+      "category": "tools",
+      "color": "#8DD6F9",
+      "icon": "/icons/webpack.svg",
+      "id": "webpack",
+      "name": "Webpack"
+    },
+    {
+      "category": "tools",
+      "color": "#CB3837",
+      "icon": "/icons/npm.svg",
+      "id": "npm",
+      "name": "npm"
+    }
+  ]
+}

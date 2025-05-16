@@ -9,8 +9,10 @@ export interface Experience {
   id: string;
   img: {
     alt: string;
-    ratio: string;
+    height?: number;
+    ratio: 'original' | 'square';
     src: string;
+    width?: number;
   };
   location: string;
   organization: string;

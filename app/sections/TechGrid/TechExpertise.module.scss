@@ -1,0 +1,253 @@
+@use '../../styles/spacings' as spacings;
+@use '../../styles/mixins' as *;
+
+// Section styles
+.techSection {
+  position: relative;
+  padding: spacings.spacing(xxxl) 0;
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    content: '';
+    background-image: radial-gradient(var(--color-accent) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.05;
+  }
+}
+
+// Section heading
+.sectionHeading {
+  display: flex;
+  align-items: center;
+  margin-block-end: spacings.spacing(xxl);
+  opacity: 0;
+  transform: translateY(20px);
+
+  @include transition(all, 0.5s, cubic-bezier(0.645, 0.045, 0.355, 1));
+
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heading {
+  margin-block-end: 0;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  white-space: nowrap;
+}
+
+.sectionNumber {
+  margin-inline-end: spacings.spacing(sm);
+  font-family: var(--font-geist-sans);
+  font-weight: 400;
+  color: var(--color-accent);
+}
+
+.headingLine {
+  flex-grow: 1;
+  block-size: 1px;
+  margin-inline-start: spacings.spacing(md);
+  background-color: var(--color-border);
+}
+
+// Cards container
+// No need for custom container styles as we'll use the grid system from grid.scss
+
+// Expertise card
+.expertiseCard {
+  position: relative;
+  overflow: hidden;
+  background-color: rgb(30 41 59 / 40%);
+  border-block-start: 3px solid transparent;
+  border-radius: 8px;
+
+  @include transition(all, 0.3s, ease);
+
+  &:hover {
+    background-color: rgb(30 41 59 / 60%);
+    transform: translateY(-5px);
+  }
+
+  &.expanded {
+    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 20%);
+  }
+}
+
+// Card header
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: spacings.spacing(md) spacings.spacing(md) spacings.spacing(sm);
+}
+
+.categoryName {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 24px;
+  block-size: 24px;
+  border-radius: 50%;
+}
+
+.arrow {
+  inline-size: 14px;
+  block-size: 14px;
+
+  @include transition(transform, 0.3s, ease);
+
+  &.rotated {
+    transform: rotate(180deg);
+  }
+}
+
+// Primary skill styles
+.primarySkill {
+  display: flex;
+  align-items: center;
+  padding: 0 spacings.spacing(md) spacings.spacing(md);
+}
+
+.iconContainer {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  inline-size: 48px;
+  block-size: 48px;
+  margin-inline-end: spacings.spacing(md);
+  border-radius: 8px;
+
+  @include transition(transform, 0.3s, ease);
+
+  &.iconSmaller {
+    transform: scale(0.9);
+  }
+}
+
+.icon {
+  inline-size: 32px;
+  block-size: 32px;
+  object-fit: contain;
+}
+
+.iconPlaceholder {
+  font-family: var(--font-geist-sans);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.skillInfo {
+  min-inline-size: 0;
+}
+
+.skillName {
+  margin-block-end: 2px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.skillDescription {
+  font-size: 0.8rem;
+
+  @include transition(color, 0.3s, ease);
+}
+
+// Secondary skills styles
+.secondarySkills {
+  max-block-size: 0;
+  overflow: hidden;
+  opacity: 0;
+
+  @include transition(all, 0.3s, ease-in-out);
+
+  &.expanded {
+    max-block-size: 500px;
+    opacity: 1;
+  }
+}
+
+.secondaryContent {
+  padding: 0 spacings.spacing(md) spacings.spacing(md);
+}
+
+.divider {
+  block-size: 1px;
+  margin-block-end: spacings.spacing(sm);
+  background-color: var(--color-border);
+}
+
+.secondaryLabel {
+  margin-block-end: spacings.spacing(xs);
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.skillBadges {
+  display: flex;
+  flex-wrap: wrap;
+
+  // gap: 8px;
+}
+
+.skillBadgeContainer {
+  padding-inline: 4px;
+  margin-block-end: 8px;
+}
+
+.skillBadge {
+  display: flex;
+
+  // align-items: center;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  background-color: rgb(17 24 39 / 60%);
+  border-radius: 8px;
+}
+
+.smallIcon {
+  inline-size: 48px;
+  block-size: 48px;
+  margin-inline-end: 6px;
+}
+
+.smallIconPlaceholder {
+  margin-inline-end: 6px;
+  font-size: 14px;
+  line-height: 1;
+}
+
+// Hover hint
+.hoverHint {
+  position: absolute;
+  inset-block-end: 8px;
+  inset-inline-end: 12px;
+  font-size: 0.7rem;
+  pointer-events: none;
+
+  @include transition(opacity, 0.2s, ease);
+}
+
+.skillBadgeTextContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.skillBadgeTitle {
+  font-size: 0.9rem;
+}

@@ -11,7 +11,7 @@
       "id": "education-1",
       "img": {
         "alt": "Northeastern University Logo",
-        "ratio": "1/1",
+        "ratio": "square",
         "src": "NU_logo.jpg"
       },
       "location": "Boston, MA",
@@ -32,8 +32,10 @@
       "id": "education-2",
       "img": {
         "alt": "University of Mumbai Logo",
-        "ratio": "100/101",
-        "src": "MU_logo.png"
+        "height": 101,
+        "ratio": "original",
+        "src": "MU_logo.png",
+        "width": 100
       },
       "location": "Mumbai, India",
       "organization": "Mumbai University",
@@ -57,7 +59,7 @@
       "id": "work-1",
       "img": {
         "alt": "Code and Theory Logo",
-        "ratio": "1/1",
+        "ratio": "square",
         "src": "cnt_logo.jpeg"
       },
       "location": "Bengaluru, India",
@@ -86,7 +88,7 @@
       "id": "work-2",
       "img": {
         "alt": "FactSet Logo",
-        "ratio": "1/1",
+        "ratio": "square",
         "src": "Factset_logo.png"
       },
       "location": "Hyderabad, India",
@@ -113,8 +115,10 @@
       "id": "work-3",
       "img": {
         "alt": "Infosys Logo",
-        "ratio": "5/2",
-        "src": "Infosys_logo.png"
+        "height": 512,
+        "ratio": "original",
+        "src": "Infosys_logo.png",
+        "width": 1280
       },
       "location": "Hyderabad, India",
       "organization": "Infosys",

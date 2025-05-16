@@ -5,6 +5,8 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import './styles/index.scss';
 
+import Head from 'next/head';
+
 import { ThemeProvider } from './context/ThemeContext';
 import CustomCursor from './components/Cursor2';
 
@@ -68,9 +70,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
+      <Head>
         <meta content="initial-scale=1, width=device-width" name="viewport" />
-      </head>
+
+        {/* Preconnect to domains that will be used */}
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link crossOrigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect" />
+
+        {/* Prefetch critical fonts */}
+        <link
+          as="font"
+          crossOrigin="anonymous"
+          href="/fonts/Geist-Bold.woff2"
+          rel="preload"
+          type="font/woff2"
+        />
+      </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${manrope.variable}`}>
         <Analytics />
         <SpeedInsights />

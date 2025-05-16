@@ -17,8 +17,8 @@ interface OrganizationLogoProps {
  * Falls back to organization initials if no logo is available
  */
 const OrganizationLogo: React.FC<OrganizationLogoProps> = ({ experience }) => {
-  const [num, den] = experience.img.ratio.split('/').map(Number);
-  const ratio = num / den;
+  const ratio =
+    experience.img.ratio === 'original' ? experience.img.width! / experience.img.height! : 1;
   // console.log('ratio is ', ratio, num, den, experience.img.ratio);
 
   return (
@@ -30,7 +30,7 @@ const OrganizationLogo: React.FC<OrganizationLogoProps> = ({ experience }) => {
           alt={experience.img.alt}
           height={100 / ratio}
           src={`/${experience.img.src}`}
-          style={{ aspectRatio: experience.img.ratio }}
+          style={{ aspectRatio: ratio }}
           width={100}
         ></Image>
       </div>

@@ -1,16 +1,16 @@
 // 1. Variables and configuration
-@import './colors';
-@import './spacings';
-@import './mixins';
+@forward './colors';
+@forward './spacings';
+@forward './mixins';
 
 // 2. Base styles and resets from globals.scss
-@import './globals';
+@forward './globals';
 
 // 3. Grid system
-@import './grid';
+@forward './grid';
 
 // 4. Utility classes
-@import './spacing-utils';
+@forward './spacing-utils';
 
 // 5. Scroll snap functionality
-@import './scroll-snap';
+@forward './scroll-snap';
