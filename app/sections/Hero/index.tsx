@@ -5,6 +5,8 @@ import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
+import { handleSmoothScroll } from '@/app/utils/scrollUtils';
+
 import styles from './HeroSection.module.scss';
 
 const HeroSection = () => {
@@ -58,12 +60,14 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-      <div className={styles.scrollIndicator}>
-        <div className={styles.mouse}>
-          <div className={styles.wheel}></div>
+      <Link href={'#skills'} onClick={(e) => handleSmoothScroll({ e, offset: 0 })}>
+        <div className={styles.scrollIndicator}>
+          <div className={styles.mouse}>
+            <div className={styles.wheel}></div>
+          </div>
+          <div className={styles.scrollText}>Scroll Down</div>
         </div>
-        <div className={styles.scrollText}>Scroll Down</div>
-      </div>
+      </Link>
       {/* </SnapSection> */}
     </section>
   );

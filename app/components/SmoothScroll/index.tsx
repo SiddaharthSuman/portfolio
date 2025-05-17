@@ -19,7 +19,6 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
 
     // Initialize Lenis with basic settings
     lenisRef.current = new Lenis({
-      autoRaf: true,
       duration: prefersReducedMotion ? 0 : 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       // easing: (t: number) => 1 - Math.pow(1 - t, 3),

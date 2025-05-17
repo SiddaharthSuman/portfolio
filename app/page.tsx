@@ -34,7 +34,7 @@ const ProjectsSection = dynamic(() => import('./sections/Projects'), {
 
 export default function Home() {
   const [visibleSections, setVisibleSections] = useState({
-    about: false,
+    skills: false,
     contact: false,
     experience: false,
     projects: false,
@@ -42,7 +42,7 @@ export default function Home() {
 
   const sections = [
     { id: 'hero', name: 'Home' },
-    { id: 'about', name: 'About' },
+    { id: 'skills', name: 'Skills' },
     { id: 'experience', name: 'Experience' },
     { id: 'projects', name: 'Projects' },
     { id: 'contact', name: 'Contact' },
@@ -85,8 +85,8 @@ export default function Home() {
 
       <HeroSection></HeroSection>
 
-      <div data-section="about" id="about">
-        {visibleSections.about ? <AboutSection /> : <SectionPlaceholder />}
+      <div data-section="skills" id="skills">
+        {visibleSections.skills ? <AboutSection /> : <SectionPlaceholder />}
       </div>
       <div data-section="experience" id="experience">
         {visibleSections.experience ? <ExperienceSection /> : <SectionPlaceholder />}

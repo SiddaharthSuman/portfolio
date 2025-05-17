@@ -55,25 +55,53 @@
 
 // Cards container
 // No need for custom container styles as we'll use the grid system from grid.scss
+// Card container to maintain position context
+.cardContainer {
+  position: relative;
+  inline-size: 100%;
+  block-size: 100%;
+
+  // Enable hardware acceleration for smoother animations
+  transform: translateZ(0);
+  will-change: transform;
+}
 
 // Expertise card
 .expertiseCard {
   position: relative;
-  overflow: hidden;
+  block-size: 100%;
+  overflow: visible;
   background-color: rgb(30 41 59 / 40%);
   border-block-start: 3px solid transparent;
   border-radius: 8px;
 
-  @include transition(all, 0.3s, ease);
+  @include transition(all, 0.3s);
 
-  &:hover {
-    background-color: rgb(30 41 59 / 60%);
-    transform: translateY(-5px);
+  // &:hover {
+  //   background-color: rgb(30 41 59 / 60%);
+
+  //   // transform: translateY(-5px);
+  // }
+
+  &.hidden {
+    // opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   &.expanded {
+    background-color: rgb(30 41 59 / 100%);
     box-shadow: 0 10px 25px -5px rgb(0 0 0 / 20%);
   }
+}
+
+// Semi-transparent backdrop
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: rgb(0 0 0 / 50%);
+  animation: fade-in 0.3s ease forwards;
 }
 
 // Card header
@@ -174,7 +202,7 @@
 // Secondary skills styles
 .secondarySkills {
   max-block-size: 0;
-  overflow: hidden;
+  overflow: visible;
   opacity: 0;
 
   @include transition(all, 0.3s, ease-in-out);
@@ -206,8 +234,6 @@
 .skillBadges {
   display: flex;
   flex-wrap: wrap;
-
-  // gap: 8px;
 }
 
 .skillBadgeDescription,
@@ -276,4 +302,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
