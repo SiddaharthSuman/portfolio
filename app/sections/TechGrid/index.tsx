@@ -9,6 +9,7 @@ import { ExpertiseCard } from './ExpertiseCard';
 import styles from './TechExpertise.module.scss';
 import { ExpertiseCategory } from './types';
 
+//TODO: Support light mode
 /**
  * TechExpertise component displays a row of expertise cards
  * Each card showcases primary skill and expands to show secondary skills
