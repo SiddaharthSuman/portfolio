@@ -11,12 +11,12 @@ interface VimeoVideoProps {
   videoId: string;
 }
 
-const VimeoVideo: React.FC<VimeoVideoProps> = ({ company, isHovering, title, videoId }) => {
+const VimeoVideo: React.FC<VimeoVideoProps> = ({ isHovering, title, videoId }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
 
-  console.log('isHovering', isHovering);
+  // console.log('isHovering', isHovering);
 
   // Setup intersection observer to detect when video is in viewport
   useEffect(() => {
@@ -78,23 +78,40 @@ const VimeoVideo: React.FC<VimeoVideoProps> = ({ company, isHovering, title, vid
   }, [isHovering, isInView, videoId]);
 
   useEffect(() => {
-    if (!iframeRef.current) return;
-    // Initially the height is smaller, use height first to calculate video width
-    const rect = iframeRef.current.getBoundingClientRect();
-    const videoHeight = rect.height;
-    const videoWidth = videoHeight * 1.7778; //TODO: replace with actual aspect ratio
-    const scaleFactor = rect.width / videoWidth;
+    const handleResize = () => {
+      if (!iframeRef.current) return;
+      // Initially the height is smaller, use height first to calculate video width
+      const rect = iframeRef.current.getBoundingClientRect();
+      // const videoHeight = rect.height;
+      // const videoWidth = videoHeight * 1.7778; //TODO: replace with actual aspect ratio
+      // const scaleFactor = rect.width / videoWidth;
 
-    console.log('calc scale factor', scaleFactor);
+      // Now the height is more than width
+      const frameWidth = rect.width;
+      const videoHeight = frameWidth / 1.7778; //TODO: replace with actual aspect ratio
+      const scaleFactor = rect.height / videoHeight;
 
-    iframeRef.current.style = `scale:${scaleFactor}`;
+      // console.log('calc scale factor', scaleFactor, rect, videoHeight);
+
+      iframeRef.current.style = `scale:${scaleFactor}`;
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
-    <div ref={containerRef} className={styles.vimeoContainer}>
+    <div
+      ref={containerRef}
+      className={`${styles.vimeoContainer} ${isHovering ? styles.active : ''}`}
+    >
       <iframe
         ref={iframeRef}
-        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+        allow="fullscreen; picture-in-picture; clipboard-write; encrypted-media"
         className={styles.vimeoIframe}
         frameBorder="0"
         height="auto"
@@ -104,9 +121,9 @@ const VimeoVideo: React.FC<VimeoVideoProps> = ({ company, isHovering, title, vid
       />
 
       {/* Video disclaimer overlay - ensure it's above the ::after overlay */}
-      <div className={styles.videoDisclaimer}>
+      {/* <div className={`${styles.videoDisclaimer} ${isHovering ? styles.hovered : ''}`}>
         Video courtesy of {company}. All rights reserved.
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -7,6 +7,7 @@ export interface ProjectData {
   categories: FilterCategory[];
   company: string;
   description: string;
+  disclaimerCompanies?: string;
   external?: string | null;
   featured: boolean;
   // Vimeo video ID
@@ -37,6 +38,7 @@ export const projectData: ProjectData[] = [
     accentColor: '#5D76E0', // Lucid blue
     image: '/images/projects/lucid.jpg',
     vimeoId: '1085744412', // Example path, would be replaced with actual video
+    disclaimerCompanies: 'Code and Theory and Lucid Motors',
   },
   {
     id: 'sutter-scout',
@@ -53,6 +55,7 @@ export const projectData: ProjectData[] = [
     accentColor: '#6283EF', // Sutter blue
     image: '/images/projects/sutter.jpg',
     vimeoId: '940988114', // Sutter Health Visual System video,
+    disclaimerCompanies: 'Code and Theory and Sutter',
   },
   {
     id: 'mayo-components',

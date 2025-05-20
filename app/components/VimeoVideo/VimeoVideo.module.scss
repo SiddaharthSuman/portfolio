@@ -33,9 +33,9 @@
     @include transition;
   }
 
-  &:hover {
+  &.active {
     &::after {
-      opacity: 0;
+      background-color: unset;
     }
   }
 }
@@ -66,7 +66,7 @@
   opacity: 0;
   transition: opacity 0.3s ease;
 
-  .projectCard:hover & {
+  &.hovered {
     opacity: 1;
   }
 }
