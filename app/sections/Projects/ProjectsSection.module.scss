@@ -240,58 +240,6 @@
   overflow: hidden;
 }
 
-// Video container
-.videoContainer {
-  position: relative;
-  inline-size: 100%;
-  block-size: 100%;
-}
-
-// Vimeo container
-.vimeoContainer {
-  position: relative;
-  inline-size: 100%;
-  block-size: 100%;
-  overflow: hidden;
-
-  // Ensure 16:9 aspect ratio
-  &::before {
-    display: block;
-    padding-block-start: 56.25%; // 16:9 aspect ratio
-    content: '';
-  }
-
-  &::after {
-    position: absolute;
-    inset: 0;
-    inline-size: 100%;
-    block-size: 100%;
-    content: '';
-    background-color: black;
-    opacity: 0.6;
-
-    @include transition;
-  }
-
-  &:hover {
-    &::after {
-      opacity: 0;
-    }
-  }
-}
-
-// Vimeo iframe
-.vimeoIframe {
-  position: absolute;
-  inset-block-start: 0;
-  inset-inline-start: 0;
-  inline-size: 100%;
-  block-size: 100%;
-  background-color: #000;
-  border: 0;
-  transition: opacity 0.3s ease;
-}
-
 // Card video
 .cardVideo {
   inline-size: 100%;
@@ -303,25 +251,6 @@
 
   .projectCard:hover & {
     filter: grayscale(0) contrast(1.1);
-  }
-}
-
-// Video disclaimer
-.videoDisclaimer {
-  position: absolute;
-  inset-block-end: 8px;
-  inset-inline-end: 8px;
-  z-index: 2; // Ensure it's above the ::after overlay
-  padding: 4px 8px;
-  font-size: 10px;
-  color: rgb(255 255 255 / 80%);
-  background-color: rgb(0 0 0 / 70%);
-  border-radius: 4px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-
-  .projectCard:hover & {
-    opacity: 1;
   }
 }
 

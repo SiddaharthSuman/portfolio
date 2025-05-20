@@ -36,7 +36,7 @@ export const projectData: ProjectData[] = [
     categories: ['web', 'design'],
     accentColor: '#5D76E0', // Lucid blue
     image: '/images/projects/lucid.jpg',
-    videoSrc: '/videos/lucid-demo.mp4', // Example path, would be replaced with actual video
+    vimeoId: '1085744412', // Example path, would be replaced with actual video
   },
   {
     id: 'sutter-scout',

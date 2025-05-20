@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import styles from '@/app/sections/Projects/ProjectsSection.module.scss';
+import styles from './VimeoVideo.module.scss';
 
 interface VimeoVideoProps {
   company: string;
