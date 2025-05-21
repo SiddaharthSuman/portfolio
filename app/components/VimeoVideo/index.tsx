@@ -115,7 +115,7 @@ const VimeoVideo: React.FC<VimeoVideoProps> = ({ isHovering, title, videoId }) =
         className={styles.vimeoIframe}
         frameBorder="0"
         height="auto"
-        src={`https://player.vimeo.com/video/${videoId}?title=0&byline=0&portrait=0&muted=1&autopause=0&controls=0&loop=1&background=1&quality=auto&dnt=1`}
+        src={`https://player.vimeo.com/video/${videoId}?h=ef41f54bf8&title=0&byline=0&portrait=0&muted=1&autopause=1&autoplay=0&controls=0&loop=1&background=1&quality=auto&dnt=1&badge=0&player_id=0&app_id=58479`}
         title={`${title} - Video`}
         width="100%"
       />

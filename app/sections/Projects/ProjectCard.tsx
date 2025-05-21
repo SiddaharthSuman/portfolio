@@ -69,10 +69,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ featured, index, proje
     <div
       ref={cardRef}
       className={`${styles.projectCard} ${featured ? styles.featuredCard : ''}`}
-      style={{
-        // Use client's branding color if available for subtle accents
-        borderBottom: project.accentColor ? `4px solid ${project.accentColor}` : undefined,
-      }}
+      style={
+        {
+          // Use client's branding color if available for subtle accents
+          // borderBottom: project.accentColor ? `4px solid ${project.accentColor}` : undefined,
+        }
+      }
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
@@ -105,10 +107,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ featured, index, proje
           <Image
             alt={project.title}
             className={styles.cardImage}
-            height={300}
-            objectFit="cover"
+            height={project.height}
+            // objectFit="cover"
             src={project.image || '/api/placeholder/600/300'}
-            width={600}
+            width={project.width}
           />
         )}
       </div>

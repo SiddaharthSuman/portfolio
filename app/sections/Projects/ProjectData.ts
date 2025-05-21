@@ -12,6 +12,7 @@ export interface ProjectData {
   featured: boolean;
   // Vimeo video ID
   github?: string | null;
+  height?: number;
   id: string;
   image?: string;
   technologies: string[];
@@ -19,6 +20,7 @@ export interface ProjectData {
   videoSrc?: string;
   // Local video source URL
   vimeoId?: string;
+  width?: number;
   year: string;
 }
 
@@ -31,11 +33,11 @@ export const projectData: ProjectData[] = [
       'Built the Air and Gravity product pages for Lucid Motors, focusing on smooth animations and responsive design to showcase luxury electric vehicles.',
     technologies: ['React', 'TypeScript', 'GSAP', 'Responsive Design', 'Next.js'],
     github: null,
-    external: 'https://lucidmotors.com/air',
+    external: 'https://www.codeandtheory.com/things-we-make/lucid-motors',
     featured: true,
     year: '2023',
     categories: ['web', 'design'],
-    accentColor: '#5D76E0', // Lucid blue
+    accentColor: '#FFFFFF', // Lucid white
     image: '/images/projects/lucid.jpg',
     vimeoId: '1085744412', // Example path, would be replaced with actual video
     disclaimerCompanies: 'Code and Theory and Lucid Motors',
@@ -48,11 +50,11 @@ export const projectData: ProjectData[] = [
       'Developed Sutter Scout, an application designed to promote mental well-being for young adults and teenagers with a focus on accessibility and engagement.',
     technologies: ['React', 'TypeScript', 'Accessibility', 'Animation', 'WCAG Compliance', 'Redux'],
     github: null,
-    external: 'https://scout.sutterhealth.org/',
+    external: 'https://www.codeandtheory.com/things-we-make/sutter-health',
     featured: true,
     year: '2022-2023',
     categories: ['web', 'design'],
-    accentColor: '#6283EF', // Sutter blue
+    accentColor: '#FF5E60', // Sutter red
     image: '/images/projects/sutter.jpg',
     vimeoId: '940988114', // Sutter Health Visual System video,
     disclaimerCompanies: 'Code and Theory and Sutter',
@@ -69,8 +71,10 @@ export const projectData: ProjectData[] = [
     featured: false,
     year: '2022',
     categories: ['web', 'design'],
-    accentColor: '#0057B8', // Mayo blue
-    image: '/images/projects/component-library.jpg',
+    accentColor: '#000000', // Mayo blue
+    image: '/cnt_logo.jpeg',
+    width: 200,
+    height: 200,
   },
   {
     id: 'elevate',
@@ -84,8 +88,10 @@ export const projectData: ProjectData[] = [
     featured: false,
     year: '2021-2022',
     categories: ['web'],
-    accentColor: '#E22626', // Elevate red
-    image: '/images/projects/elevate.jpg',
+    accentColor: '#33ccff', // Elevate blue
+    image: '/cnt_logo.jpeg',
+    width: 200,
+    height: 200,
   },
   {
     id: 'data-importer',
@@ -99,8 +105,10 @@ export const projectData: ProjectData[] = [
     featured: false,
     year: '2020-2021',
     categories: ['web', 'automation'],
-    accentColor: '#007DBC', // FactSet blue
-    image: '/images/projects/data-importer.jpg',
+    accentColor: '#00AEEF', // FactSet blue
+    image: '/Factset_logo.png',
+    width: 300,
+    height: 300,
   },
   {
     id: 'prime-terminal',
@@ -114,8 +122,10 @@ export const projectData: ProjectData[] = [
     featured: false,
     year: '2019-2020',
     categories: ['web'],
-    accentColor: '#007DBC', // FactSet blue
-    image: '/images/projects/prime-terminal.jpg',
+    accentColor: '#00AEEF', // FactSet blue
+    image: '/Factset_logo.png',
+    width: 300,
+    height: 300,
   },
   {
     id: 'funds-tool',
@@ -129,8 +139,10 @@ export const projectData: ProjectData[] = [
     featured: false,
     year: '2018-2019',
     categories: ['web', 'design'],
-    accentColor: '#007DBC', // FactSet blue
-    image: '/images/projects/financial-viz.jpg',
+    accentColor: '#00AEEF', // FactSet blue
+    image: '/Factset_logo.png',
+    width: 300,
+    height: 300,
   },
   {
     id: 'mdm-automation',
@@ -144,8 +156,10 @@ export const projectData: ProjectData[] = [
     featured: false,
     year: '2017-2018',
     categories: ['web', 'mobile', 'automation'],
-    accentColor: '#0C7CD5', // Infosys blue
-    image: '/images/projects/mdm-system.jpg',
+    accentColor: '#007CC3', // Infosys blue
+    image: '/Infosys_logo.png',
+    width: 1280,
+    height: 512,
   },
   {
     id: 'report-tool',
@@ -159,8 +173,10 @@ export const projectData: ProjectData[] = [
     featured: false,
     year: '2016-2017',
     categories: ['web', 'automation'],
-    accentColor: '#0C7CD5', // Infosys blue
-    image: '/images/projects/reporting-system.jpg',
+    accentColor: '#007CC3', // Infosys blue
+    image: '/Infosys_logo.png',
+    width: 1280,
+    height: 512,
   },
   {
     id: 'pwc-assessment',
@@ -174,7 +190,9 @@ export const projectData: ProjectData[] = [
     featured: false,
     year: '2016',
     categories: ['web'],
-    accentColor: '#0C7CD5', // Infosys blue with PwC influence
-    image: '/images/projects/assessment-tool.jpg',
+    accentColor: '#007CC3', // Infosys blue with PwC influence
+    image: '/Infosys_logo.png',
+    width: 1280,
+    height: 512,
   },
 ];
