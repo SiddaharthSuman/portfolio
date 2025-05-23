@@ -10,6 +10,7 @@ import Head from 'next/head';
 import { ThemeProvider } from './context/ThemeContext';
 import CustomCursor from './components/Cursor2';
 import SmoothScroll from './components/SmoothScroll';
+import InteractiveGradient from './components/InteractiveGradient';
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -85,6 +86,7 @@ export default function RootLayout({
         <SpeedInsights />
         <SmoothScroll>
           <CustomCursor />
+          <InteractiveGradient followSpeed={20} intensity={0.8} showNoise={true} variant="warm" />
           <ThemeProvider>
             <div className="root">{children}</div>
           </ThemeProvider>

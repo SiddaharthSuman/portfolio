@@ -83,7 +83,7 @@ export default function Home() {
     <div>
       <Header></Header>
 
-      <HeroSection></HeroSection>
+      <HeroSection />
 
       <div data-section="skills" id="skills">
         {visibleSections.skills ? <AboutSection /> : <SectionPlaceholder />}

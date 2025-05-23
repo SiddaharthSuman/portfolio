@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 
 // Warm Sophistication Palette
 // Based on warm, earthy tones that create a sophisticated and unique appearance
@@ -125,4 +126,9 @@ $colors-light: (
 // Default to dark theme in SCSS
 @function color($color-name) {
   @return color-dark($color-name);
+}
+
+/* stylelint-disable-next-line scss/at-function-pattern */
+@function hexToRGB($hex) {
+  @return color.channel($hex, 'red'), color.channel($hex, 'green'), color.channel($hex, 'blue');
 }

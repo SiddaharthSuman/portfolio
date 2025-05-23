@@ -33,6 +33,12 @@ const HeroSection = () => {
   return (
     <section className={`${styles.heroSection}`} id="hero">
       {/* <SnapSection className={styles.heroSection} id="hero"> */}
+      {/* <InteractiveGradient
+        followSpeed={20}
+        intensity={gradientIntensity}
+        showNoise={false}
+        variant={gradientVariant}
+      /> */}
       <div className="container">
         <div className={styles.heroContent}>
           <p ref={nameRef} className={styles.greeting}>

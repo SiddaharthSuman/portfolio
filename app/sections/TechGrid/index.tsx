@@ -30,6 +30,12 @@ const TechExpertise = () => {
 
   return (
     <section className={styles.techSection}>
+      {/* <InteractiveGradient
+        followSpeed={50}
+        intensity={gradientIntensity}
+        showNoise={true}
+        variant={gradientVariant}
+      /> */}
       <div className="container">
         <div ref={sectionRef} className={styles.sectionHeading}>
           <h2 className={styles.heading}>

@@ -82,6 +82,7 @@
   @include breakpoint(md) {
     display: grid;
     grid-template-columns: 1fr 50px 1fr; // Left content, timeline, right content
+    align-items: center;
 
     // Work (right side)
     &.work {

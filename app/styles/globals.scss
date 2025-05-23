@@ -1,15 +1,11 @@
 /* stylelint-disable scss/at-function-pattern */
 /* stylelint-disable selector-class-pattern */
 @use 'sass:map';
-@use 'sass:color';
 @use './colors' as colors;
 @use './spacings' as spacings;
 @use './mixins' as *;
 
 // Function to convert hex to rgb (helper)
-@function hexToRGB($hex) {
-  @return color.channel($hex, 'red'), color.channel($hex, 'green'), color.channel($hex, 'blue');
-}
 
 // Default theme (warm dark mode)
 :root {
@@ -21,7 +17,7 @@
   --color-text-primary: #{colors.color-dark(text-primary)};
   --color-text-secondary: #{colors.color-dark(text-secondary)};
   --color-background: #{colors.color-dark(background)};
-  --color-background-rgb: #{hexToRGB(colors.color-dark(background))};
+  --color-background-rgb: #{colors.hexToRGB(colors.color-dark(background))};
   --color-card-background: #{colors.color-dark(card-background)};
   --color-border: #{colors.color-dark(border)};
   --color-hover: #{colors.color-dark(hover)};
@@ -36,6 +32,16 @@
   --color-timeline-line: #{colors.color-dark(timeline-line)};
   --color-work-accent: #{colors.color-dark(work-accent)};
   --color-education-accent: #{colors.color-dark(education-accent)};
+
+  // RGB values for gradient backgrounds (needed for rgba() in CSS)
+  // --color-background-rgb: #{colors.hexToRGB(colors.color-dark(background))};
+  --color-accent-rgb: #{colors.hexToRGB(colors.color-dark(accent))};
+  --color-accent-secondary-rgb: #{colors.hexToRGB(colors.color-dark(accent-secondary))};
+  --color-accent-tertiary-rgb: #{colors.hexToRGB(colors.color-dark(accent-tertiary))};
+  --color-work-accent-rgb: #{colors.hexToRGB(colors.color-dark(work-accent))};
+  --color-education-accent-rgb: #{colors.hexToRGB(colors.color-dark(education-accent))};
+  --color-text-secondary-rgb: #{colors.hexToRGB(colors.color-dark(text-secondary))};
+  --color-error-rgb: #{colors.hexToRGB(colors.color-dark(error))};
 }
 
 // Set color-scheme based on theme
@@ -56,7 +62,7 @@
   --color-text-primary: #{colors.color-light(text-primary)};
   --color-text-secondary: #{colors.color-light(text-secondary)};
   --color-background: #{colors.color-light(background)};
-  --color-background-rgb: #{hexToRGB(colors.color-light(background))};
+  --color-background-rgb: #{colors.hexToRGB(colors.color-light(background))};
   --color-card-background: #{colors.color-light(card-background)};
   --color-border: #{colors.color-light(border)};
   --color-hover: #{colors.color-light(hover)};
@@ -71,6 +77,16 @@
   --color-timeline-line: #{colors.color-light(timeline-line)};
   --color-work-accent: #{colors.color-light(work-accent)};
   --color-education-accent: #{colors.color-light(education-accent)};
+
+  // RGB values for gradient backgrounds (needed for rgba() in CSS)
+  // --color-background-rgb: #{colors.hexToRGB(colors.color-dark(background))};
+  --color-accent-rgb: #{colors.hexToRGB(colors.color-light(accent))};
+  --color-accent-secondary-rgb: #{colors.hexToRGB(colors.color-light(accent-secondary))};
+  --color-accent-tertiary-rgb: #{colors.hexToRGB(colors.color-light(accent-tertiary))};
+  --color-work-accent-rgb: #{colors.hexToRGB(colors.color-light(work-accent))};
+  --color-education-accent-rgb: #{colors.hexToRGB(colors.color-light(education-accent))};
+  --color-text-secondary-rgb: #{colors.hexToRGB(colors.color-light(text-secondary))};
+  --color-error-rgb: #{colors.hexToRGB(colors.color-light(error))};
 }
 
 :root.theme-dark {
@@ -81,7 +97,7 @@
   --color-text-primary: #{colors.color-dark(text-primary)};
   --color-text-secondary: #{colors.color-dark(text-secondary)};
   --color-background: #{colors.color-dark(background)};
-  --color-background-rgb: #{hexToRGB(colors.color-dark(background))};
+  --color-background-rgb: #{colors.hexToRGB(colors.color-dark(background))};
   --color-card-background: #{colors.color-dark(card-background)};
   --color-border: #{colors.color-dark(border)};
   --color-hover: #{colors.color-dark(hover)};
@@ -96,6 +112,16 @@
   --color-timeline-line: #{colors.color-dark(timeline-line)};
   --color-work-accent: #{colors.color-dark(work-accent)};
   --color-education-accent: #{colors.color-dark(education-accent)};
+
+  // RGB values for dark theme
+  // --color-background-rgb: #{colors.hexToRGB(colors.color-dark(background))};
+  --color-accent-rgb: #{colors.hexToRGB(colors.color-dark(accent))};
+  --color-accent-secondary-rgb: #{colors.hexToRGB(colors.color-dark(accent-secondary))};
+  --color-accent-tertiary-rgb: #{colors.hexToRGB(colors.color-dark(accent-tertiary))};
+  --color-work-accent-rgb: #{colors.hexToRGB(colors.color-dark(work-accent))};
+  --color-education-accent-rgb: #{colors.hexToRGB(colors.color-dark(education-accent))};
+  --color-text-secondary-rgb: #{colors.hexToRGB(colors.color-dark(text-secondary))};
+  --color-error-rgb: #{colors.hexToRGB(colors.color-dark(error))};
 }
 
 // Apply the fonts to elements
