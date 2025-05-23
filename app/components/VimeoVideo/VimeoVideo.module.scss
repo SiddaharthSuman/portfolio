@@ -7,7 +7,7 @@
   block-size: 100%;
 }
 
-// Vimeo container
+// Vimeo container with warm styling
 .vimeoContainer {
   position: relative;
   inline-size: 100%;
@@ -21,52 +21,228 @@
     content: '';
   }
 
+  // Enhanced warm overlay instead of pure black
   &::after {
     position: absolute;
     inset: 0;
     inline-size: 100%;
     block-size: 100%;
     content: '';
-    background-color: black;
+
+    // Warm gradient overlay instead of solid black
+    background: linear-gradient(
+      135deg,
+      rgb(28 25 23 / 70%) 0%,
+      rgb(41 37 36 / 60%) 50%,
+      rgb(28 25 23 / 80%) 100%
+    );
     opacity: 0.6;
 
-    @include transition;
+    @include transition(all, 0.3s, ease);
   }
 
   &.active {
     &::after {
-      background-color: unset;
+      background: transparent;
+      opacity: 0;
+    }
+  }
+
+  // Enhanced hover state
+  &:hover:not(.active) {
+    &::after {
+      background: linear-gradient(
+        135deg,
+        rgb(212 162 118 / 15%) 0%,
+        rgb(28 25 23 / 50%) 50%,
+        rgb(147 123 177 / 10%) 100%
+      );
+      opacity: 0.4;
     }
   }
 }
 
-// Vimeo iframe
+// Vimeo iframe with enhanced styling
 .vimeoIframe {
   position: absolute;
   inset-block-start: 0;
   inset-inline-start: 0;
   inline-size: 100%;
   block-size: 100%;
-  background-color: #000;
+
+  // Enhanced warm background instead of pure black
+  background: linear-gradient(135deg, rgb(28 25 23 / 100%) 0%, rgb(41 37 36 / 100%) 100%);
   border: 0;
-  transition: opacity 0.3s ease;
+  border-radius: 4px; // Subtle rounding to match card styling
+
+  // Add subtle warm filter when loading
+  filter: sepia(3%) saturate(105%);
+  transition:
+    opacity 0.3s ease,
+    filter 0.3s ease;
+
+  &.loading {
+    opacity: 0.8;
+    filter: sepia(8%) saturate(110%) blur(1px);
+  }
 }
 
-// Video disclaimer
+// Enhanced video disclaimer with warm styling
 .videoDisclaimer {
   position: absolute;
   inset-block-end: 8px;
   inset-inline-end: 8px;
-  z-index: 2; // Ensure it's above the ::after overlay
-  padding: 4px 8px;
+  z-index: 10; // Higher z-index to ensure visibility
+  padding: 6px 10px;
   font-size: 10px;
-  color: rgb(255 255 255 / 80%);
-  background-color: rgb(0 0 0 / 70%);
+  font-weight: 500;
+
+  // Enhanced warm styling
+  color: rgb(250 250 249 / 90%); // Warm off-white text
+  background: linear-gradient(
+    135deg,
+    rgb(28 25 23 / 85%) 0%,
+    rgb(41 37 36 / 80%) 100%
+  ); // Warm gradient background
+
+  border: 1px solid rgb(212 162 118 / 20%); // Subtle copper border
   border-radius: 4px;
+  box-shadow: 0 2px 8px rgb(28 25 23 / 30%); // Warm shadow
   opacity: 0;
-  transition: opacity 0.3s ease;
+  backdrop-filter: blur(4px); // Enhanced backdrop blur
+  transform: translateX(10px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    background 0.3s ease;
 
   &.hovered {
+    // Enhanced visibility on hover
+    background: linear-gradient(135deg, rgb(28 25 23 / 90%) 0%, rgb(41 37 36 / 85%) 100%);
+    border-color: rgb(212 162 118 / 30%);
+    box-shadow: 0 4px 12px rgb(28 25 23 / 40%);
     opacity: 1;
+    transform: translateX(0);
+  }
+
+  // Light mode adjustments
+  :root.theme-light & {
+    color: rgb(28 25 23 / 90%);
+    background: linear-gradient(135deg, rgb(250 250 249 / 90%) 0%, rgb(245 243 240 / 85%) 100%);
+    border-color: rgb(184 134 90 / 20%);
+    box-shadow: 0 2px 8px rgb(28 25 23 / 15%);
+
+    &.hovered {
+      background: linear-gradient(135deg, rgb(250 250 249 / 95%) 0%, rgb(245 243 240 / 90%) 100%);
+      border-color: rgb(184 134 90 / 30%);
+      box-shadow: 0 4px 12px rgb(28 25 23 / 20%);
+    }
+  }
+}
+
+// Loading state with warm styling
+.vimeoContainer.loading {
+  &::before {
+    background: linear-gradient(135deg, rgb(28 25 23 / 90%) 0%, rgb(41 37 36 / 80%) 100%);
+  }
+
+  // Loading indicator
+  &::after {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    z-index: 5;
+    inline-size: 40px;
+    block-size: 40px;
+    margin: -20px 0 0 -20px;
+    content: '';
+    border: 3px solid rgb(212 162 118 / 20%);
+    border-block-start: 3px solid var(--color-accent);
+    border-radius: 50%;
+    animation: warm-spin 1s linear infinite;
+  }
+}
+
+@keyframes warm-spin {
+  0% {
+    border-block-start-color: var(--color-accent);
+    transform: rotate(0deg);
+  }
+
+  33% {
+    border-block-start-color: var(--color-accent-secondary);
+  }
+
+  66% {
+    border-block-start-color: var(--color-accent-tertiary);
+  }
+
+  100% {
+    border-block-start-color: var(--color-accent);
+    transform: rotate(360deg);
+  }
+}
+
+// Error state styling
+.vimeoContainer.error {
+  &::after {
+    background: linear-gradient(135deg, rgb(196 117 110 / 80%) 0%, rgb(28 25 23 / 90%) 100%);
+  }
+
+  &::before {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    z-index: 5;
+    font-size: 24px;
+    color: var(--color-error);
+    content: '⚠';
+    transform: translate(-50%, -50%);
+  }
+}
+
+// Play button overlay (if needed)
+.playButton {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  z-index: 8;
+  inline-size: 80px;
+  block-size: 80px;
+  cursor: pointer;
+  background: linear-gradient(135deg, rgb(212 162 118 / 90%) 0%, rgb(147 123 177 / 80%) 100%);
+  border: 3px solid rgb(250 250 249 / 80%);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0.8);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    background 0.3s ease;
+
+  // Play icon
+  &::before {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 55%;
+    inline-size: 0;
+    block-size: 0;
+    content: '';
+    border-block-start: 12px solid transparent;
+    border-block-end: 12px solid transparent;
+    border-inline-start: 20px solid rgb(250 250 249 / 90%);
+    transform: translate(-50%, -50%);
+  }
+
+  .vimeoContainer:hover:not(.active) & {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, rgb(212 162 118 / 100%) 0%, rgb(147 123 177 / 90%) 100%);
+    box-shadow: 0 4px 20px rgb(212 162 118 / 30%);
+    transform: translate(-50%, -50%) scale(1.1);
   }
 }

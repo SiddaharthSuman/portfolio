@@ -1,37 +1,38 @@
 // components/HeroSection/HeroSection.module.scss
+// Updated with Warm Sophistication Palette integration
 @use '../../styles/spacings' as spacings;
 @use '../../styles/mixins' as *;
-// @use 'spacings' as spacings;
 
 .heroSection {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 100vh;
-  padding-top: spacings.spacing(xxxl);
-  
+  min-block-size: 100vh;
+  padding-block-start: spacings.spacing(xxxl);
+
   @include breakpoint(md) {
-    min-height: 90vh;
+    min-block-size: 90vh;
   }
 }
 
 .heroContent {
-  max-width: 800px;
-  
+  max-inline-size: 800px;
+
   > * {
     opacity: 0;
     transform: translateY(20px);
+
     @include transition(all, 0.5s, cubic-bezier(0.645, 0.045, 0.355, 1));
   }
 }
 
 .greeting {
-  margin-bottom: spacings.spacing(md);
+  margin-block-end: spacings.spacing(md);
   font-family: var(--font-manrope);
   font-size: 1rem;
   font-weight: 500;
-  color: var(--color-accent);
-  
+  color: var(--color-accent); // Now warm copper instead of teal
+
   @include breakpoint(md) {
     font-size: 1.1rem;
   }
@@ -39,49 +40,66 @@
 
 .wave {
   display: inline-block;
-  animation: wave 2.5s infinite;
   transform-origin: 70% 70%;
+  animation: wave 2.5s infinite;
 }
 
 @keyframes wave {
-  0% { transform: rotate(0deg); }
-  10% { transform: rotate(14deg); }
-  20% { transform: rotate(-8deg); }
-  30% { transform: rotate(14deg); }
-  40% { transform: rotate(-4deg); }
-  50% { transform: rotate(10deg); }
-  60% { transform: rotate(0deg); }
-  100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 .name {
-  margin-bottom: spacings.spacing(md);
+  margin-block-end: spacings.spacing(md);
   font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 800;
   line-height: 1.1;
-  color: var(--color-text-primary);
-  
+  color: var(--color-text-primary); // Now warm off-white
+
   @include breakpoint(lg) {
-    margin-bottom: spacings.spacing(lg);
+    margin-block-end: spacings.spacing(lg);
   }
 }
 
 .title {
   display: block;
-  margin-top: spacings.spacing(sm);
+  margin-block-start: spacings.spacing(sm);
   font-size: clamp(1.5rem, 5vw, 3rem);
   font-weight: 700;
-  color: var(--color-text-secondary);
+  color: var(--color-text-secondary); // Now warm medium gray
 }
 
 .description {
-  max-width: 600px;
-  margin-bottom: spacings.spacing(xl);
+  max-inline-size: 600px;
+  margin-block-end: spacings.spacing(xl);
   font-size: clamp(1rem, 3vw, 1.25rem);
   line-height: 1.7;
-  
+  color: var(--color-text-secondary); // Ensuring consistent warm gray
+
   @include breakpoint(md) {
-    margin-bottom: spacings.spacing(xxl);
+    margin-block-end: spacings.spacing(xxl);
   }
 }
 
@@ -89,7 +107,7 @@
   display: flex;
   flex-direction: column;
   gap: spacings.spacing(md);
-  
+
   @include breakpoint(sm) {
     flex-direction: row;
     align-items: center;
@@ -99,17 +117,18 @@
 .primaryButton,
 .secondaryButton {
   display: inline-flex;
+  gap: spacings.spacing(sm);
   align-items: center;
   justify-content: center;
-  gap: spacings.spacing(sm);
   padding: spacings.spacing(md) spacings.spacing(lg);
   font-family: var(--font-geist-sans);
   font-size: 1rem;
   font-weight: 600;
   text-align: center;
   border-radius: 4px;
+
   @include transition;
-  
+
   &:hover {
     text-decoration: none;
     transform: translateY(-3px);
@@ -117,73 +136,132 @@
 }
 
 .primaryButton {
-  background-color: var(--color-accent);
-  color: var(--color-primary-dark);
-  
+  color: var(--color-primary-dark); // Dark text on copper button
+  background-color: var(--color-accent); // Warm copper background
+
   &:hover {
-    box-shadow: 0 4px 20px rgba(100, 255, 218, 0.25);
+    background-color: var(--color-accent);
+    // Warm copper glow instead of teal
+    box-shadow: 0 6px 20px rgb(212 162 118 / 30%);
+
+    // Slight brightness increase on hover
+    filter: brightness(1.1);
+  }
+
+  &:focus {
+    box-shadow:
+      0 6px 20px rgb(212 162 118 / 30%),
+      0 0 0 3px rgb(212 162 118 / 20%);
   }
 }
 
 .secondaryButton {
-  border: 1px solid var(--color-accent);
-  color: var(--color-accent);
+  color: var(--color-accent); // Warm copper text
   background-color: transparent;
-  
+  border: 1px solid var(--color-accent); // Warm copper border
+
   &:hover {
-    background-color: rgba(100, 255, 218, 0.1);
+    color: var(--color-accent-secondary); // Purple text on hover
+    background-color: rgb(212 162 118 / 10%); // Warm copper tint
+    border-color: var(--color-accent-secondary); // Purple border on hover
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgb(212 162 118 / 20%);
   }
 }
 
 .scrollIndicator {
   position: absolute;
-  bottom: spacings.spacing(xl);
-  left: 50%;
+  inset-block-end: spacings.spacing(xl);
+  inset-inline-start: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform: translateX(-50%);
   opacity: 0.7;
-  
+  transform: translateX(-50%);
+
   @include transition;
-  
+
   &:hover {
     opacity: 1;
   }
-  
+
   @include breakpoint(md) {
-    bottom: spacings.spacing(xxl);
+    inset-block-end: spacings.spacing(xxl);
   }
 }
 
 .mouse {
-  width: 26px;
-  height: 44px;
-  border: 2px solid var(--color-text-secondary);
-  border-radius: 20px;
   position: relative;
+  inline-size: 26px;
+  block-size: 44px;
+  border: 2px solid var(--color-text-secondary); // Warm gray border
+  border-radius: 20px;
 }
 
 .wheel {
   position: absolute;
-  top: 8px;
-  left: 50%;
-  width: 4px;
-  height: 8px;
-  margin-left: -2px;
-  background-color: var(--color-accent);
+  inset-block-start: 8px;
+  inset-inline-start: 50%;
+  inline-size: 4px;
+  block-size: 8px;
+  margin-inline-start: -2px;
+  background-color: var(--color-accent); // Warm copper wheel
   border-radius: 2px;
   animation: scroll 2s infinite;
 }
 
 .scrollText {
-  margin-top: spacings.spacing(sm);
+  margin-block-start: spacings.spacing(sm);
   font-size: 0.75rem;
-  letter-spacing: 1px;
+  color: var(--color-text-secondary); // Warm gray text
   text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 @keyframes scroll {
-  0% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(20px); }
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+// Enhanced warm palette animations and effects
+.primaryButton {
+  position: relative;
+  overflow: hidden;
+
+  // Subtle warm gradient overlay
+  &::before {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: -100%;
+    inline-size: 100%;
+    block-size: 100%;
+    content: '';
+    background: linear-gradient(90deg, transparent, rgb(250 250 249 / 10%), transparent);
+    transition: left 0.5s ease;
+  }
+
+  &:hover::before {
+    inset-inline-start: 100%;
+  }
+}
+
+// Add subtle warm texture to the hero section
+.heroSection::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: '';
+  background:
+    radial-gradient(circle at 20% 80%, rgb(212 162 118 / 3%) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgb(147 123 177 / 2%) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgb(139 149 86 / 2%) 0%, transparent 50%);
 }

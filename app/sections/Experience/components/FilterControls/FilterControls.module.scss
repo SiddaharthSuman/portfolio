@@ -25,29 +25,57 @@
   background: transparent;
   border: 1px solid var(--color-border);
   border-radius: 20px;
-  /* stylelint-disable-next-line plugin/no-low-performance-animation-properties */
   transition: all 0.3s ease;
 
   &:hover {
-    color: var(--color-accent);
-    background-color: rgba(var(--color-accent-rgb), 0.05);
+    color: var(--color-accent); // Warm copper hover
+    background-color: rgb(212 162 118 / 5%); // Subtle copper background
     border-color: var(--color-accent);
+    transform: translateY(-1px); // Subtle lift
   }
 
   &.active {
-    color: var(--color-background);
-    background-color: var(--color-accent);
+    color: var(--color-primary-dark); // Dark text on light background
+    background-color: var(--color-accent); // Warm copper background
     border-color: var(--color-accent);
+    box-shadow: 0 4px 12px rgb(212 162 118 / 20%); // Warm glow
 
     &:hover {
       background-color: var(--color-accent);
       opacity: 0.9;
+      transform: translateY(-2px); // Enhanced lift when active
     }
 
-    // Special styling for education filter
-    &[aria-pressed='true']:nth-child(3) {
-      background-color: var(--color-education);
-      border-color: var(--color-education);
+    // Special styling for work filter (second button)
+    &:nth-child(2) {
+      background-color: var(--color-work-accent);
+      border-color: var(--color-work-accent);
+      box-shadow: 0 4px 12px rgb(212 162 118 / 20%);
+
+      &:hover {
+        background-color: var(--color-work-accent);
+      }
+    }
+
+    // Special styling for education filter (third button)
+    &:nth-child(3) {
+      background-color: var(--color-education-accent);
+      border-color: var(--color-education-accent);
+      box-shadow: 0 4px 12px rgb(147 123 177 / 20%); // Purple glow
+
+      &:hover {
+        background-color: var(--color-education-accent);
+      }
+    }
+  }
+
+  // Enhanced focus states for accessibility
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(212 162 118 / 30%);
+
+    &.active:nth-child(3) {
+      box-shadow: 0 0 0 3px rgb(147 123 177 / 30%);
     }
   }
 }
@@ -55,9 +83,11 @@
 @keyframes fade-in {
   from {
     opacity: 0;
+    transform: translateY(10px);
   }
 
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }

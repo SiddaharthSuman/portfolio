@@ -23,11 +23,11 @@
   inset-inline-start: 0;
   inline-size: 2px;
 
-  // CSS Animation for line drawing
-  background: linear-gradient(to bottom, var(--color-text-secondary) 50%, transparent 50%) repeat-y;
-  background-color: var(--color-text-secondary);
+  // Enhanced warm timeline line with gradient
+  background: linear-gradient(to bottom, var(--color-timeline-line) 50%, transparent 50%) repeat-y;
+  background-color: var(--color-timeline-line); // Warm medium gray
   background-size: 2px 16px; // Dashed line effect
-  opacity: 0.5;
+  opacity: 0.6; // Slightly more visible
 
   @include breakpoint(md) {
     inset-inline-start: 50%;
@@ -38,7 +38,7 @@
     position: absolute;
     inset: 0;
     content: '';
-    background-color: var(--color-background);
+    background: linear-gradient(to bottom, var(--color-background) 0%, transparent 100%);
     animation: draw-line 2s ease-out forwards;
   }
 }
@@ -54,17 +54,28 @@
   transform: translateY(20px);
   transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-  // Specific to filtering
+  // Enhanced filtering transitions
   transition:
     opacity 0.3s ease,
     transform 0.5s ease,
-    height 0.3s ease;
+    height 0.3s ease,
+    margin 0.3s ease; // Added margin transition
+
   transition-delay: calc(var(--item-index) * 0.1s);
 
   // Visible state
   &.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  // Hidden state for filtering
+  &.hidden {
+    block-size: 0;
+    margin-block-end: 0; // Collapse margin when hidden
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
   }
 
   // Desktop layout with proper positioning
@@ -96,6 +107,13 @@
       }
     }
   }
+
+  // Staggered entrance animation
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
 }
 
 // Combined meta container (date and logo)
@@ -103,10 +121,6 @@
   display: flex;
   flex-direction: column;
   gap: spacings.spacing(md);
-
-  // transform: translateY(var(--parallax-offset, 0));
-  // transition: transform 0.1s ease-out;
-  // will-change: transform;
 
   // On mobile, position differently
   @media (width <= 767px) {
@@ -130,17 +144,36 @@
 }
 
 .timelineDate {
+  // Enhanced styling for better hierarchy
+  position: relative;
   inline-size: 100%;
   font-family: var(--font-manrope);
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--color-text-secondary);
+
+  &::after {
+    position: absolute;
+    inset-block-end: -2px;
+    inset-inline-start: 0;
+    inline-size: 20%;
+    block-size: 1px;
+    content: '';
+    background-color: var(--color-accent);
+    opacity: 0.3;
+
+    .education & {
+      background-color: var(--color-education-accent);
+    }
+  }
 }
 
 .timelineLocation {
   display: block;
-  margin-block-start: spacings.spacing(xxs);
+  margin-block-start: spacings.spacing(xs);
   font-size: 0.8rem;
+  font-style: italic; // Added italic for distinction
+  color: var(--color-text-secondary);
   opacity: 0.8;
 }
 
@@ -153,16 +186,49 @@
     align-self: flex-start;
     margin-inline-start: spacings.spacing(lg);
   }
+
+  // Enhanced hover effect
+  // &:hover {
+  //   transform: scale(1.05);
+  //   transition: transform 0.2s ease;
+  // }
 }
 
+// Enhanced line drawing animation
 @keyframes draw-line {
-  from {
+  0% {
+    opacity: 1;
     transform: scaleY(1);
     transform-origin: top center;
   }
 
-  to {
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0;
     transform: scaleY(0);
     transform-origin: top center;
+  }
+}
+
+// Add subtle ambient lighting effect
+.timelineContainer::before {
+  position: absolute;
+  inset-block-start: 10%;
+  inset-inline-start: 50%;
+  z-index: -1;
+  inline-size: 200px;
+  block-size: 200px;
+  pointer-events: none;
+  content: '';
+  background: radial-gradient(circle, rgb(212 162 118 / 3%) 0%, transparent 70%);
+  transform: translateX(-50%);
+
+  @media (width <= 767px) {
+    inset-inline-start: 0;
+    inline-size: 100px;
+    block-size: 100px;
   }
 }

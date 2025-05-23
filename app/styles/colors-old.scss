@@ -1,0 +1,85 @@
+@use 'sass:map';
+
+// Color Palette
+
+// Primary Dark: Deep navy (#0a192f)
+// Primary Light: Soft white (#e6f1ff)
+// Accent Color: Teal (#64ffda)
+// Secondary Accents: Subtle blue (#112240) for card backgrounds
+// Text: Light gray (#8892b0) for body text, white (#e6f1ff) for headings
+
+// Dark/Light Mode
+
+// Toggle in navigation area
+// Light palette:
+
+// Background: #f8f8f8
+// Card backgrounds: #ffffff
+// Text: #333333 and #555555
+// Accents remain teal
+
+// Dark mode colors (default theme)
+$colors-dark: (
+  // Primary colors
+  primary-dark: #0a192f,
+  primary-light: #e6f1ff,
+  accent: #64ffda,
+  secondary-bg: #112240,
+  education: #937bb1,
+
+  // Text colors
+  text-primary: #e6f1ff,
+  text-secondary: #8892b0,
+
+  // UI colors
+  background: #0a192f,
+  card-background: #112240,
+  border: rgba(100 255 218 / 10%),
+  // State colors
+  hover: rgba(100 255 218 / 10%),
+  focus: rgba(100 255 218 / 30%),
+  // Semantic colors
+  success: #64ffda,
+  error: #ff6464,
+  warning: #ffb764
+);
+
+// Light mode colors
+$colors-light: (
+  // Primary colors
+  primary-dark: #f5f5f5,
+  primary-light: #1d1d1d,
+  accent: #0a7b6d,
+  secondary-bg: #e6e6e6,
+  education: #7c67a5,
+
+  // Text colors
+  text-primary: #1d1d1d,
+  text-secondary: #4a4a4a,
+
+  // UI colors
+  background: #f5f5f5,
+  card-background: #fff,
+  border: rgba(10 123 109 / 10%),
+  // State colors
+  hover: rgba(10 123 109 / 10%),
+  focus: rgba(10 123 109 / 30%),
+  // Semantic colors
+  success: #0a7b6d,
+  error: #d32f2f,
+  warning: #ed6c02
+);
+
+// Functions to access colors based on theme
+@function color-dark($color-name) {
+  @return map.get($colors-dark, $color-name);
+}
+
+@function color-light($color-name) {
+  @return map.get($colors-light, $color-name);
+}
+
+// Default to dark theme in SCSS
+@function color($color-name) {
+  @return color-dark($color-name);
+}

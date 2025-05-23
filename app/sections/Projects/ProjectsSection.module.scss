@@ -1,17 +1,32 @@
-// sections/ProjectsSection/ProjectsSection.module.scss (Updated styles for overlay design)
+// sections/ProjectsSection/ProjectsSection.module.scss
+// Complete file with Warm Sophistication Palette integration and light mode fixes
 @use '../../styles/spacings' as spacings;
 @use '../../styles/mixins' as *;
 
-// Section styles
+// Section styles with warm ambient background
 .projectsSection {
+  position: relative;
   padding: spacings.spacing(xxxl) 0;
 
   @include breakpoint(md) {
     padding: spacings.spacing(xxxl) 0;
   }
+
+  // Enhanced warm ambient background
+  &::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    content: '';
+    background:
+      radial-gradient(ellipse at 25% 30%, rgb(212 162 118 / 2%) 0%, transparent 60%),
+      radial-gradient(ellipse at 75% 70%, rgb(147 123 177 / 1.5%) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 10%, rgb(139 149 86 / 1%) 0%, transparent 70%);
+  }
 }
 
-// Section heading with animation
+// Section heading with enhanced warm styling
 .sectionHeading {
   display: flex;
   align-items: center;
@@ -29,26 +44,86 @@
 }
 
 .heading {
+  // Animated underline effect
+  position: relative;
   margin-block-end: 0;
   font-size: clamp(1.5rem, 5vw, 2rem);
   white-space: nowrap;
+
+  // Add subtle text shadow for depth
+  text-shadow: 0 2px 4px rgb(28 25 23 / 10%);
+
+  &::after {
+    position: absolute;
+    inset-block-end: -4px;
+    inset-inline-start: 0;
+    inline-size: 0;
+    block-size: 2px;
+    content: '';
+    background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+    transition: width 0.8s ease;
+  }
+
+  .animate &::after {
+    inline-size: 100%;
+  }
 }
 
 .sectionNumber {
   margin-inline-end: spacings.spacing(sm);
   font-family: var(--font-geist-sans);
+  font-size: 1.1em;
   font-weight: 400;
-  color: var(--color-accent);
+  color: var(--color-accent); // Warm copper instead of teal
+
+  // Add subtle glow effect
+  text-shadow: 0 0 10px rgb(212 162 118 / 30%);
 }
 
 .headingLine {
+  // Animated shimmer effect
+  position: relative;
   flex-grow: 1;
   block-size: 1px;
   margin-inline-start: spacings.spacing(md);
-  background-color: var(--color-border);
+  background: linear-gradient(
+    90deg,
+    var(--color-border) 0%,
+    var(--color-accent) 50%,
+    var(--color-border) 100%
+  );
+
+  &::before {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: -100%;
+    inline-size: 100%;
+    block-size: 100%;
+    content: '';
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgb(212 162 118 / 40%) 50%,
+      transparent 100%
+    );
+    animation: shimmer 3s ease-in-out infinite;
+    animation-delay: 1s;
+  }
 }
 
-// Project filters
+@keyframes shimmer {
+  0% {
+    inset-inline-start: -100%;
+  }
+  50% {
+    inset-inline-start: 100%;
+  }
+  100% {
+    inset-inline-start: 100%;
+  }
+}
+
+// Project filters with warm styling
 .projectFilters {
   margin-block-end: spacings.spacing(xl);
   text-align: center;
@@ -77,16 +152,18 @@
   @include transition;
 
   &:hover {
-    color: var(--color-accent);
-    background-color: rgb(100 255 218 / 5%);
+    color: var(--color-accent); // Warm copper hover
+    background-color: rgb(212 162 118 / 5%);
     border-color: var(--color-accent);
+    box-shadow: 0 4px 8px rgb(212 162 118 / 10%);
     transform: translateY(-2px);
   }
 
   &.activeFilter {
-    color: var(--color-background);
-    background-color: var(--color-accent);
+    color: var(--color-primary-dark); // Dark text on light background
+    background-color: var(--color-accent); // Warm copper background
     border-color: var(--color-accent);
+    box-shadow: 0 4px 12px rgb(212 162 118 / 20%);
   }
 }
 
@@ -97,7 +174,7 @@
   margin-block-start: spacings.spacing(xl);
 }
 
-// View more link
+// View more link with warm styling
 .viewMoreLink {
   display: inline-flex;
   gap: spacings.spacing(xs);
@@ -113,12 +190,13 @@
   @include transition;
 
   &:hover {
-    background-color: rgb(100 255 218 / 10%);
+    background-color: rgb(212 162 118 / 10%);
+    box-shadow: 0 4px 12px rgb(212 162 118 / 15%);
     transform: translateY(-2px);
   }
 }
 
-// Empty state when no projects match the filter
+// Empty state styling
 .emptyState {
   display: flex;
   flex-direction: column;
@@ -128,7 +206,7 @@
   text-align: center;
 }
 
-// Reset button for empty state
+// Reset button with warm styling
 .resetButton {
   padding: spacings.spacing(sm) spacings.spacing(lg);
   font-size: 0.9rem;
@@ -141,11 +219,12 @@
   @include transition;
 
   &:hover {
-    background-color: rgb(100 255 218 / 10%);
+    background-color: rgb(212 162 118 / 10%);
+    box-shadow: 0 4px 8px rgb(212 162 118 / 10%);
   }
 }
 
-// Section-wide disclaimer
+// Section-wide disclaimer with warm styling
 .sectionDisclaimer {
   max-inline-size: 800px;
   padding: spacings.spacing(md);
@@ -155,7 +234,9 @@
   line-height: 1.6;
   color: var(--color-text-secondary);
   text-align: center;
-  background-color: rgb(138 146 176 / 5%);
+
+  // Enhanced warm background
+  background: linear-gradient(135deg, rgb(212 162 118 / 3%) 0%, rgb(147 123 177 / 2%) 100%);
   border: 1px solid var(--color-border);
   border-radius: 8px;
   opacity: 0;
@@ -176,7 +257,7 @@
   }
 }
 
-// featured projects section (larger cards)
+// Featured projects section (larger cards)
 .featuredProjects {
   display: grid;
   grid-template-columns: 1fr;
@@ -212,34 +293,61 @@
   }
 }
 
-// Section styles remain the same...
-
-// Base project card styles with initial state
+// Base project card styles with warm integration
 .projectCard {
   position: relative;
   display: flex;
   flex-direction: column;
-
-  // block-size: 380px; // Increased height for better video display
   overflow: hidden;
-  background-color: var(--color-card-background);
-  border-block-end: 4px solid var(--color-accent);
+
+  // Use warm colors instead of cool tones
+  background-color: var(--color-card-background); // Warm charcoal in dark, white in light
+  border-block-start: 3px solid var(--color-accent); // Warm copper accent line
   border-radius: 8px;
-  box-shadow: 0 10px 30px -15px rgb(0 0 0 / 20%);
+
+  // Enhanced warm shadows
+  box-shadow:
+    0 4px 12px rgb(28 25 23 / 10%),
+    0 1px 3px rgb(28 25 23 / 8%);
   opacity: 0;
   transform: translateY(20px);
   transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
   transition-duration: 0.4s;
-
-  // Only apply transition delay to the initial animation, not to hover
   transition-property: opacity, transform;
 
   &.animate {
     opacity: 1;
     transform: translateY(0);
   }
+
+  // Enhanced hover effects with warm colors
+  &:hover {
+    border-block-start-color: var(--color-accent-secondary); // Purple on hover
+    box-shadow:
+      0 10px 30px rgb(28 25 23 / 15%),
+      0 4px 12px rgb(212 162 118 / 10%); // Warm copper glow
+
+    transform: translateY(-8px);
+  }
+
+  // Light mode adjustments
+  :root.theme-light & {
+    background-color: var(--color-card-background);
+    border-block-start-color: var(--color-accent);
+    box-shadow:
+      0 4px 12px rgb(28 25 23 / 6%),
+      0 1px 3px rgb(28 25 23 / 4%);
+
+    &:hover {
+      border-block-start-color: var(--color-accent-secondary);
+      box-shadow:
+        0 10px 30px rgb(28 25 23 / 10%),
+        0 4px 12px rgb(184 134 90 / 8%);
+    }
+  }
 }
 
+// Video disclaimer enhancements
 .videoDisclaimerContainer {
   position: absolute;
   inset-block-start: 0;
@@ -252,22 +360,17 @@
   opacity: 0;
   transition: opacity 0.3s ease;
 
-  @include transition;
-
   &.active {
     opacity: 1;
   }
 }
 
-// Video disclaimer
 .videoDisclaimer {
   z-index: 2;
   padding: 4px 8px;
   overflow: hidden;
-
-  // font-size: 10px;
-  color: rgb(255 255 255 / 80%);
-  background-color: rgb(0 0 0 / 70%);
+  color: rgb(250 250 249 / 90%); // Warm off-white text
+  background-color: rgb(28 25 23 / 80%); // Warm brown background
   border-radius: 4px;
   opacity: 0;
   transform: translateX(100%);
@@ -286,50 +389,66 @@
   font-size: 0.8rem;
   font-weight: 700;
   line-height: 1rem;
-  color: rgb(0 0 0 / 70%);
-  background-color: rgb(255 255 255 / 80%);
+  color: rgb(28 25 23 / 80%); // Warm brown text
+  background-color: rgb(250 250 249 / 90%); // Warm off-white background
   border: none;
   border-radius: 50%;
 }
 
 // Content container
 .projectCardContent {
+  position: relative;
+  z-index: 3; // Ensure content is above overlay
   padding: spacings.spacing(lg);
 
-  // transform: translateY(10px);
-  // transition: transform 0.3s ease;
+  // Enhanced text shadows for better readability
+  .projectCardTitle,
+  .projectCardCompany,
+  .projectCardDescription p {
+    // Dark mode text shadows (light text on dark overlay)
+    text-shadow: 0 2px 4px rgb(28 25 23 / 50%);
 
-  // .projectCard:hover & {
-  //   transform: translateY(0);
-  // }
+    // Light mode text shadows (dark text on light overlay) - REMOVED LIGHT SHADOW
+    :root.theme-light & {
+      text-shadow: 0 2px 4px rgb(28 25 23 / 30%); // Dark shadow for dark text
+    }
+  }
 }
 
-// Card image/video styling
+// Card image/video styling with warm filters
 .cardImage,
 .cardVideo {
   inline-size: 100%;
   block-size: 100%;
   object-fit: scale-down;
 
-  // filter: grayscale(80%) brightness(0.7) contrast(1);
+  // Enhanced warm filter
+  filter: sepia(5%) saturate(110%) contrast(105%);
+
   @include transition;
 }
 
-// Overlay that contains the content
+// Enhanced overlay with proper light/dark mode support
 .projectCardOverlay {
   position: relative;
   inset: 0;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; // Align content to bottom
+  justify-content: flex-end;
   inline-size: 100%;
   block-size: 100%;
   padding-block-start: 33%;
   overflow: hidden;
 
+  // Dark mode gradients (default)
   &::before {
-    background: linear-gradient(to top, #0a192ff2 0%, #0a192fcc 50%, #0a192f33 100%);
+    background: linear-gradient(
+      to top,
+      rgb(28 25 23 / 95%) 0%,
+      rgb(28 25 23 / 80%) 50%,
+      rgb(28 25 23 / 30%) 100%
+    );
     opacity: 1;
 
     @include transition(opacity, 900ms);
@@ -340,10 +459,10 @@
   &::after {
     background: linear-gradient(
       to top,
-      rgb(10 25 47 / 90%) 0%,
-      /* Solid at bottom for text readability */ rgb(10 25 47 / 60%) 30%,
-      /* More transparent in middle */ rgb(10 25 47 / 20%) 60%,
-      /* Very light in upper area */ rgb(10 25 47 / 10%) 100% /* Almost transparent at top */
+      rgb(28 25 23 / 90%) 0%,
+      rgb(28 25 23 / 60%) 30%,
+      rgb(28 25 23 / 20%) 60%,
+      rgb(28 25 23 / 10%) 100%
     );
     opacity: 0;
 
@@ -352,15 +471,47 @@
     transition-delay: 300ms;
   }
 
-  // Always visible on mobile
+  // Mobile visibility - Dark mode default
   @media (hover: none) {
     background: linear-gradient(
       to top,
-      rgb(10 25 47 / 95%) 0%,
-      rgb(10 25 47 / 80%) 40%,
-      rgb(10 25 47 / 20%) 100%
+      rgb(28 25 23 / 95%) 0%,
+      rgb(28 25 23 / 80%) 40%,
+      rgb(28 25 23 / 20%) 100%
     );
     opacity: 1;
+  }
+}
+
+// LIGHT MODE FIXES - Separate selectors for better specificity
+:root.theme-light .projectCardOverlay {
+  &::before {
+    background: linear-gradient(
+      to top,
+      rgb(250 250 249 / 95%) 0%,
+      rgb(250 250 249 / 85%) 50%,
+      rgb(250 250 249 / 40%) 100%
+    ) !important;
+  }
+
+  &::after {
+    background: linear-gradient(
+      to top,
+      rgb(250 250 249 / 98%) 0%,
+      rgb(250 250 249 / 90%) 30%,
+      rgb(250 250 249 / 60%) 60%,
+      rgb(250 250 249 / 20%) 100%
+    ) !important;
+  }
+
+  // Light mode mobile
+  @media (hover: none) {
+    background: linear-gradient(
+      to top,
+      rgb(250 250 249 / 95%) 0%,
+      rgb(250 250 249 / 85%) 40%,
+      rgb(250 250 249 / 30%) 100%
+    ) !important;
   }
 }
 
@@ -372,29 +523,23 @@
   content: '';
 }
 
-// Separate hover transitions with no delay
+// Enhanced hover transitions
 .projectCard:hover {
-  // box-shadow: 0 20px 30px -15px rgb(0 0 0 / 30%);
   transform: translateY(-8px);
-
-  // Immediate transition for hover, no delay
-  transition:
-    /* stylelint-disable-next-line plugin/no-low-performance-animation-properties */
-    // box-shadow 0.3s ease,
-    transform 0.3s ease;
+  transition: transform 0.3s ease;
 
   .cardImage,
   .cardVideo {
-    // filter: grayscale(0) brightness(0.7) contrast(1.1);
+    filter: sepia(8%) saturate(120%) contrast(110%);
     transform: scale(1.05);
     transition:
-      // filter 0.3s ease,
-      transform 0.3s ease; // No delay on hover
+      filter 0.3s ease,
+      transform 0.3s ease;
   }
 
   .videoDisclaimerContainer {
     opacity: 1;
-    transition: opacity 0.3s ease; // No delay on hover
+    transition: opacity 0.3s ease;
   }
 
   .projectCardOverlay {
@@ -408,7 +553,7 @@
   }
 }
 
-// Media container (video/image) - Takes up entire card
+// Media container
 .projectCardMedia {
   position: absolute;
   inset: 0;
@@ -417,7 +562,6 @@
   block-size: 100%;
 }
 
-// Video container
 .videoContainer {
   position: relative;
   inline-size: 100%;
@@ -429,38 +573,53 @@
   margin-block-end: spacings.spacing(md);
 }
 
-// Featured badge
+// Featured badge with warm styling
 .featuredBadge {
   display: inline-block;
   padding: spacings.spacing(xs) spacings.spacing(sm);
   margin-block-end: spacings.spacing(sm);
   font-size: 0.7rem;
   font-weight: 600;
-  color: var(--color-accent);
+  color: var(--color-accent-tertiary); // Warm olive
   text-transform: uppercase;
   letter-spacing: 1px;
-  background-color: rgb(100 255 218 / 10%);
+
+  // Enhanced warm gradient background
+  background: linear-gradient(135deg, rgb(139 149 86 / 15%) 0%, rgb(139 149 86 / 5%) 100%);
+  border: 1px solid rgb(139 149 86 / 20%);
   border-radius: 4px;
 }
 
-// Card title
+// Card title with enhanced readability and proper light mode contrast
 .projectCardTitle {
   margin-block-end: spacings.spacing(xs);
   font-size: 1.25rem;
+  font-weight: 700; // Increased weight for better readability
   color: var(--color-text-primary);
 
   @include transition;
+
+  // LIGHT MODE FIX: Dark text on light overlay needs to be inverted
+  :root.theme-light & {
+    color: var(--color-primary-light); // Dark text for light overlay
+  }
 }
 
-// Company name
+// Company name with enhanced readability and proper light mode contrast
 .projectCardCompany {
   font-size: 0.9rem;
+  font-weight: 600; // Increased weight for better readability
   color: var(--color-accent);
 
   @include transition;
+
+  // LIGHT MODE FIX: Use darker accent for better contrast on light overlay
+  :root.theme-light & {
+    color: var(--color-accent); // Keeps accent color but it's already darker in light mode
+  }
 }
 
-// Card description
+// Card description with enhanced readability and proper light mode contrast
 .projectCardDescription {
   max-block-size: 200px;
   margin-block-end: spacings.spacing(lg);
@@ -478,8 +637,14 @@
   p {
     margin-block-end: 0;
     font-size: 0.9rem;
+    font-weight: 500; // Increased weight for better readability
     line-height: 1.6;
     color: var(--color-text-secondary);
+
+    // LIGHT MODE FIX: Dark text for light overlay
+    :root.theme-light & {
+      color: var(--color-primary-light); // Dark text for light overlay
+    }
   }
 }
 
@@ -498,7 +663,7 @@
   }
 }
 
-// Tech list
+// Tech list with warm styling
 .projectCardTechList {
   display: flex;
   flex-wrap: wrap;
@@ -518,16 +683,39 @@
   }
 }
 
-// Tech item
+// Tech item with enhanced warm styling and better visibility
 .projectCardTechItem {
   padding: spacings.spacing(xs) spacings.spacing(sm);
   font-family: var(--font-manrope);
   font-size: 0.75rem;
+  font-weight: 600; // Increased weight
   color: var(--color-text-secondary);
-  background-color: rgb(138 146 176 / 20%);
-  border-radius: 16px;
+
+  // Enhanced backgrounds for better contrast
+  background: linear-gradient(135deg, rgb(212 162 118 / 15%) 0%, rgb(147 123 177 / 10%) 100%);
+  border: 1px solid rgb(212 162 118 / 20%);
+  border-radius: 12px;
+  backdrop-filter: blur(2px); // Added backdrop filter
 
   @include transition;
+
+  &:hover {
+    color: var(--color-accent);
+    background: linear-gradient(135deg, rgb(212 162 118 / 25%) 0%, rgb(147 123 177 / 15%) 100%);
+    border-color: rgb(212 162 118 / 30%);
+    transform: translateY(-1px);
+  }
+
+  :root.theme-light & {
+    background: linear-gradient(135deg, rgb(184 134 90 / 15%) 0%, rgb(122 99 148 / 10%) 100%);
+    border-color: rgb(184 134 90 / 20%);
+    backdrop-filter: blur(4px);
+
+    &:hover {
+      background: linear-gradient(135deg, rgb(184 134 90 / 25%) 0%, rgb(122 99 148 / 15%) 100%);
+      border-color: rgb(184 134 90 / 30%);
+    }
+  }
 }
 
 // External links container
@@ -537,24 +725,47 @@
   align-items: center;
 }
 
-// External link
+// External link with enhanced warm styling and better visibility
 .projectCardLink {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: spacings.spacing(sm);
+  font-weight: 600; // Increased weight
   color: var(--color-text-secondary);
+
+  // Enhanced backgrounds
+  background: rgb(212 162 118 / 10%);
+  border: 1px solid rgb(212 162 118 / 15%);
+  border-radius: 6px;
+  backdrop-filter: blur(2px);
 
   @include transition;
 
   &:hover {
     color: var(--color-accent);
-    transform: translateY(-3px);
+    background: rgb(212 162 118 / 20%);
+    border-color: rgb(212 162 118 / 30%);
+    box-shadow: 0 4px 12px rgb(212 162 118 / 20%);
+    transform: translateY(-2px);
+  }
+
+  :root.theme-light & {
+    background: rgb(184 134 90 / 12%);
+    border-color: rgb(184 134 90 / 18%);
+    backdrop-filter: blur(4px);
+
+    &:hover {
+      background: rgb(184 134 90 / 20%);
+      border-color: rgb(184 134 90 / 30%);
+      box-shadow: 0 4px 12px rgb(184 134 90 / 15%);
+    }
   }
 }
 
 // Featured cards are slightly larger
 .featuredCard {
-  // block-size: 450px;
+  border-block-start-width: 4px;
 
   @include breakpoint(md) {
     grid-column: span 1;
@@ -575,31 +786,39 @@
       font-size: 1.05rem;
     }
   }
+
+  &:hover {
+    border-block-start-color: var(--color-accent-tertiary); // Olive for featured projects
+  }
 }
 
-// Animation delays ONLY for initial loading, not for hover interactions
+// Staggered animation with accent color variation
 @for $i from 1 through 12 {
   .projectCard:not(:hover):nth-child(#{$i}) {
     transition-delay: #{$i * 0.1}s;
+
+    // Color variation for visual interest
+    @if $i % 3 == 0 {
+      border-block-start-color: var(--color-accent-secondary); // Purple
+    } @else if $i % 2 == 0 {
+      border-block-start-color: var(--color-accent-tertiary); // Olive
+    }
   }
 }
 
 @keyframes disclaimer-slide {
   0% {
-    // max-inline-size: 0;
     opacity: 0;
     transform: translateX(100%);
   }
 
   20%,
   80% {
-    // max-inline-size: 300px;
     opacity: 1;
     transform: translateX(0);
   }
 
   100% {
-    // max-inline-size: 0;
     opacity: 0;
     transform: translateX(100%);
   }

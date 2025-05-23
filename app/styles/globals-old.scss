@@ -11,13 +11,14 @@
   @return color.channel($hex, 'red'), color.channel($hex, 'green'), color.channel($hex, 'blue');
 }
 
-// Default theme (warm dark mode)
+// Default theme (dark mode)
 :root {
-  // Color scheme CSS variables - Warm Sophistication Palette
+  // Color scheme CSS variables
   --color-primary-dark: #{colors.color-dark(primary-dark)};
   --color-primary-light: #{colors.color-dark(primary-light)};
   --color-accent: #{colors.color-dark(accent)};
   --color-secondary-bg: #{colors.color-dark(secondary-bg)};
+  --color-education: #{colors.color-dark(education)};
   --color-text-primary: #{colors.color-dark(text-primary)};
   --color-text-secondary: #{colors.color-dark(text-secondary)};
   --color-background: #{colors.color-dark(background)};
@@ -30,12 +31,11 @@
   --color-error: #{colors.color-dark(error)};
   --color-warning: #{colors.color-dark(warning)};
 
-  // Additional warm palette colors
-  --color-accent-secondary: #{colors.color-dark(accent-secondary)};
-  --color-accent-tertiary: #{colors.color-dark(accent-tertiary)};
-  --color-timeline-line: #{colors.color-dark(timeline-line)};
-  --color-work-accent: #{colors.color-dark(work-accent)};
-  --color-education-accent: #{colors.color-dark(education-accent)};
+  // RGB values for opacity/alpha operations
+  //   $accent-rgb: hexToRGB(color-dark(accent));
+  // $education-rgb: hexToRGB(color-dark(education));
+  --color-accent-rgb: #{hexToRGB(colors.color-dark(accent))};
+  --color-education-rgb: #{hexToRGB(colors.color-dark(education))};
 }
 
 // Set color-scheme based on theme
@@ -49,10 +49,13 @@
 
 // Theme class overrides (controlled by ThemeProvider)
 :root.theme-light {
+  // $bg-color: colors.color-light(background);
+
   --color-primary-dark: #{colors.color-light(primary-dark)};
   --color-primary-light: #{colors.color-light(primary-light)};
   --color-accent: #{colors.color-light(accent)};
   --color-secondary-bg: #{colors.color-light(secondary-bg)};
+  --color-education: #{colors.color-light(education)};
   --color-text-primary: #{colors.color-light(text-primary)};
   --color-text-secondary: #{colors.color-light(text-secondary)};
   --color-background: #{colors.color-light(background)};
@@ -65,19 +68,19 @@
   --color-error: #{colors.color-light(error)};
   --color-warning: #{colors.color-light(warning)};
 
-  // Additional warm palette colors for light theme
-  --color-accent-secondary: #{colors.color-light(accent-secondary)};
-  --color-accent-tertiary: #{colors.color-light(accent-tertiary)};
-  --color-timeline-line: #{colors.color-light(timeline-line)};
-  --color-work-accent: #{colors.color-light(work-accent)};
-  --color-education-accent: #{colors.color-light(education-accent)};
+  // RGB values for opacity/alpha operations - light theme
+  --color-accent-rgb: #{hexToRGB(colors.color-light(accent))};
+  --color-education-rgb: #{hexToRGB(colors.color-light(education))};
 }
 
 :root.theme-dark {
+  // $bg-color: colors.color-dark(background);
+
   --color-primary-dark: #{colors.color-dark(primary-dark)};
   --color-primary-light: #{colors.color-dark(primary-light)};
   --color-accent: #{colors.color-dark(accent)};
   --color-secondary-bg: #{colors.color-dark(secondary-bg)};
+  --color-education: #{colors.color-dark(education)};
   --color-text-primary: #{colors.color-dark(text-primary)};
   --color-text-secondary: #{colors.color-dark(text-secondary)};
   --color-background: #{colors.color-dark(background)};
@@ -90,12 +93,9 @@
   --color-error: #{colors.color-dark(error)};
   --color-warning: #{colors.color-dark(warning)};
 
-  // Additional warm palette colors for dark theme
-  --color-accent-secondary: #{colors.color-dark(accent-secondary)};
-  --color-accent-tertiary: #{colors.color-dark(accent-tertiary)};
-  --color-timeline-line: #{colors.color-dark(timeline-line)};
-  --color-work-accent: #{colors.color-dark(work-accent)};
-  --color-education-accent: #{colors.color-dark(education-accent)};
+  // RGB values for opacity/alpha operations - dark theme
+  --color-accent-rgb: #{hexToRGB(colors.color-dark(accent))};
+  --color-education-rgb: #{hexToRGB(colors.color-dark(education))};
 }
 
 // Apply the fonts to elements
@@ -203,6 +203,8 @@ a {
 
 button {
   font-family: var(--font-manrope), system-ui, sans-serif;
+
+  // cursor: pointer;
 }
 
 // Container class for section content
@@ -230,25 +232,9 @@ section {
   }
 }
 
-// Utility classes with warm palette
+// Utility classes
 .accent-text {
   color: var(--color-accent);
-}
-
-.accent-secondary-text {
-  color: var(--color-accent-secondary);
-}
-
-.accent-tertiary-text {
-  color: var(--color-accent-tertiary);
-}
-
-.work-accent-text {
-  color: var(--color-work-accent);
-}
-
-.education-accent-text {
-  color: var(--color-education-accent);
 }
 
 .visually-hidden {
@@ -275,3 +261,28 @@ section {
     color-scheme: light;
   }
 }
+
+/* Uncomment following for scroll-snap. It is a TODO: */
+// html,
+// body {
+//   block-size: 100%;
+//   padding: 0;
+//   margin: 0;
+//   overflow-x: hidden;
+// }
+
+// html {
+//   scroll-behavior: smooth;
+// }
+
+// body {
+//   position: relative;
+//   overflow-y: auto;
+//   overscroll-behavior-y: contain; /* Prevents bounce effect on some browsers */
+// }
+
+// /* This ensures that the main content area takes up the full viewport height minus the header */
+// main {
+//   min-block-size: calc(100vh - 80px); /* Adjust based on your header height */
+//   padding-block-start: 80px; /* Should match your header height */
+// }

@@ -101,7 +101,7 @@ export default function Home() {
       <SocialSidebar></SocialSidebar>
       <EmailSidebar></EmailSidebar>
       <ScrollNavigator sections={sections} />
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 }

@@ -7,35 +7,33 @@
   padding: spacings.spacing(md) spacings.spacing(lg);
   background-color: var(--color-card-background);
   border-radius: 4px;
-  box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
+  box-shadow: 0 4px 20px rgb(28 25 23 / 12%); // Warm shadow
   transition: transform 0.3s ease;
-
-  // box-shadow 0.3s ease;
-
-  will-change: transform; /* Optimization for animations */
+  will-change: transform;
 
   @include breakpoint(md) {
     grid-area: content;
-
-    // Position within the grid
-    inline-size: auto; // Allow the card to size with the grid
-    max-inline-size: 95%; // Prevent from being too wide
+    inline-size: auto;
+    max-inline-size: 95%;
 
     &.work {
-      justify-self: flex-start; // Align to left of grid cell
-      border-inline-start: 2px solid var(--color-accent);
+      justify-self: flex-start;
+      border-inline-start: 3px solid var(--color-work-accent); // Use work-specific color
     }
 
     &.education {
-      justify-self: flex-end; // Align to right of grid cell
+      justify-self: flex-end;
       text-align: end;
-      border-inline-end: 2px solid var(--color-education);
+      border-inline-end: 3px solid var(--color-education-accent); // Use education-specific color
     }
   }
 
-  // Hover effect
+  // Enhanced hover effect with warm colors
   &:hover {
-    box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
+    box-shadow:
+      0 10px 30px rgb(28 25 23 / 18%),
+      0 4px 12px rgb(212 162 118 / 8%); // Subtle copper glow
+
     transform: translateY(-5px);
   }
 }
@@ -54,13 +52,13 @@
 
 .organization {
   display: block;
-  margin-block-start: spacings.spacing(xxs);
+  margin-block-start: spacings.spacing(xs);
   font-size: 1rem;
   font-weight: 500;
-  color: var(--color-accent);
+  color: var(--color-work-accent); // Default to work accent
 
   .education & {
-    color: var(--color-education);
+    color: var(--color-education-accent); // Use education-specific accent
   }
 }
 
@@ -100,21 +98,24 @@
   font-family: var(--font-manrope);
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--color-accent);
+  color: var(--color-work-accent); // Default to work accent
   cursor: pointer;
   background-color: transparent;
-  border: 1px solid var(--color-accent);
+  border: 1px solid var(--color-work-accent);
   border-radius: 4px;
-
-  // transition: background-color 0.2s ease;
+  transition: all 0.2s ease; // Added transition back
 
   .education & {
-    color: var(--color-education);
-    border-color: var(--color-education);
+    color: var(--color-education-accent);
+    border-color: var(--color-education-accent);
   }
 
   &:hover {
-    background-color: rgba(var(--color-accent-rgb), 0.1);
+    background-color: rgb(212 162 118 / 10%); // Warm copper background
+
+    .education & {
+      background-color: rgb(147 123 177 / 10%); // Purple background for education
+    }
   }
 
   &::after {
@@ -134,13 +135,13 @@
   overflow: hidden;
   opacity: 0;
   transition:
-    // max-height 0.3s ease,
-    opacity 0.3s ease;
-
-  // margin 0.3s ease;
+    max-height 0.3s ease,
+    // Added back transitions
+    opacity 0.3s ease,
+    margin 0.3s ease;
 
   .expanded & {
-    max-block-size: 1000px; // Larger than content will ever be
+    max-block-size: 1000px;
     margin-block-start: spacings.spacing(md);
     opacity: 1;
   }
@@ -158,7 +159,6 @@
   font-size: 0.9rem;
   line-height: 1.5;
 
-  // For right-aligned education items
   @include breakpoint(md) {
     .education & {
       flex-direction: row-reverse;
@@ -178,10 +178,10 @@
 .bullet {
   flex-shrink: 0;
   margin-inline-end: spacings.spacing(xs);
-  color: var(--color-accent);
+  color: var(--color-work-accent); // Use work accent
 
   .education & {
-    color: var(--color-education);
+    color: var(--color-education-accent); // Use education accent
   }
 }
 
@@ -190,7 +190,6 @@
   flex-wrap: wrap;
   gap: spacings.spacing(xs);
 
-  // For right-aligned education items
   @include breakpoint(md) {
     .education & {
       justify-content: flex-end;
@@ -200,15 +199,27 @@
 
 .technologyTag {
   display: inline-block;
-  padding: spacings.spacing(xxs) spacings.spacing(xs);
+  padding: spacings.spacing(xs) spacings.spacing(sm);
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--color-accent);
-  background-color: rgba(var(--color-accent-rgb), 0.1);
+  color: var(--color-work-accent);
+  background-color: rgb(212 162 118 / 10%); // Warm copper background
+  border: 1px solid rgb(212 162 118 / 15%);
   border-radius: 4px;
+  transition: all 0.2s ease;
 
   .education & {
-    color: var(--color-education);
-    background-color: rgba(var(--color-education-rgb), 0.1);
+    color: var(--color-education-accent);
+    background-color: rgb(147 123 177 / 10%); // Purple background
+    border-color: rgb(147 123 177 / 15%);
+  }
+
+  &:hover {
+    box-shadow: 0 2px 8px rgb(212 162 118 / 15%);
+    transform: translateY(-1px);
+
+    .education & {
+      box-shadow: 0 2px 8px rgb(147 123 177 / 15%);
+    }
   }
 }

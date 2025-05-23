@@ -1,73 +1,116 @@
 @use 'sass:map';
 
-// Color Palette
+// Warm Sophistication Palette
+// Based on warm, earthy tones that create a sophisticated and unique appearance
 
-// Primary Dark: Deep navy (#0a192f)
-// Primary Light: Soft white (#e6f1ff)
-// Accent Color: Teal (#64ffda)
-// Secondary Accents: Subtle blue (#112240) for card backgrounds
-// Text: Light gray (#8892b0) for body text, white (#e6f1ff) for headings
+// Primary Color Strategy
+// - Deep warm brown/black as primary background
+// - Warm copper/terracotta as primary accent
+// - Complementary muted purple for secondary accents
+// - Warm charcoal for elevated surfaces
 
-// Dark/Light Mode
-
-// Toggle in navigation area
-// Light palette:
-
-// Background: #f8f8f8
-// Card backgrounds: #ffffff
-// Text: #333333 and #555555
-// Accents remain teal
-
-// Dark mode colors (default theme)
+// Dark mode colors (primary theme)
 $colors-dark: (
   // Primary colors
-  primary-dark: #0a192f,
-  primary-light: #e6f1ff,
-  accent: #64ffda,
-  secondary-bg: #112240,
-  education: #937bb1,
+  primary-dark: #1c1917,
+  // Deep warm brown/black background
+  primary-light: #fafaf9,
+  // Warm off-white
+  accent: #d4a276,
+  // Warm copper/terracotta
+  secondary-bg: #292524,
 
+  // Warm charcoal for cards
   // Text colors
-  text-primary: #e6f1ff,
-  text-secondary: #8892b0,
+  text-primary: #fafaf9,
+  // Warm off-white for headings
+  text-secondary: #a8a29e,
 
+  // Warm medium gray for body text
   // UI colors
-  background: #0a192f,
-  card-background: #112240,
-  border: rgba(100 255 218 / 10%),
+  background: #1c1917,
+  // Deep warm brown/black
+  card-background: #292524,
+  // Warm charcoal
+  border: rgba(212 162 118 / 10%),
+  // Subtle copper border
   // State colors
-  hover: rgba(100 255 218 / 10%),
-  focus: rgba(100 255 218 / 30%),
+  hover: rgba(212 162 118 / 10%),
+  // Copper hover
+  focus: rgba(212 162 118 / 30%),
+  // Copper focus
   // Semantic colors
-  success: #64ffda,
-  error: #ff6464,
-  warning: #ffb764
+  success: #8b9556,
+  // Warm olive green
+  error: #c4756e,
+  // Warm coral red
+  warning: #d4a276,
+
+  // Copper (same as accent)
+  // Additional accent colors
+  accent-secondary: #937bb1,
+  // Complementary muted purple
+  accent-tertiary: #8b9556,
+
+  // Warm olive
+  // Timeline/experience specific colors
+  timeline-line: #a8a29e,
+  // Warm medium gray for timeline
+  work-accent: #d4a276,
+  // Copper for work experiences
+  education-accent: #937bb1 // Purple for education experiences
 );
 
-// Light mode colors
+// Light mode colors (alternative theme)
 $colors-light: (
   // Primary colors
-  primary-dark: #f5f5f5,
-  primary-light: #1d1d1d,
-  accent: #0a7b6d,
-  secondary-bg: #e6e6e6,
-  education: #7c67a5,
+  primary-dark: #faf8f6,
+  // Warm light background
+  primary-light: #1c1917,
+  // Dark text
+  accent: #b8865a,
+  // Darker copper for better contrast
+  secondary-bg: #f5f3f0,
 
+  // Very light warm gray
   // Text colors
-  text-primary: #1d1d1d,
-  text-secondary: #4a4a4a,
+  text-primary: #1c1917,
+  // Dark for headings
+  text-secondary: #6b6761,
 
+  // Medium warm gray
   // UI colors
-  background: #f5f5f5,
+  background: #faf8f6,
+  // Warm light background
   card-background: #fff,
-  border: rgba(10 123 109 / 10%),
+  // Pure white cards
+  border: rgba(184 134 90 / 15%),
+  // Darker copper border
   // State colors
-  hover: rgba(10 123 109 / 10%),
-  focus: rgba(10 123 109 / 30%),
+  hover: rgba(184 134 90 / 10%),
+  // Darker copper hover
+  focus: rgba(184 134 90 / 25%),
+  // Darker copper focus
   // Semantic colors
-  success: #0a7b6d,
-  error: #d32f2f,
-  warning: #ed6c02
+  success: #6b7a3a,
+  // Darker olive
+  error: #a85a52,
+  // Darker coral
+  warning: #b8865a,
+
+  // Darker copper
+  // Additional accent colors
+  accent-secondary: #7a6394,
+  // Darker purple
+  accent-tertiary: #6b7a3a,
+
+  // Darker olive
+  // Timeline/experience specific colors
+  timeline-line: #6b6761,
+  // Medium gray for timeline
+  work-accent: #b8865a,
+  // Darker copper
+  education-accent: #7a6394 // Darker purple
 );
 
 // Functions to access colors based on theme

@@ -4,43 +4,79 @@
 @use '@/app/styles/mixins' as *;
 
 .logoContent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
   inline-size: 100%;
   block-size: 100%;
-  overflow: hidden;
-  background-color: white;
-  border-radius: unset;
 
-  &:has(img[style*='aspect-ratio:1/1']),
-  &:has(img[style*='aspect-ratio: 1/1']),
-  &:has(img[style*='aspect-ratio:1']),
-  &:has(img[style*='aspect-ratio: 1']) {
-    border-radius: 50%;
+  // overflow: hidden;
+  border-radius: 8px; // Subtle rounding
+  perspective: 600px;
+  transition: transform 0.9s ease;
+  transform-style: preserve-3d;
+
+  &.animate {
+    transform: rotateY(180deg);
   }
+
+  // Add subtle warm border glow
+  // &::before {
+  //   position: absolute;
+  //   inset: -2px;
+  //   z-index: -1;
+  //   content: '';
+  //   background: linear-gradient(
+  //     45deg,
+  //     rgb(212 162 118 / 30%) 0%,
+  //     rgb(147 123 177 / 30%) 50%,
+  //     rgb(139 149 86 / 30%) 100%
+  //   );
+  //   border-radius: 10px;
+  //   opacity: 0;
+  //   transition: opacity 0.3s ease;
+  // }
+
+  // &:hover::before {
+  //   opacity: 1;
+  // }
 }
 
-.logoInitials {
-  font-family: var(--font-geist-sans);
-  font-size: 1.25rem;
-  font-weight: 700;
+.iconBack {
+  transform: rotateY(180deg);
+}
+
+.iconFront,
+.iconBack {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+  background-color: rgb(250 250 249 / 95%); // Warm off-white background
+  // border: 1px solid rgb(212 162 118 / 10%); // Subtle warm border
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  backface-visibility: hidden;
+
+  // Enhanced circular styling for square aspect ratios
+  &[style*='aspect-ratio:1/1'],
+  &[style*='aspect-ratio: 1/1'],
+  &[style*='aspect-ratio:1'],
+  &[style*='aspect-ratio: 1'] {
+    // border: 2px solid rgb(212 162 118 / 20%); // Enhanced border for circles
+    clip-path: circle();
+  }
+
+  // // Hover effects
+  // .logoContent:hover & {
+  //   box-shadow: 0 4px 20px rgb(212 162 118 / 15%);
+  // }
 }
 
 .logoContainer {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   inline-size: 100px;
   block-size: 100px;
-
-  // background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
 
   // Mobile styles - smaller and positioned below card
   @media (width <= 767px) {
@@ -49,31 +85,86 @@
     margin-block-start: spacings.spacing(md);
   }
 
-  // Hover effect
-  &:hover {
-    box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
-    transform: translateY(-5px);
-  }
-
-  // Work logo styling
-  &.work {
-    // border-inline-start: 2px solid var(--color-accent);
-
-    .logoInitials {
-      color: var(--color-accent);
-    }
-  }
-
-  // Education logo styling
-  &.education {
-    // border-inline-end: 2px solid var(--color-education);
-
-    .logoInitials {
-      color: var(--color-education);
-    }
-  }
-
-  // :has([style*='aspect-ratio: 1/1']) .logoContent {
-  //   border-radius: 50%;
+  // Add subtle drop shadow to container
+  // &::after {
+  //   position: absolute;
+  //   inset: 4px;
+  //   pointer-events: none;
+  //   content: '';
+  //   background: transparent;
+  //   border-radius: 8px;
+  //   box-shadow: inset 0 1px 2px rgb(28 25 23 / 10%);
+  //   opacity: 0;
+  //   transition: opacity 0.3s ease;
   // }
+
+  // &:hover::after {
+  //   opacity: 1;
+  // }
+}
+
+// Enhanced rotation animation with warm color highlights
+@keyframes rotate-icon {
+  0% {
+    filter: hue-rotate(0deg);
+    rotate: 0deg;
+  }
+
+  25% {
+    filter: hue-rotate(10deg) brightness(1.1);
+  }
+
+  50% {
+    filter: hue-rotate(20deg) brightness(1.2);
+    rotate: 180deg;
+  }
+
+  75% {
+    filter: hue-rotate(10deg) brightness(1.1);
+  }
+
+  100% {
+    filter: hue-rotate(0deg);
+    rotate: 360deg;
+  }
+}
+
+// Alternative hover effect for different logo types
+// .logoContainer {
+//   // For work experience logos
+//   .work & {
+//     &:hover .logoContent {
+//       box-shadow: 0 8px 25px rgb(212 162 118 / 20%);
+//     }
+//   }
+
+//   // For education logos
+//   .education & {
+//     &:hover .logoContent {
+//       box-shadow: 0 8px 25px rgb(147 123 177 / 20%);
+//     }
+//   }
+// }
+
+// Subtle pulse animation for when logos enter viewport
+@keyframes logo-entrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotateY(-20deg);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05) rotateY(10deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+// Animation class added via JavaScript
+.logoContainer.animate {
+  animation: logo-entrance 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }

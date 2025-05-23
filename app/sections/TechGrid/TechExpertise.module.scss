@@ -6,6 +6,7 @@
   position: relative;
   padding: spacings.spacing(xxxl) 0;
 
+  // Enhanced warm background pattern
   &::before {
     position: absolute;
     inset: 0;
@@ -13,7 +14,21 @@
     content: '';
     background-image: radial-gradient(var(--color-accent) 1px, transparent 1px);
     background-size: 30px 30px;
-    opacity: 0.05;
+    opacity: 0.03; // Slightly more subtle
+
+    // Add subtle animation
+    animation: subtle-drift 20s ease-in-out infinite;
+  }
+}
+
+@keyframes subtle-drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(2px, 2px);
   }
 }
 
@@ -37,61 +52,104 @@
   margin-block-end: 0;
   font-size: clamp(1.5rem, 5vw, 2rem);
   white-space: nowrap;
+
+  // Add subtle text shadow for depth
+  text-shadow: 0 2px 4px rgb(28 25 23 / 10%);
 }
 
 .sectionNumber {
   margin-inline-end: spacings.spacing(sm);
   font-family: var(--font-geist-sans);
   font-weight: 400;
-  color: var(--color-accent);
+  color: var(--color-accent); // Warm copper
+
+  // Add subtle glow
+  text-shadow: 0 0 10px rgb(212 162 118 / 30%);
 }
 
 .headingLine {
   flex-grow: 1;
   block-size: 1px;
   margin-inline-start: spacings.spacing(md);
-  background-color: var(--color-border);
+  background: linear-gradient(
+    90deg,
+    var(--color-border) 0%,
+    var(--color-accent) 50%,
+    var(--color-border) 100%
+  );
 }
 
-// Cards container
-// No need for custom container styles as we'll use the grid system from grid.scss
-// Card container to maintain position context
+// Card container
 .cardContainer {
   position: relative;
   inline-size: 100%;
   block-size: 100%;
-
-  // Enable hardware acceleration for smoother animations
   transform: translateZ(0);
   will-change: transform;
 }
 
-// Expertise card
+// Expertise card - MAJOR UPDATES HERE
 .expertiseCard {
   position: relative;
   block-size: 100%;
   overflow: visible;
-  background-color: rgb(30 41 59 / 40%);
-  border-block-start: 3px solid transparent;
+
+  // FIX: Use warm colors instead of cool slate blue
+  background-color: var(--color-card-background); // Warm charcoal in dark, white in light
+  border-block-start: 3px solid var(--color-accent); // Warm copper top border
   border-radius: 8px;
+
+  // Enhanced warm shadows
+  box-shadow:
+    0 4px 12px rgb(28 25 23 / 10%),
+    0 1px 3px rgb(28 25 23 / 8%);
 
   @include transition(all, 0.3s);
 
-  // &:hover {
-  //   background-color: rgb(30 41 59 / 60%);
+  &:hover {
+    // Enhanced hover with warm glow
+    box-shadow:
+      0 8px 25px rgb(28 25 23 / 15%),
+      0 4px 12px rgb(212 162 118 / 10%); // Warm copper glow
 
-  //   // transform: translateY(-5px);
-  // }
+    transform: translateY(-3px);
+  }
 
   &.hidden {
-    // opacity: 0;
     visibility: hidden;
     pointer-events: none;
   }
 
   &.expanded {
-    background-color: rgb(30 41 59 / 100%);
-    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 20%);
+    // Enhanced expanded state with proper warm colors
+    background-color: var(--color-card-background);
+    border-color: var(--color-accent-secondary); // Purple when expanded
+    box-shadow:
+      0 20px 40px rgb(28 25 23 / 20%),
+      0 8px 16px rgb(212 162 118 / 10%);
+
+    .primarySkill:hover,
+    .skillBadge:hover {
+      .iconContainer {
+        // Enhanced glow effect with warm colors
+        box-shadow: 0 0 30px 15px var(--color-glow);
+      }
+    }
+  }
+
+  // Light mode adjustments
+  :root.theme-light & {
+    background-color: var(--color-card-background); // White in light mode
+    border-color: var(--color-accent); // Darker copper for light mode
+    box-shadow:
+      0 4px 12px rgb(28 25 23 / 6%),
+      0 1px 3px rgb(28 25 23 / 4%);
+
+    &:hover {
+      box-shadow:
+        0 8px 25px rgb(28 25 23 / 10%),
+        0 4px 12px rgb(184 134 90 / 8%);
+    }
   }
 }
 
@@ -100,7 +158,7 @@
   position: fixed;
   inset: 0;
   z-index: 50;
-  background-color: rgb(0 0 0 / 50%);
+  background-color: rgb(28 25 23 / 60%); // Warm backdrop instead of pure black
   animation: fade-in 0.3s ease forwards;
 }
 
@@ -125,12 +183,18 @@
   justify-content: center;
   inline-size: 24px;
   block-size: 24px;
+  background-color: rgb(212 162 118 / 10%); // Warm copper background
   border-radius: 50%;
+
+  :root.theme-light & {
+    background-color: rgb(184 134 90 / 8%);
+  }
 }
 
 .arrow {
   inline-size: 14px;
   block-size: 14px;
+  color: var(--color-accent);
 
   @include transition(transform, 0.3s, ease);
 
@@ -144,6 +208,14 @@
   display: flex;
   align-items: center;
   padding: 0 spacings.spacing(md) spacings.spacing(md);
+
+  &:hover {
+    .iconContainer {
+      // box-shadow: 0 4px 12px var(--color-glow);
+
+      // transform: scale(1.05);
+    }
+  }
 }
 
 .iconContainer {
@@ -154,6 +226,10 @@
   inline-size: 48px;
   block-size: 48px;
   margin-inline-end: spacings.spacing(md);
+
+  // Enhanced warm gradient background
+  background: linear-gradient(135deg, rgb(212 162 118 / 10%) 0%, rgb(147 123 177 / 5%) 100%);
+  border: 1px solid rgb(212 162 118 / 15%);
   border-radius: 8px;
 
   @include transition(all, 0.3s, ease);
@@ -161,12 +237,10 @@
   &.iconSmaller {
     transform: scale(1.1);
   }
-}
 
-.primarySkill:hover,
-.skillBadge:hover {
-  .iconContainer {
-    box-shadow: 0 0 52px 22px var(--color-glow);
+  :root.theme-light & {
+    background: linear-gradient(135deg, rgb(184 134 90 / 8%) 0%, rgb(122 99 148 / 4%) 100%);
+    border-color: rgb(184 134 90 / 12%);
   }
 }
 
@@ -174,12 +248,16 @@
   inline-size: 32px;
   block-size: 32px;
   object-fit: contain;
+
+  // Add subtle warm filter
+  filter: sepia(5%) saturate(110%);
 }
 
 .iconPlaceholder {
   font-family: var(--font-geist-sans);
   font-size: 16px;
   font-weight: bold;
+  color: var(--color-accent);
 }
 
 .skillInfo {
@@ -195,6 +273,7 @@
 
 .skillDescription {
   font-size: 0.8rem;
+  color: var(--color-text-secondary);
 
   @include transition(color, 0.3s, ease);
 }
@@ -220,7 +299,16 @@
 .divider {
   block-size: 1px;
   margin-block-end: spacings.spacing(sm);
-  background-color: var(--color-border);
+
+  // Enhanced warm gradient divider
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-border) 20%,
+    var(--color-accent) 50%,
+    var(--color-border) 80%,
+    transparent 100%
+  );
 }
 
 .secondaryLabel {
@@ -238,11 +326,17 @@
 
 .skillBadgeDescription,
 .skillBadgeTitle {
-  @include transition;
+  @include transition(color, 0.2s, ease);
 }
 
 .skillBadgeTitle {
   font-size: 0.9rem;
+  color: var(--color-text-primary);
+}
+
+.skillBadgeDescription {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
 }
 
 .skillBadgeContainer {
@@ -251,27 +345,51 @@
 
   &:hover {
     .skillBadgeDescription {
-      color: var(--secondary-hover-color);
+      color: var(--color-accent-secondary); // Purple on hover
     }
 
     .skillBadgeTitle {
-      color: var(--color-text-primary);
+      color: var(--color-accent); // Copper on hover
+    }
+
+    .iconContainer {
+      box-shadow: 0 2px 8px rgb(212 162 118 / 15%);
     }
   }
 }
 
 .skillBadge {
   display: flex;
-
-  // align-items: center;
   padding: 4px;
   font-size: 0.75rem;
   color: var(--color-text-secondary);
-  background-color: rgb(17 24 39 / 60%);
+
+  // Enhanced warm background
+  background: linear-gradient(135deg, rgb(212 162 118 / 5%) 0%, rgb(147 123 177 / 3%) 100%);
+  border: 1px solid rgb(212 162 118 / 10%);
   border-radius: 8px;
 
-  &:hover .iconContainer {
-    transform: scale(1.1);
+  @include transition(all, 0.2s, ease);
+
+  &:hover {
+    background: linear-gradient(135deg, rgb(212 162 118 / 10%) 0%, rgb(147 123 177 / 5%) 100%);
+    border-color: rgb(212 162 118 / 20%);
+    transform: translateY(-1px);
+
+    .iconContainer {
+      transform: scale(1.1);
+    }
+  }
+
+  /* stylelint-disable-next-line selector-class-pattern */
+  :root.theme-light & {
+    background: linear-gradient(135deg, rgb(184 134 90 / 4%) 0%, rgb(122 99 148 / 2%) 100%);
+    border-color: rgb(184 134 90 / 8%);
+
+    &:hover {
+      background: linear-gradient(135deg, rgb(184 134 90 / 8%) 0%, rgb(122 99 148 / 4%) 100%);
+      border-color: rgb(184 134 90 / 15%);
+    }
   }
 }
 
@@ -285,6 +403,7 @@
   margin-inline-end: 6px;
   font-size: 14px;
   line-height: 1;
+  color: var(--color-accent);
 }
 
 // Hover hint
@@ -293,6 +412,7 @@
   inset-block-end: 8px;
   inset-inline-end: 12px;
   font-size: 0.7rem;
+  color: var(--color-text-secondary);
   pointer-events: none;
 
   @include transition(opacity, 0.2s, ease);

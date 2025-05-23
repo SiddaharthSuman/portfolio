@@ -6,6 +6,19 @@
   position: relative;
   min-block-size: 50vh;
   padding: spacings.spacing(lg) 0;
+
+  // Add subtle warm ambient background
+  &::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    content: '';
+    background:
+      radial-gradient(ellipse at 30% 20%, rgb(212 162 118 / 2%) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 80%, rgb(147 123 177 / 1.5%) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 50%, rgb(139 149 86 / 1%) 0%, transparent 70%);
+  }
 }
 
 .sectionHeading {
@@ -22,24 +35,73 @@
 }
 
 .heading {
+  position: relative;
   margin-block-end: 0;
   font-size: clamp(1.5rem, 5vw, 2rem);
   font-weight: 700;
   white-space: nowrap;
+
+  // Add subtle text shadow for depth
+  text-shadow: 0 2px 4px rgb(28 25 23 / 10%);
+
+  // Subtle underline effect that grows on scroll
+  &::after {
+    position: absolute;
+    inset-block-end: -4px;
+    inset-inline-start: 0;
+    inline-size: 0;
+    block-size: 2px;
+    content: '';
+    background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+    transition: width 0.8s ease;
+  }
+
+  // Activate underline when section is in view
+  .animate &::after {
+    inline-size: 100%;
+  }
 }
 
 .sectionNumber {
   margin-inline-end: spacings.spacing(sm);
   font-family: var(--font-geist-sans);
+  font-size: 1.1em; // Slightly larger for better hierarchy
   font-weight: 400;
-  color: var(--color-accent);
+  color: var(--color-accent); // Warm copper
+
+  // Add subtle glow effect
+  text-shadow: 0 0 10px rgb(212 162 118 / 30%);
 }
 
 .headingLine {
+  position: relative;
   flex-grow: 1;
   block-size: 1px;
   margin-inline-start: spacings.spacing(md);
-  background-color: var(--color-border);
+  background: linear-gradient(
+    90deg,
+    var(--color-border) 0%,
+    var(--color-accent) 50%,
+    var(--color-border) 100%
+  ); // Gradient line with accent highlight
+
+  // Animated shimmer effect
+  &::before {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: -100%;
+    inline-size: 100%;
+    block-size: 100%;
+    content: '';
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgb(212 162 118 / 40%) 50%,
+      transparent 100%
+    );
+    animation: shimmer 3s ease-in-out infinite;
+    animation-delay: 1s;
+  }
 }
 
 @keyframes fade-in-up {
@@ -51,5 +113,37 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    inset-inline-start: -100%;
+  }
+
+  50% {
+    inset-inline-start: 100%;
+  }
+
+  100% {
+    inset-inline-start: 100%;
+  }
+}
+
+// Enhanced responsive behavior
+@include breakpoint(lg) {
+  .experienceSection {
+    padding: spacings.spacing(xxxl) 0;
+  }
+
+  .sectionHeading {
+    margin-block-end: spacings.spacing(xxxl);
+  }
+}
+
+// Add focus styles for accessibility
+.experienceSection:focus-within {
+  .sectionNumber {
+    text-shadow: 0 0 15px rgb(212 162 118 / 50%);
   }
 }

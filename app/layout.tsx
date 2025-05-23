@@ -51,13 +51,6 @@ export const metadata: Metadata = {
       'Lead Software Engineer with expertise in frontend development and user experience.',
     siteName: 'Siddaharth Suman Portfolio',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Siddaharth Suman | Lead Software Engineer',
-    description:
-      'Lead Software Engineer with expertise in frontend development and user experience.',
-    creator: '@siddaharthsuman',
-  },
   robots: {
     index: true,
     follow: true,
