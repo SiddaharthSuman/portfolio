@@ -1,3 +1,4 @@
+/* stylelint-disable plugin/no-low-performance-animation-properties */
 // sections/ProjectsSection/ProjectsSection.module.scss
 // Complete file with Warm Sophistication Palette integration and light mode fixes
 @use '../../styles/spacings' as spacings;
@@ -115,9 +116,11 @@
   0% {
     inset-inline-start: -100%;
   }
+
   50% {
     inset-inline-start: 100%;
   }
+
   100% {
     inset-inline-start: 100%;
   }
@@ -156,7 +159,8 @@
     background-color: rgb(212 162 118 / 5%);
     border-color: var(--color-accent);
     box-shadow: 0 4px 8px rgb(212 162 118 / 10%);
-    transform: translateY(-2px);
+
+    // transform: translateY(-2px);
   }
 
   &.activeFilter {
@@ -293,60 +297,6 @@
   }
 }
 
-// Base project card styles with warm integration
-.projectCard {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-
-  // Use warm colors instead of cool tones
-  background-color: var(--color-card-background); // Warm charcoal in dark, white in light
-  border-block-start: 3px solid var(--color-accent); // Warm copper accent line
-  border-radius: 8px;
-
-  // Enhanced warm shadows
-  box-shadow:
-    0 4px 12px rgb(28 25 23 / 10%),
-    0 1px 3px rgb(28 25 23 / 8%);
-  opacity: 0;
-  transform: translateY(20px);
-  transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition-duration: 0.4s;
-  transition-property: opacity, transform;
-
-  &.animate {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  // Enhanced hover effects with warm colors
-  &:hover {
-    border-block-start-color: var(--color-accent-secondary); // Purple on hover
-    box-shadow:
-      0 10px 30px rgb(28 25 23 / 15%),
-      0 4px 12px rgb(212 162 118 / 10%); // Warm copper glow
-
-    transform: translateY(-8px);
-  }
-
-  // Light mode adjustments
-  :root.theme-light & {
-    background-color: var(--color-card-background);
-    border-block-start-color: var(--color-accent);
-    box-shadow:
-      0 4px 12px rgb(28 25 23 / 6%),
-      0 1px 3px rgb(28 25 23 / 4%);
-
-    &:hover {
-      border-block-start-color: var(--color-accent-secondary);
-      box-shadow:
-        0 10px 30px rgb(28 25 23 / 10%),
-        0 4px 12px rgb(184 134 90 / 8%);
-    }
-  }
-}
-
 // Video disclaimer enhancements
 .videoDisclaimerContainer {
   position: absolute;
@@ -363,6 +313,19 @@
   &.active {
     opacity: 1;
   }
+}
+
+// Card image/video styling with warm filters
+.cardImage,
+.cardVideo {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: scale-down;
+
+  // Enhanced warm filter
+  filter: sepia(5%) saturate(110%) contrast(105%);
+
+  @include transition;
 }
 
 .videoDisclaimer {
@@ -393,39 +356,6 @@
   background-color: rgb(250 250 249 / 90%); // Warm off-white background
   border: none;
   border-radius: 50%;
-}
-
-// Content container
-.projectCardContent {
-  position: relative;
-  z-index: 3; // Ensure content is above overlay
-  padding: spacings.spacing(lg);
-
-  // Enhanced text shadows for better readability
-  .projectCardTitle,
-  .projectCardCompany,
-  .projectCardDescription p {
-    // Dark mode text shadows (light text on dark overlay)
-    text-shadow: 0 2px 4px rgb(28 25 23 / 50%);
-
-    // Light mode text shadows (dark text on light overlay) - REMOVED LIGHT SHADOW
-    :root.theme-light & {
-      text-shadow: 0 2px 4px rgb(28 25 23 / 30%); // Dark shadow for dark text
-    }
-  }
-}
-
-// Card image/video styling with warm filters
-.cardImage,
-.cardVideo {
-  inline-size: 100%;
-  block-size: 100%;
-  object-fit: scale-down;
-
-  // Enhanced warm filter
-  filter: sepia(5%) saturate(110%) contrast(105%);
-
-  @include transition;
 }
 
 // Enhanced overlay with proper light/dark mode support
@@ -483,8 +413,16 @@
   }
 }
 
+.projectCardOverlay::before,
+.projectCardOverlay::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: '';
+}
+
 // LIGHT MODE FIXES - Separate selectors for better specificity
-:root.theme-light .projectCardOverlay {
+[data-theme='light'] .projectCardOverlay {
   &::before {
     background: linear-gradient(
       to top,
@@ -515,40 +453,79 @@
   }
 }
 
-.projectCardOverlay::before,
-.projectCardOverlay::after {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  content: '';
-}
+// Base project card styles with warm integration
+.projectCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 
-// Enhanced hover transitions
-.projectCard:hover {
-  transform: translateY(-8px);
-  transition: transform 0.3s ease;
+  // Use warm colors instead of cool tones
+  background-color: var(--color-card-background); // Warm charcoal in dark, white in light
+  border-block-start: 3px solid var(--color-accent); // Warm copper accent line
+  border-radius: 8px;
 
-  .cardImage,
-  .cardVideo {
-    filter: sepia(8%) saturate(120%) contrast(110%);
-    transform: scale(1.05);
-    transition:
-      filter 0.3s ease,
-      transform 0.3s ease;
-  }
+  // Enhanced warm shadows
+  box-shadow:
+    0 4px 12px rgb(28 25 23 / 10%),
+    0 1px 3px rgb(28 25 23 / 8%);
+  opacity: 0;
+  transform: translateY(20px);
+  transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition-duration: 0.4s;
+  transition-property: opacity, transform;
 
-  .videoDisclaimerContainer {
+  &.animate {
     opacity: 1;
-    transition: opacity 0.3s ease;
+    transform: translateY(0);
   }
 
-  .projectCardOverlay {
-    &::before {
-      opacity: 0;
+  &:hover {
+    border-block-start-color: var(--color-accent-secondary); // Purple on hover
+    box-shadow:
+      0 10px 30px rgb(28 25 23 / 15%),
+      0 4px 12px rgb(212 162 118 / 10%); // Warm copper glow
+    // transform: translateY(-8px);
+    transition: transform 0.3s ease;
+
+    .cardImage,
+    .cardVideo {
+      filter: sepia(8%) saturate(120%) contrast(110%);
+      transform: scale(1.05);
+      transition:
+        filter 0.3s ease,
+        transform 0.3s ease;
     }
 
-    &::after {
+    .videoDisclaimerContainer {
       opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .projectCardOverlay {
+      &::before {
+        opacity: 0;
+      }
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Light mode adjustments
+  [data-theme='light'] & {
+    background-color: var(--color-card-background);
+    border-block-start-color: var(--color-accent);
+    box-shadow:
+      0 4px 12px rgb(28 25 23 / 6%),
+      0 1px 3px rgb(28 25 23 / 4%);
+
+    &:hover {
+      border-block-start-color: var(--color-accent-secondary);
+      box-shadow:
+        0 10px 30px rgb(28 25 23 / 10%),
+        0 4px 12px rgb(184 134 90 / 8%);
     }
   }
 }
@@ -600,7 +577,7 @@
   @include transition;
 
   // LIGHT MODE FIX: Dark text on light overlay needs to be inverted
-  :root.theme-light & {
+  [data-theme='light'] & {
     color: var(--color-primary-light); // Dark text for light overlay
   }
 }
@@ -614,7 +591,7 @@
   @include transition;
 
   // LIGHT MODE FIX: Use darker accent for better contrast on light overlay
-  :root.theme-light & {
+  [data-theme='light'] & {
     color: var(--color-accent); // Keeps accent color but it's already darker in light mode
   }
 }
@@ -642,8 +619,57 @@
     color: var(--color-text-secondary);
 
     // LIGHT MODE FIX: Dark text for light overlay
-    :root.theme-light & {
+    [data-theme='light'] & {
       color: var(--color-primary-light); // Dark text for light overlay
+    }
+  }
+}
+
+// Featured cards are slightly larger
+.featuredCard {
+  border-block-start-width: 4px;
+
+  @include breakpoint(md) {
+    grid-column: span 1;
+  }
+
+  .projectCardTitle {
+    font-size: 1.5rem;
+
+    @include breakpoint(md) {
+      font-size: 1.75rem;
+    }
+  }
+
+  .projectCardDescription p {
+    font-size: 1rem;
+
+    @include breakpoint(md) {
+      font-size: 1.05rem;
+    }
+  }
+
+  &:hover {
+    border-block-start-color: var(--color-accent-tertiary); // Olive for featured projects
+  }
+}
+
+// Content container
+.projectCardContent {
+  position: relative;
+  z-index: 3; // Ensure content is above overlay
+  padding: spacings.spacing(lg);
+
+  // Enhanced text shadows for better readability
+  .projectCardTitle,
+  .projectCardCompany,
+  .projectCardDescription p {
+    // Dark mode text shadows (light text on dark overlay)
+    text-shadow: 0 2px 4px rgb(28 25 23 / 50%);
+
+    // Light mode text shadows (dark text on light overlay) - REMOVED LIGHT SHADOW
+    [data-theme='light'] & {
+      text-shadow: 0 2px 4px rgb(28 25 23 / 30%); // Dark shadow for dark text
     }
   }
 }
@@ -706,7 +732,7 @@
     transform: translateY(-1px);
   }
 
-  :root.theme-light & {
+  [data-theme='light'] & {
     background: linear-gradient(135deg, rgb(184 134 90 / 15%) 0%, rgb(122 99 148 / 10%) 100%);
     border-color: rgb(184 134 90 / 20%);
     backdrop-filter: blur(4px);
@@ -750,7 +776,7 @@
     transform: translateY(-2px);
   }
 
-  :root.theme-light & {
+  [data-theme='light'] & {
     background: rgb(184 134 90 / 12%);
     border-color: rgb(184 134 90 / 18%);
     backdrop-filter: blur(4px);
@@ -760,35 +786,6 @@
       border-color: rgb(184 134 90 / 30%);
       box-shadow: 0 4px 12px rgb(184 134 90 / 15%);
     }
-  }
-}
-
-// Featured cards are slightly larger
-.featuredCard {
-  border-block-start-width: 4px;
-
-  @include breakpoint(md) {
-    grid-column: span 1;
-  }
-
-  .projectCardTitle {
-    font-size: 1.5rem;
-
-    @include breakpoint(md) {
-      font-size: 1.75rem;
-    }
-  }
-
-  .projectCardDescription p {
-    font-size: 1rem;
-
-    @include breakpoint(md) {
-      font-size: 1.05rem;
-    }
-  }
-
-  &:hover {
-    border-block-start-color: var(--color-accent-tertiary); // Olive for featured projects
   }
 }
 

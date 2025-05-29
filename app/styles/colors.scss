@@ -12,106 +12,102 @@
 
 // Dark mode colors (primary theme)
 $colors-dark: (
-  // Primary colors
-  primary-dark: #1c1917,
-  // Deep warm brown/black background
-  primary-light: #fafaf9,
-  // Warm off-white
+  // Primary colors - COMFORTABLE WARM DARK BACKGROUNDS
+  primary-dark: #35302b,
+  // Warmer, lighter dark brown - more comfortable
+  primary-light: #ebe5de,
+  // Warm cream, not harsh white
   accent: #d4a276,
-  // Warm copper/terracotta
-  secondary-bg: #292524,
+  // Keep the beautiful warm copper/terracotta
+  secondary-bg: #3f3a34,
 
-  // Warm charcoal for cards
-  // Text colors
-  text-primary: #fafaf9,
-  // Warm off-white for headings
-  text-secondary: #a8a29e,
+  // Better contrast without being too light
+  // Text colors - optimized for comfortable reading
+  text-primary: #ebe5de,
+  // Warm cream for headings (not stark white)
+  text-secondary: #c4b8ad,
 
-  // Warm medium gray for body text
+  // Warmer, more readable gray
   // UI colors
-  background: #1c1917,
-  // Deep warm brown/black
-  card-background: #292524,
-  // Warm charcoal
-  border: rgba(212 162 118 / 10%),
-  // Subtle copper border
+  background: #35302b,
+  // Main background - comfortable warm dark
+  card-background: #3f3a34,
+  // Card background - good contrast, easy on eyes
+  border: rgba(212 162 118 / 15%),
+  // Better visibility without being harsh
   // State colors
-  hover: rgba(212 162 118 / 10%),
-  // Copper hover
+  hover: rgba(212 162 118 / 15%),
   focus: rgba(212 162 118 / 30%),
-  // Copper focus
-  // Semantic colors
-  success: #8b9556,
-  // Warm olive green
-  error: #c4756e,
-  // Warm coral red
+  // Semantic colors (slightly brighter for better visibility on darker bg)
+  success: #9ba661,
+  // Slightly brighter warm olive
+  error: #d1837a,
+  // Slightly brighter warm coral
   warning: #d4a276,
 
-  // Copper (same as accent)
-  // Additional accent colors
-  accent-secondary: #937bb1,
-  // Complementary muted purple
-  accent-tertiary: #8b9556,
+  // Keep accent color
+  // Additional accent colors (slightly adjusted)
+  accent-secondary: #a188c4,
+  // Slightly brighter muted purple
+  accent-tertiary: #9ba661,
 
-  // Warm olive
+  // Consistent with success
   // Timeline/experience specific colors
-  timeline-line: #a8a29e,
-  // Warm medium gray for timeline
+  timeline-line: #c4b8ad,
+  // Good visibility without harshness
   work-accent: #d4a276,
-  // Copper for work experiences
-  education-accent: #937bb1 // Purple for education experiences
+  // Keep consistent
+  education-accent: #a188c4 // Consistent with accent-secondary
 );
 
 // Light mode colors (alternative theme)
 $colors-light: (
-  // Primary colors
-  primary-dark: #faf8f6,
-  // Warm light background
-  primary-light: #1c1917,
-  // Dark text
-  accent: #b8865a,
-  // Darker copper for better contrast
-  secondary-bg: #f5f3f0,
+  // Primary colors - COMFORTABLE WARM MEDIUM BACKGROUNDS
+  primary-dark: #d4c7b8,
+  // Warm medium beige (NOT bright!)
+  primary-light: #2a2522,
+  // Consistent with dark theme
+  accent: #a67c52,
+  // Darker copper for good contrast on lighter bg
+  secondary-bg: #c9baaa,
 
-  // Very light warm gray
-  // Text colors
-  text-primary: #1c1917,
-  // Dark for headings
-  text-secondary: #6b6761,
+  // Slightly darker warm beige for cards
+  // Text colors - optimized for warm medium background
+  text-primary: #2a2522,
+  // Dark brown for headings
+  text-secondary: #4a403a,
 
-  // Medium warm gray
+  // Medium warm brown for body text
   // UI colors
-  background: #faf8f6,
-  // Warm light background
-  card-background: #fff,
-  // Pure white cards
-  border: rgba(184 134 90 / 15%),
-  // Darker copper border
+  background: #d4c7b8,
+  // Main background - comfortable warm beige
+  card-background: #c9baaa,
+  // Slightly darker warm beige cards
+  border: rgba(166 124 82 / 20%),
+  // Better visibility on medium background
   // State colors
-  hover: rgba(184 134 90 / 10%),
-  // Darker copper hover
-  focus: rgba(184 134 90 / 25%),
-  // Darker copper focus
-  // Semantic colors
-  success: #6b7a3a,
-  // Darker olive
-  error: #a85a52,
-  // Darker coral
-  warning: #b8865a,
+  hover: rgba(166 124 82 / 12%),
+  focus: rgba(166 124 82 / 25%),
+  // Semantic colors (adjusted for medium background)
+  success: #5d6b2f,
+  // Darker olive for contrast
+  error: #9a4a42,
+  // Darker coral for contrast
+  warning: #a67c52,
 
-  // Darker copper
-  // Additional accent colors
-  accent-secondary: #7a6394,
-  // Darker purple
-  accent-tertiary: #6b7a3a,
+  // Consistent with accent
+  // Additional accent colors (adjusted)
+  accent-secondary: #6d5a84,
+  // Darker purple for contrast
+  accent-tertiary: #5d6b2f,
 
   // Darker olive
   // Timeline/experience specific colors
-  timeline-line: #6b6761,
-  // Medium gray for timeline
-  work-accent: #b8865a,
-  // Darker copper
-  education-accent: #7a6394 // Darker purple
+  timeline-line: #4a403a,
+  // Good contrast on medium background
+  work-accent: #a67c52,
+  // Consistent with accent
+  education-accent: #6d5a84 // Consistent with secondary
 );
 
 // Functions to access colors based on theme

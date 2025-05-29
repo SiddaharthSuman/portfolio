@@ -48,24 +48,31 @@
   0% {
     transform: rotate(0deg);
   }
+
   10% {
     transform: rotate(14deg);
   }
+
   20% {
     transform: rotate(-8deg);
   }
+
   30% {
     transform: rotate(14deg);
   }
+
   40% {
     transform: rotate(-4deg);
   }
+
   50% {
     transform: rotate(10deg);
   }
+
   60% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(0deg);
   }
@@ -129,23 +136,42 @@
 
   @include transition;
 
-  &:hover {
-    text-decoration: none;
-    transform: translateY(-3px);
-  }
+  // &:hover {
+  //   text-decoration: none;
+  //   transform: translateY(-3px);
+  // }
 }
 
 .primaryButton {
+  position: relative;
+  overflow: hidden;
   color: var(--color-primary-dark); // Dark text on copper button
   background-color: var(--color-accent); // Warm copper background
 
+  &::before {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: -100%;
+    inline-size: 100%;
+    block-size: 100%;
+    content: '';
+    background: linear-gradient(90deg, transparent, rgb(250 250 249 / 10%), transparent);
+    /* stylelint-disable-next-line plugin/no-low-performance-animation-properties */
+    transition: left 0.5s ease;
+  }
+
   &:hover {
     background-color: var(--color-accent);
+
     // Warm copper glow instead of teal
     box-shadow: 0 6px 20px rgb(212 162 118 / 30%);
 
     // Slight brightness increase on hover
     filter: brightness(1.1);
+  }
+
+  &:hover::before {
+    inset-inline-start: 100%;
   }
 
   &:focus {
@@ -225,43 +251,22 @@
     opacity: 1;
     transform: translateY(0);
   }
+
   100% {
     opacity: 0;
     transform: translateY(20px);
   }
 }
 
-// Enhanced warm palette animations and effects
-.primaryButton {
-  position: relative;
-  overflow: hidden;
-
-  // Subtle warm gradient overlay
-  &::before {
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-start: -100%;
-    inline-size: 100%;
-    block-size: 100%;
-    content: '';
-    background: linear-gradient(90deg, transparent, rgb(250 250 249 / 10%), transparent);
-    transition: left 0.5s ease;
-  }
-
-  &:hover::before {
-    inset-inline-start: 100%;
-  }
-}
-
 // Add subtle warm texture to the hero section
-.heroSection::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  content: '';
-  background:
-    radial-gradient(circle at 20% 80%, rgb(212 162 118 / 3%) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgb(147 123 177 / 2%) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgb(139 149 86 / 2%) 0%, transparent 50%);
-}
+// .heroSection::before {
+//   position: absolute;
+//   inset: 0;
+//   z-index: -1;
+//   pointer-events: none;
+//   content: '';
+//   background:
+//     radial-gradient(circle at 20% 80%, rgb(212 162 118 / 3%) 0%, transparent 50%),
+//     radial-gradient(circle at 80% 20%, rgb(147 123 177 / 2%) 0%, transparent 50%),
+//     radial-gradient(circle at 40% 40%, rgb(139 149 86 / 2%) 0%, transparent 50%);
+// }

@@ -86,8 +86,8 @@ export default function RootLayout({
         <SpeedInsights />
         <SmoothScroll>
           <CustomCursor />
-          <InteractiveGradient followSpeed={20} intensity={0.8} showNoise={true} variant="warm" />
           <ThemeProvider>
+            <InteractiveGradient followSpeed={20} intensity={0.9} showNoise={true} variant="warm" />
             <div className="root">{children}</div>
           </ThemeProvider>
         </SmoothScroll>

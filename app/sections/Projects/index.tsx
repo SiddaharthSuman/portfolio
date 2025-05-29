@@ -4,6 +4,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ExternalLink } from 'lucide-react';
 
+import { useTheme } from '@/app/context/ThemeContext';
+
 import { ProjectData, projectData } from './ProjectData';
 import { ProjectCard } from './ProjectCard';
 import { ProjectFilter, FilterCategory } from './ProjectFilter';
@@ -15,6 +17,8 @@ const ProjectsSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const disclaimerRef = useRef<HTMLDivElement>(null);
+
+  const { resolvedTheme } = useTheme();
 
   // Filter projects when the active filter changes
   useEffect(() => {
@@ -67,7 +71,12 @@ const ProjectsSection: React.FC = () => {
   };
 
   return (
-    <section ref={sectionRef} className={styles.projectsSection} id="projects">
+    <section
+      ref={sectionRef}
+      className={styles.projectsSection}
+      data-theme={resolvedTheme}
+      id="projects"
+    >
       <div className="container">
         {/* Section Heading */}
         <div ref={headingRef} className={styles.sectionHeading}>

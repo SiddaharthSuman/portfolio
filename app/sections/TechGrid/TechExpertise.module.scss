@@ -79,6 +79,32 @@
   );
 }
 
+.iconContainer {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  inline-size: 48px;
+  block-size: 48px;
+  margin-inline-end: spacings.spacing(md);
+
+  // Enhanced warm gradient background
+  background: linear-gradient(135deg, rgb(212 162 118 / 10%) 0%, rgb(147 123 177 / 5%) 100%);
+  border: 1px solid rgb(212 162 118 / 15%);
+  border-radius: 8px;
+
+  @include transition(all, 0.3s, ease);
+
+  &.iconSmaller {
+    transform: scale(1.1);
+  }
+
+  [data-theme='light'] & {
+    background: linear-gradient(135deg, rgb(184 134 90 / 8%) 0%, rgb(122 99 148 / 4%) 100%);
+    border-color: rgb(184 134 90 / 12%);
+  }
+}
+
 // Card container
 .cardContainer {
   position: relative;
@@ -86,71 +112,6 @@
   block-size: 100%;
   transform: translateZ(0);
   will-change: transform;
-}
-
-// Expertise card - MAJOR UPDATES HERE
-.expertiseCard {
-  position: relative;
-  block-size: 100%;
-  overflow: visible;
-
-  // FIX: Use warm colors instead of cool slate blue
-  background-color: var(--color-card-background); // Warm charcoal in dark, white in light
-  border-block-start: 3px solid var(--color-accent); // Warm copper top border
-  border-radius: 8px;
-
-  // Enhanced warm shadows
-  box-shadow:
-    0 4px 12px rgb(28 25 23 / 10%),
-    0 1px 3px rgb(28 25 23 / 8%);
-
-  @include transition(all, 0.3s);
-
-  &:hover {
-    // Enhanced hover with warm glow
-    box-shadow:
-      0 8px 25px rgb(28 25 23 / 15%),
-      0 4px 12px rgb(212 162 118 / 10%); // Warm copper glow
-
-    transform: translateY(-3px);
-  }
-
-  &.hidden {
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  &.expanded {
-    // Enhanced expanded state with proper warm colors
-    background-color: var(--color-card-background);
-    border-color: var(--color-accent-secondary); // Purple when expanded
-    box-shadow:
-      0 20px 40px rgb(28 25 23 / 20%),
-      0 8px 16px rgb(212 162 118 / 10%);
-
-    .primarySkill:hover,
-    .skillBadge:hover {
-      .iconContainer {
-        // Enhanced glow effect with warm colors
-        box-shadow: 0 0 30px 15px var(--color-glow);
-      }
-    }
-  }
-
-  // Light mode adjustments
-  :root.theme-light & {
-    background-color: var(--color-card-background); // White in light mode
-    border-color: var(--color-accent); // Darker copper for light mode
-    box-shadow:
-      0 4px 12px rgb(28 25 23 / 6%),
-      0 1px 3px rgb(28 25 23 / 4%);
-
-    &:hover {
-      box-shadow:
-        0 8px 25px rgb(28 25 23 / 10%),
-        0 4px 12px rgb(184 134 90 / 8%);
-    }
-  }
 }
 
 // Semi-transparent backdrop
@@ -186,7 +147,7 @@
   background-color: rgb(212 162 118 / 10%); // Warm copper background
   border-radius: 50%;
 
-  :root.theme-light & {
+  [data-theme='light'] & {
     background-color: rgb(184 134 90 / 8%);
   }
 }
@@ -208,40 +169,6 @@
   display: flex;
   align-items: center;
   padding: 0 spacings.spacing(md) spacings.spacing(md);
-
-  &:hover {
-    .iconContainer {
-      // box-shadow: 0 4px 12px var(--color-glow);
-
-      // transform: scale(1.05);
-    }
-  }
-}
-
-.iconContainer {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  inline-size: 48px;
-  block-size: 48px;
-  margin-inline-end: spacings.spacing(md);
-
-  // Enhanced warm gradient background
-  background: linear-gradient(135deg, rgb(212 162 118 / 10%) 0%, rgb(147 123 177 / 5%) 100%);
-  border: 1px solid rgb(212 162 118 / 15%);
-  border-radius: 8px;
-
-  @include transition(all, 0.3s, ease);
-
-  &.iconSmaller {
-    transform: scale(1.1);
-  }
-
-  :root.theme-light & {
-    background: linear-gradient(135deg, rgb(184 134 90 / 8%) 0%, rgb(122 99 148 / 4%) 100%);
-    border-color: rgb(184 134 90 / 12%);
-  }
 }
 
 .icon {
@@ -374,7 +301,8 @@
   &:hover {
     background: linear-gradient(135deg, rgb(212 162 118 / 10%) 0%, rgb(147 123 177 / 5%) 100%);
     border-color: rgb(212 162 118 / 20%);
-    transform: translateY(-1px);
+
+    // transform: translateY(-1px);
 
     .iconContainer {
       transform: scale(1.1);
@@ -389,6 +317,71 @@
     &:hover {
       background: linear-gradient(135deg, rgb(184 134 90 / 8%) 0%, rgb(122 99 148 / 4%) 100%);
       border-color: rgb(184 134 90 / 15%);
+    }
+  }
+}
+
+// Expertise card - MAJOR UPDATES HERE
+.expertiseCard {
+  position: relative;
+  block-size: 100%;
+  overflow: visible;
+
+  // FIX: Use warm colors instead of cool slate blue
+  background-color: var(--color-card-background); // Warm charcoal in dark, white in light
+  border-block-start: 3px solid var(--color-accent); // Warm copper top border
+  border-radius: 8px;
+
+  // Enhanced warm shadows
+  box-shadow:
+    0 4px 12px rgb(28 25 23 / 10%),
+    0 1px 3px rgb(28 25 23 / 8%);
+
+  @include transition(all, 0.3s);
+
+  &:hover {
+    // Enhanced hover with warm glow
+    box-shadow:
+      0 8px 25px rgb(28 25 23 / 15%),
+      0 4px 12px rgb(212 162 118 / 10%); // Warm copper glow
+
+    // transform: translateY(-3px);
+  }
+
+  &.hidden {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  &.expanded {
+    // Enhanced expanded state with proper warm colors
+    background-color: var(--color-card-background);
+    border-color: var(--color-accent-secondary); // Purple when expanded
+    box-shadow:
+      0 20px 40px rgb(28 25 23 / 20%),
+      0 8px 16px rgb(212 162 118 / 10%);
+
+    .primarySkill:hover,
+    .skillBadge:hover {
+      .iconContainer {
+        // Enhanced glow effect with warm colors
+        box-shadow: 0 0 30px 15px var(--color-glow);
+      }
+    }
+  }
+
+  // Light mode adjustments
+  [data-theme='light'] & {
+    background-color: var(--color-card-background); // White in light mode
+    border-color: var(--color-accent); // Darker copper for light mode
+    box-shadow:
+      0 4px 12px rgb(28 25 23 / 6%),
+      0 1px 3px rgb(28 25 23 / 4%);
+
+    &:hover {
+      box-shadow:
+        0 8px 25px rgb(28 25 23 / 10%),
+        0 4px 12px rgb(184 134 90 / 8%);
     }
   }
 }

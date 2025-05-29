@@ -42,6 +42,15 @@
   --color-education-accent-rgb: #{colors.hexToRGB(colors.color-dark(education-accent))};
   --color-text-secondary-rgb: #{colors.hexToRGB(colors.color-dark(text-secondary))};
   --color-error-rgb: #{colors.hexToRGB(colors.color-dark(error))};
+
+  // NEW: Theme-aware gradient RGB variables (default to dark theme)
+  --gradient-accent-rgb: 212, 162, 118; // #d4a276 - warm copper
+  --gradient-accent-secondary-rgb: 161, 136, 196; // #a188c4 - lighter purple
+  --gradient-accent-tertiary-rgb: 155, 166, 97; // #9ba661 - warm olive
+  --gradient-work-accent-rgb: 212, 162, 118; // #d4a276 - same as accent
+  --gradient-education-accent-rgb: 161, 136, 196; // #a188c4 - same as secondary
+  --gradient-error-rgb: 209, 131, 122; // #d1837a - warm coral
+  --gradient-text-secondary-rgb: 196, 184, 173; // #c4b8ad - warm gray
 }
 
 // Set color-scheme based on theme
@@ -87,6 +96,15 @@
   --color-education-accent-rgb: #{colors.hexToRGB(colors.color-light(education-accent))};
   --color-text-secondary-rgb: #{colors.hexToRGB(colors.color-light(text-secondary))};
   --color-error-rgb: #{colors.hexToRGB(colors.color-light(error))};
+
+  // NEW: Light theme gradient colors - much lighter and more pleasing
+  --gradient-accent-rgb: 184, 145, 107; // #b8916b - medium warm amber
+  --gradient-accent-secondary-rgb: 150, 136, 184; // #9688b8 - medium warm purple
+  --gradient-accent-tertiary-rgb: 139, 166, 97; // #8ba661 - medium warm sage
+  --gradient-work-accent-rgb: 184, 145, 107; // #b8916b - same as accent
+  --gradient-education-accent-rgb: 150, 136, 184; // #9688b8 - same as secondary
+  --gradient-error-rgb: 196, 146, 133; // #c49285 - medium warm coral
+  --gradient-text-secondary-rgb: 166, 156, 145; // #a69c91 - medium warm taupe
 }
 
 :root.theme-dark {
@@ -122,6 +140,15 @@
   --color-education-accent-rgb: #{colors.hexToRGB(colors.color-dark(education-accent))};
   --color-text-secondary-rgb: #{colors.hexToRGB(colors.color-dark(text-secondary))};
   --color-error-rgb: #{colors.hexToRGB(colors.color-dark(error))};
+
+  // Dark theme gradient colors (current good colors)
+  --gradient-accent-rgb: 212, 162, 118; // #d4a276 - warm copper
+  --gradient-accent-secondary-rgb: 161, 136, 196; // #a188c4 - lighter purple
+  --gradient-accent-tertiary-rgb: 155, 166, 97; // #9ba661 - warm olive
+  --gradient-work-accent-rgb: 212, 162, 118; // #d4a276 - same as accent
+  --gradient-education-accent-rgb: 161, 136, 196; // #a188c4 - same as secondary
+  --gradient-error-rgb: 209, 131, 122; // #d1837a - warm coral
+  --gradient-text-secondary-rgb: 196, 184, 173; // #c4b8ad - warm gray
 }
 
 // Apply the fonts to elements

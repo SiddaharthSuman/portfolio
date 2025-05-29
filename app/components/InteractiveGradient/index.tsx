@@ -3,6 +3,8 @@
 
 import { useEffect, useRef } from 'react';
 
+import { useTheme } from '@/app/context/ThemeContext';
+
 import styles from './InteractiveGradient.module.scss';
 
 interface InteractiveGradientProps {
@@ -45,6 +47,9 @@ export default function InteractiveGradient({
   const interactiveRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const animationFrameRef = useRef<number>(0);
+
+  const { resolvedTheme } = useTheme();
+  console.log('theme is ', resolvedTheme);
 
   useEffect(() => {
     const interactive = interactiveRef.current;
@@ -90,7 +95,12 @@ export default function InteractiveGradient({
     <div
       ref={containerRef}
       className={`${styles.gradientBackground} ${styles[variant]} ${className}`}
-      style={{ '--intensity': intensity } as React.CSSProperties}
+      data-theme={resolvedTheme}
+      style={
+        {
+          '--intensity': resolvedTheme == 'dark' ? intensity - 0.2 : intensity,
+        } as React.CSSProperties
+      }
     >
       {/* Noise Texture */}
       {showNoise && (
@@ -99,11 +109,11 @@ export default function InteractiveGradient({
           viewBox="0 0 100vw 100vw"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <filter id={`noiseFilter-${Math.random().toString(36).substr(2, 9)}`}>
+          <filter id={`noiseFilter`}>
             <feTurbulence baseFrequency="0.6" stitchTiles="stitch" type="fractalNoise" />
           </filter>
           <rect
-            filter={`url(#noiseFilter-${Math.random().toString(36).substr(2, 9)})`}
+            filter={`url(#noiseFilter)`}
             height="100%"
             preserveAspectRatio="xMidYMid meet"
             width="100%"

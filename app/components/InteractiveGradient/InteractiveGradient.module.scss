@@ -51,39 +51,45 @@
 
 // Individual gradient elements
 .g1 {
-  inset-block-start: calc(50% - 50%);
+  inset-block-start: calc(50% - 10%);
   inset-inline-start: calc(50% - 20%);
-  inline-size: 80%;
-  block-size: 80%;
+  inline-size: 75%;
+  block-size: 75%;
   background: radial-gradient(
     circle at center,
-    rgba(
-        var(--color-work-accent-rgb, #{colors.hexToRGB(colors.color-dark(work-accent))}),
-        calc(0.8 * var(--intensity))
-      )
-      0,
+    rgba(var(--gradient-work-accent-rgb, 212, 162, 118), calc(0.7 * var(--intensity))) 0,
     transparent 50%
   );
-  transform-origin: center center;
-  animation: moveVertical 30s ease infinite;
+
+  // transform-origin: center center;
+  animation: moveVertical 30s linear infinite;
+
+  [data-theme='dark'] & {
+    inset-block-start: 50%;
+    inset-inline-start: 45%;
+    inline-size: 50%;
+    block-size: 50%;
+    animation-name: moveVerticalDark;
+  }
 }
 
 .g2 {
-  inset-block-start: calc(50% - 40%);
-  inset-inline-start: calc(50% - 40%);
-  inline-size: 80%;
-  block-size: 80%;
+  inset-block-start: calc(50% - 25%);
+  inset-inline-start: calc(50% - 25%);
+  inline-size: 75%;
+  block-size: 75%;
   background: radial-gradient(
     circle at center,
-    rgba(
-        var(--color-accent-secondary-rgb, #{colors.hexToRGB(colors.color-dark(accent-secondary))}),
-        calc(0.7 * var(--intensity))
-      )
-      0,
+    rgba(var(--gradient-accent-secondary-rgb, 161, 136, 196), calc(0.7 * var(--intensity))) 0,
     transparent 50%
   );
-  transform-origin: calc(50% - 400px);
-  animation: moveInCircle 25s reverse infinite;
+  transform-origin: calc(50% - 350px);
+  animation: moveInCircle 25s linear reverse infinite;
+
+  [data-theme='dark'] & {
+    inline-size: 50%;
+    block-size: 50%;
+  }
 }
 
 .g3 {
@@ -93,15 +99,16 @@
   block-size: 80%;
   background: radial-gradient(
     circle at center,
-    rgba(
-        var(--color-accent-tertiary-rgb, #{colors.hexToRGB(colors.color-dark(accent-tertiary))}),
-        calc(0.6 * var(--intensity))
-      )
-      0,
+    rgba(var(--gradient-accent-tertiary-rgb, 196, 208, 138), calc(0.7 * var(--intensity))) 0,
     transparent 50%
   );
   transform-origin: calc(50% + 400px);
-  animation: moveInCircle 35s linear infinite;
+  animation: moveInCircle 20s linear infinite;
+
+  [data-theme='dark'] & {
+    inline-size: 50%;
+    block-size: 50%;
+  }
 }
 
 .g4 {
@@ -111,53 +118,55 @@
   block-size: 80%;
   background: radial-gradient(
     circle at center,
-    rgba(
-        var(--color-error-rgb, #{colors.hexToRGB(colors.color-dark(error))}),
-        calc(0.5 * var(--intensity))
-      )
-      0,
+    rgba(var(--gradient-error-rgb, 227, 176, 168), calc(0.7 * var(--intensity))) 0,
     transparent 50%
   );
   transform-origin: calc(50% - 200px);
-  animation: moveHorizontal 40s ease infinite;
+  animation: moveHorizontal 40s linear infinite;
+
+  [data-theme='dark'] & {
+    inline-size: 50%;
+    block-size: 50%;
+  }
 }
 
 .g5 {
   inset-block-start: calc(50% - 60%);
   inset-inline-start: calc(50% - 60%);
-  inline-size: 120%;
-  block-size: 120%;
+  inline-size: 75%;
+  block-size: 75%;
   background: radial-gradient(
     circle at center,
-    rgba(
-        var(--color-text-secondary-rgb, #{colors.hexToRGB(colors.color-dark(text-secondary))}),
-        calc(0.4 * var(--intensity))
-      )
-      0,
+    rgba(var(--gradient-text-secondary-rgb, 214, 204, 196), calc(0.7 * var(--intensity))) 0,
     transparent 50%
   );
-  transform-origin: calc(50% - 600px) calc(50% + 200px);
-  animation: moveDiagonal 20s ease infinite;
+
+  // transform-origin: calc(50% - 600px) calc(50% + 200px);
+  animation: moveDiagonal 40s linear infinite;
+
+  [data-theme='dark'] & {
+    inline-size: 50%;
+    block-size: 50%;
+    animation-name: moveDiagonalDark;
+  }
 }
 
 .interactive {
-  inline-size: 100%;
-  block-size: 100%;
+  inset-block-start: 12.5%;
+  inset-inline-start: 12.5%;
+  inline-size: 75%;
+  block-size: 75%;
   background: radial-gradient(
     circle at center,
-    rgba(
-        var(--color-accent-rgb, #{colors.hexToRGB(colors.color-dark(accent))}),
-        calc(0.6 * var(--intensity))
-      )
-      0,
+    rgba(var(--gradient-accent-rgb, 244, 230, 215), calc(0.7 * var(--intensity))) 0,
     transparent 50%
   );
-  opacity: calc(0.8 * var(--intensity));
 
-  @include transition(opacity, 0.3s, ease);
-
-  &:hover {
-    opacity: var(--intensity);
+  [data-theme='dark'] & {
+    inset-block-start: 25%;
+    inset-inline-start: 25%;
+    inline-size: 50%;
+    block-size: 50%;
   }
 }
 
@@ -179,11 +188,7 @@
   .g1 {
     background: radial-gradient(
       circle at center,
-      rgba(
-          var(--color-accent-rgb, #{colors.hexToRGB(colors.color-dark(accent))}),
-          calc(0.9 * var(--intensity))
-        )
-        0,
+      rgba(var(--gradient-accent-rgb, 244, 230, 215), calc(0.7 * var(--intensity))) 0,
       transparent 50%
     );
   }
@@ -192,11 +197,7 @@
   .g3 {
     background: radial-gradient(
       circle at center,
-      rgba(
-          var(--color-accent-tertiary-rgb, #{colors.hexToRGB(colors.color-dark(accent-tertiary))}),
-          calc(0.6 * var(--intensity))
-        )
-        0,
+      rgba(var(--gradient-accent-tertiary-rgb, 232, 240, 215), calc(0.7 * var(--intensity))) 0,
       transparent 50%
     );
   }
@@ -207,14 +208,7 @@
   .interactive {
     background: radial-gradient(
       circle at center,
-      rgba(
-          var(
-            --color-accent-secondary-rgb,
-            #{colors.hexToRGB(colors.color-dark(accent-secondary))}
-          ),
-          calc(0.8 * var(--intensity))
-        )
-        0,
+      rgba(var(--gradient-accent-secondary-rgb, 232, 223, 240), calc(0.7 * var(--intensity))) 0,
       transparent 50%
     );
   }
@@ -226,11 +220,7 @@
   .interactive {
     background: radial-gradient(
       circle at center,
-      rgba(
-          var(--color-accent-rgb, #{colors.hexToRGB(colors.color-dark(accent))}),
-          calc(0.7 * var(--intensity))
-        )
-        0,
+      rgba(var(--gradient-accent-rgb, 244, 230, 215), calc(0.7 * var(--intensity))) 0,
       transparent 50%
     );
   }
@@ -239,57 +229,73 @@
 // Animations
 @keyframes moveInCircle {
   0% {
-    transform: rotate(0deg);
-  }
-
-  50% {
     transform: rotate(180deg);
   }
 
-  100% {
+  50% {
     transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(540deg);
   }
 }
 
 @keyframes moveVertical {
-  0% {
-    transform: translateY(-50%);
+  0%,
+  100% {
+    transform: translateY(-130%);
   }
 
   50% {
     transform: translateY(50%);
   }
+}
 
+@keyframes moveVerticalDark {
+  0%,
   100% {
-    transform: translateY(-50%);
+    transform: translateY(-180%);
+  }
+
+  50% {
+    transform: translateY(80%);
   }
 }
 
 @keyframes moveHorizontal {
   0% {
-    transform: translateX(-50%) translateY(-10%);
+    transform: translateX(-85%) translateY(20%);
   }
 
   50% {
-    transform: translateX(50%) translateY(10%);
+    transform: translateX(85%) translateY(-25%);
   }
 
   100% {
-    transform: translateX(-50%) translateY(-10%);
+    transform: translateX(-85%) translateY(20%);
   }
 }
 
 @keyframes moveDiagonal {
-  0% {
+  0%,
+  100% {
     transform: translateX(-50%) translateY(-50%);
   }
 
   50% {
-    transform: translateX(50%) translateY(50%);
+    transform: translateX(120%) translateY(120%);
+  }
+}
+
+@keyframes moveDiagonalDark {
+  0%,
+  100% {
+    transform: translateX(-30%) translateY(-30%);
   }
 
-  100% {
-    transform: translateX(-50%) translateY(-50%);
+  50% {
+    transform: translateX(180%) translateY(180%);
   }
 }
 
@@ -302,17 +308,28 @@
 
 @include breakpoint(sm) {
   .gradientsContainer {
-    filter: url('#goo') blur(35px);
+    filter: url('#goo') blur(10px);
+
+    [data-theme='dark'] & {
+      filter: url('#goo') blur(20px);
+    }
   }
 
   // .g1,
   .g2,
   .g3,
   .g4 {
-    inset-block-start: calc(50% - 50%);
-    inset-inline-start: calc(50% - 50%);
-    inline-size: 100%;
-    block-size: 100%;
+    inset-block-start: calc(50% - 35%);
+    inset-inline-start: calc(50% - 42%);
+    inline-size: 75%;
+    block-size: 75%;
+
+    [data-theme='dark'] & {
+      inset-block-start: calc(50% - 25%);
+      inset-inline-start: calc(50% - 25%);
+      inline-size: 50%;
+      block-size: 50%;
+    }
   }
 }
 

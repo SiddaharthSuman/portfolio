@@ -4,6 +4,7 @@ import React, { useState, useRef } from 'react';
 
 import expertiseData from '@/app/data/expertiseData.json';
 import { useSectionAnimation } from '@/app/hooks/useSectionAnimation';
+import { useTheme } from '@/app/context/ThemeContext';
 
 import { ExpertiseCard } from './ExpertiseCard';
 import styles from './TechExpertise.module.scss';
@@ -19,6 +20,8 @@ const TechExpertise = () => {
   // const [domRect, setDomRect] = useState<DOMRect>();
   const sectionRef = useRef<HTMLDivElement>(null);
 
+  const { resolvedTheme } = useTheme();
+
   // Use custom hook for section animation
   useSectionAnimation(sectionRef);
 
@@ -29,7 +32,7 @@ const TechExpertise = () => {
   };
 
   return (
-    <section className={styles.techSection}>
+    <section className={styles.techSection} data-theme={resolvedTheme}>
       {/* <InteractiveGradient
         followSpeed={50}
         intensity={gradientIntensity}
