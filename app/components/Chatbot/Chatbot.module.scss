@@ -71,6 +71,18 @@
   }
 }
 
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
 .chatHeader {
   display: flex;
   align-items: center;
@@ -129,6 +141,14 @@
   line-height: 1.4;
   word-wrap: break-word;
   border-radius: 18px;
+
+  /* Typing animation effect */
+  &.typing::after {
+    margin-inline-start: 2px;
+    color: var(--color-accent);
+    content: '▌';
+    animation: blink 1s infinite;
+  }
 }
 
 .message {
