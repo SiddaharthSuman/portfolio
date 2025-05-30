@@ -49,7 +49,6 @@ export default function InteractiveGradient({
   const animationFrameRef = useRef<number>(0);
 
   const { resolvedTheme } = useTheme();
-  console.log('theme is ', resolvedTheme);
 
   useEffect(() => {
     const interactive = interactiveRef.current;

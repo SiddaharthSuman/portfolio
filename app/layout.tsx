@@ -11,6 +11,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import CustomCursor from './components/Cursor2';
 import SmoothScroll from './components/SmoothScroll';
 import InteractiveGradient from './components/InteractiveGradient';
+import ChatBot from './components/Chatbot';
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -88,7 +89,10 @@ export default function RootLayout({
           <CustomCursor />
           <ThemeProvider>
             <InteractiveGradient followSpeed={20} intensity={0.9} showNoise={true} variant="warm" />
-            <div className="root">{children}</div>
+            <div className="root">
+              {children}
+              <ChatBot />
+            </div>
           </ThemeProvider>
         </SmoothScroll>
       </body>

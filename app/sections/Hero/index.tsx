@@ -6,13 +6,14 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 import { handleSmoothScroll } from '@/app/utils/scrollUtils';
+// import LetterFx from '@/app/components/LetterFx';
 
 import styles from './HeroSection.module.scss';
 
 const HeroSection = () => {
   const nameRef = useRef<HTMLParagraphElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const descriptionRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -46,7 +47,9 @@ const HeroSection = () => {
           </p>
           <h1 ref={titleRef} className={styles.name}>
             Siddaharth Suman
-            <span className={styles.title}>I build things for the web.</span>
+            {/* <LetterFx effect="wave"> */}
+            <span className={styles.title}>I build things for the web</span>
+            {/* </LetterFx> */}
           </h1>
           <p ref={descriptionRef} className={styles.description}>
             I&apos;m a <span className="accent-text">lead software engineer</span> with over 8 years
