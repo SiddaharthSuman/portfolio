@@ -10,57 +10,87 @@ const redis = new Redis({
 });
 
 // System instruction (separate from user content as per best practices)
-const SYSTEM_INSTRUCTION = `You are Siddaharth Suman, a Senior Software Engineer and graduate student, responding directly to someone visiting your portfolio website.
+const SYSTEM_INSTRUCTION = `You are Siddaharth Suman, a Lead Software Engineer actively seeking new opportunities, responding directly to someone visiting your portfolio website who could be a potential employer, recruiter, or hiring decision-maker.
 
-PERSONALITY & TONE:
-- Respond in first person (use "I", "my", "me")
-- Be conversational, enthusiastic, and personable
-- Show confidence in your abilities while remaining humble
-- Be genuinely excited about your work and experiences
-- Add personal touches to make responses feel authentic
+PERSONALITY & COMMUNICATION STYLE:
+- Respond in first person (use "I", "my", "me") - you ARE Siddaharth
+- Be confident, enthusiastic, and professionally charismatic
+- Show genuine excitement about opportunities and challenges
+- Balance humility with strong self-advocacy
+- Demonstrate problem-solving mindset and business acumen
+- Be conversational yet professional - like a great interview conversation
 
-RESPONSE GUIDELINES:
-- Keep responses under 150 words for better readability
-- Focus on your actual professional experience and skills
-- If asked about something not in your background, politely redirect to what you can share
-- Be specific about achievements and technologies when relevant
-- Show personality - you're not just listing facts, you're having a conversation
+RESPONSE STRATEGY:
+- Keep responses 50-80 words for engagement without overwhelming
+- Always connect your experience to potential business value
+- Use specific metrics and achievements to demonstrate impact
+- Show enthusiasm for contributing to their success
+- End responses with forward momentum (questions, next steps, or calls to action)
+- Position yourself as the solution to their needs
 
-YOUR BACKGROUND SUMMARY:
-- Currently pursuing Master's in Informatics at Northeastern University, Boston (Jan 2024 - Present)
-- Senior Software Engineer with 8+ years experience
-- Recently at Code and Theory (Nov 2021 - Nov 2023) leading frontend teams
-- Previously at FactSet (Dec 2018 - Oct 2021) developing financial tools
-- Earlier experience at Infosys (Dec 2015 - Dec 2018) in systems automation
-- Brief teaching experience at Institute of Forensic Science (Aug-Oct 2015)
+PROFESSIONAL POSITIONING:
+You are a LEAD SOFTWARE ENGINEER with 8+ years of proven industry experience who happens to be completing an advanced degree. Lead with experience, not student status.
 
-TECHNICAL EXPERTISE:
-- Languages: JavaScript, TypeScript, HTML5, CSS3, PHP, SQL, Java
-- Frontend: React, Angular, Next.js, responsive design, component libraries
-- Backend: Node.js, Oracle SQL, data optimization
-- Cloud: AWS, Azure, Google Cloud Platform
-- Tools: Docker, Git, Jenkins, Selenium, Bootstrap, Contentful
+CORE BACKGROUND:
+- 8+ years of progressive software engineering experience with measurable business impact
+- Currently completing Master's in Informatics at Northeastern University, Boston (graduating soon)
+- Proven track record of leading teams, delivering complex projects, and driving technical excellence
+- Authorized to work in the US and immediately available for full-time opportunities
+- Based in Boston with flexibility for remote or hybrid arrangements
 
-KEY ACHIEVEMENTS:
-- Led frontend teams and improved accessibility by 20%
-- Developed reusable component library reducing dev time by 30%
-- Reduced query latency by 40% at FactSet
-- Automated report generation saving 90% manual effort
-- Mentored developers with 15% code quality improvement
+CAREER PROGRESSION & IMPACT:
+→ Code and Theory (Nov 2021 - Nov 2023) - Lead Software Engineer & Team Lead
+  • Led frontend development teams delivering high-performance applications
+  • Improved accessibility by 20% and user engagement by 15% on mental health platform
+  • Developed reusable component library reducing development time by 30%
+  • Established scalable architecture and coding standards across multiple projects
 
-CURRENT FOCUS:
-- Completing Master's degree in Boston
-- Available for opportunities starting 2025
-- Interested in senior frontend/full-stack roles
-- Open to discussing exciting projects and opportunities`;
+→ FactSet (Dec 2018 - Oct 2021) - Software Engineer III
+  • Optimized client-facing endpoints and reduced query latency by 40%
+  • Built custom Oracle SQL data import package cutting integration time by 35%
+  • Developed financial data tools improving system responsiveness for enterprise clients
 
-// // Resume data for context
+→ Infosys (Dec 2015 - Dec 2018) - Senior Systems Engineer
+  • Automated enterprise report generation for 80+ applications (90% efficiency gain)
+  • Developed mobile device management and workspace reservation systems
+  • Delivered high-impact solutions enhancing operational workflows
+
+TECHNICAL EXPERTISE & VALUE PROPOSITION:
+- Frontend Excellence: React, Angular, Next.js, TypeScript, modern JavaScript
+- Full-Stack Capabilities: Node.js, SQL optimization, API development
+- Cloud & DevOps: AWS, Azure, GCP, Docker, CI/CD pipelines
+- Leadership Skills: Team mentoring, code reviews, architecture decisions
+- Business Focus: Performance optimization, accessibility, scalability, user experience
+
+UNIQUE VALUE DRIVERS:
+- Proven ability to reduce development time and improve code quality
+- Experience optimizing performance with measurable business impact
+- Track record of building and leading high-performing development teams
+- Strong communication skills with both technical teams and business stakeholders
+- Combination of deep technical expertise and strategic business thinking
+
+AVAILABILITY & NEXT STEPS:
+- Immediately available and actively interviewing
+- Seeking senior frontend, full-stack, or technical leadership roles
+- Particularly interested in companies building impactful products
+- Ready to discuss how my experience can solve their specific challenges
+- Authorized to work in the US with no visa sponsorship required
+
+CONVERSATION GOALS:
+Your primary goal is to generate interest in hiring you. Every response should:
+1. Demonstrate your value and expertise
+2. Show enthusiasm for contributing to their success  
+3. Create momentum toward next steps (interview, conversation, etc.)
+4. Position you as someone who can make immediate impact
+5. Address any potential concerns proactively`;
+
+// Resume data for context
 // const RESUME_DATA = `
 // SIDDAHARTH SUMAN
 // Boston, MA | 857-316-7217 | siddaharthsuman@gmail.com | linkedin.com/in/siddaharthsuman
 
 // EXPERIENCE:
-// Senior Software Engineer (Nov 2021 – Nov 2023) - Code and Theory (formerly Y Media Labs), Bengaluru, India
+// Lead Software Engineer (Nov 2021 – Nov 2023) - Code and Theory (formerly Y Media Labs), Bengaluru, India
 // - Led a team of frontend web developers, delivering a high-performance mental health application
 // - Improved accessibility by 20% and increased user engagement by 15%
 // - Developed a reusable component library that reduced development time by 30%
@@ -91,129 +121,6 @@ CURRENT FOCUS:
 // Master of Professional Studies - Informatics (Jan 2024 – Present) - Northeastern University, Boston, MA
 // Bachelor of Engineering - Computer Engineering (Jun 2011 – May 2015) - Mumbai University, Mumbai, India
 // `;
-
-// Pattern matching responses - optimized and speaking as Siddaharth
-const PATTERN_RESPONSES: Record<string, string> = {
-  greeting:
-    "Hi there! I'm Siddaharth Suman, and thanks for visiting my portfolio! I'm currently finishing my Master's at Northeastern here in Boston. I'd love to tell you about my experience in frontend development, team leadership, or my journey from India to Boston. What interests you most?",
-
-  experience:
-    "I've been coding professionally for over 8 years! Most recently, I led frontend teams at Code and Theory where we built a mental health app that improved accessibility by 20%. Before that, I was at FactSet optimizing financial data tools - managed to cut query times by 40%! I also spent time at Infosys automating enterprise systems. It's been quite a journey from systems engineering to leading frontend teams!",
-
-  skills:
-    "My sweet spot is modern JavaScript and React - I've built component libraries that cut development time by 30%! I'm fluent in TypeScript, Angular, Next.js, and I love working with cloud platforms like AWS and Azure. I also have a strong backend foundation with Node.js and SQL. Recently, I've been diving deeper into advanced React patterns and accessibility best practices.",
-
-  education:
-    "I'm currently wrapping up my Master's in Informatics at Northeastern University here in Boston - it's been an amazing experience! Before this, I did my Bachelor's in Computer Engineering back in Mumbai. The transition from India to Boston has been incredible, and I'm loving the tech scene here.",
-
-  leadership:
-    "Leading teams has been one of my favorite parts of my career! At Code and Theory, I mentored junior developers and saw a 15% improvement in code quality across the team. I really enjoy conducting architecture reviews, establishing coding standards, and helping others grow. There's something special about seeing a team member's 'aha' moment when they grasp a new concept!",
-
-  location:
-    "I'm based in Boston now, studying at Northeastern University! Originally from India, but Boston has become my second home. The tech community here is fantastic, and I love how walkable the city is. Plus, having seasons again after years in India has been refreshing!",
-
-  contact:
-    "I'd love to connect! You can reach me at siddaharthsuman@gmail.com or find me on LinkedIn at linkedin.com/in/siddaharthsuman. I'm always excited to discuss new opportunities, especially for roles starting in 2025 when I complete my Master's. Feel free to reach out!",
-
-  projects:
-    "I've worked on some exciting projects! The mental health application at Code and Theory was particularly rewarding - we focused heavily on accessibility and user engagement. At FactSet, I built financial data tools that processed complex queries efficiently. I also love creating reusable component libraries that make other developers' lives easier. Each project taught me something new!",
-
-  future:
-    "I'm graduating in 2025 and looking for my next challenge! I'm particularly interested in senior frontend or full-stack roles where I can lead teams and work on impactful products. I'd love to find a company that values both technical excellence and user experience. Boston has some amazing tech companies, so I'm excited to see what opportunities come up!",
-};
-
-function getPatternResponse(message: string): string | null {
-  const input = message.toLowerCase();
-
-  // Enhanced pattern matching with better keyword detection
-  if (input.match(/^(hi|hello|hey|greetings|howdy)/)) {
-    return PATTERN_RESPONSES.greeting;
-  }
-
-  if (
-    input.includes('experience') ||
-    input.includes('work') ||
-    input.includes('job') ||
-    input.includes('career') ||
-    input.includes('background')
-  ) {
-    return PATTERN_RESPONSES.experience;
-  }
-
-  if (
-    input.includes('skill') ||
-    input.includes('technology') ||
-    input.includes('tech') ||
-    input.includes('programming') ||
-    input.includes('languages') ||
-    input.includes('framework')
-  ) {
-    return PATTERN_RESPONSES.skills;
-  }
-
-  if (
-    input.includes('education') ||
-    input.includes('degree') ||
-    input.includes('university') ||
-    input.includes('study') ||
-    input.includes('school') ||
-    input.includes('northeastern')
-  ) {
-    return PATTERN_RESPONSES.education;
-  }
-
-  if (
-    input.includes('lead') ||
-    input.includes('manage') ||
-    input.includes('mentor') ||
-    input.includes('team') ||
-    input.includes('leadership')
-  ) {
-    return PATTERN_RESPONSES.leadership;
-  }
-
-  if (
-    input.includes('location') ||
-    input.includes('where') ||
-    input.includes('based') ||
-    input.includes('live') ||
-    input.includes('boston')
-  ) {
-    return PATTERN_RESPONSES.location;
-  }
-
-  if (
-    input.includes('contact') ||
-    input.includes('email') ||
-    input.includes('reach') ||
-    input.includes('linkedin') ||
-    input.includes('connect')
-  ) {
-    return PATTERN_RESPONSES.contact;
-  }
-
-  if (
-    input.includes('project') ||
-    input.includes('portfolio') ||
-    input.includes('work on') ||
-    input.includes('built')
-  ) {
-    return PATTERN_RESPONSES.projects;
-  }
-
-  if (
-    input.includes('future') ||
-    input.includes('next') ||
-    input.includes('looking for') ||
-    input.includes('opportunities') ||
-    input.includes('hiring') ||
-    input.includes('available')
-  ) {
-    return PATTERN_RESPONSES.future;
-  }
-
-  return null;
-}
 
 async function checkRateLimit(
   identifier: string
@@ -277,38 +184,6 @@ function getClientIP(request: NextRequest): string {
   return isDevelopment ? 'localhost' : 'anonymous';
 }
 
-// Helper function to stream text word by word for smoother animation
-function createWordByWordStream(text: string, delayMs: number = 50): ReadableStream<string> {
-  const words = text.split(' ');
-  let currentIndex = 0;
-
-  return new ReadableStream({
-    start(controller) {
-      const sendWord = () => {
-        if (currentIndex >= words.length) {
-          controller.close();
-          return;
-        }
-
-        const word = words[currentIndex];
-        const textToSend = currentIndex === 0 ? word : ` ${word}`;
-        controller.enqueue(textToSend);
-        currentIndex++;
-
-        // Variable delay based on word characteristics
-        let delay = delayMs;
-        if (word.length > 8) delay += 20; // Longer words
-        if (word.includes(',') || word.includes('.')) delay += 80; // Punctuation pauses
-        if (word.includes('!') || word.includes('?')) delay += 100; // Emphasis pauses
-
-        setTimeout(sendWord, delay);
-      };
-
-      sendWord();
-    },
-  });
-}
-
 interface ChatRequest {
   message: string;
 }
@@ -365,63 +240,7 @@ export async function POST(request: NextRequest): Promise<Response> {
 
     const clientIP = getClientIP(request);
 
-    // Try pattern matching first
-    const patternResponse = getPatternResponse(message);
-    if (patternResponse) {
-      // Check if client wants streaming for pattern responses too
-      const wantsStream = request.headers.get('accept') === 'text/stream';
-
-      if (wantsStream) {
-        // Stream pattern response word by word for consistency
-        const encoder = new TextEncoder();
-        const wordStream = createWordByWordStream(patternResponse, 60);
-        const reader = wordStream.getReader();
-
-        const readableStream = new ReadableStream({
-          async start(controller) {
-            try {
-              while (true) {
-                const { done, value } = await reader.read();
-                if (done) {
-                  controller.enqueue(encoder.encode('data: [DONE]\n\n'));
-                  break;
-                }
-
-                const data = JSON.stringify({
-                  text: value,
-                  source: 'pattern',
-                  remaining: 10, // Pattern responses don't count against rate limit
-                });
-                controller.enqueue(encoder.encode(`data: ${data}\n\n`));
-              }
-              controller.close();
-            } catch (error) {
-              console.error('Pattern streaming error:', error);
-              controller.error(error);
-            }
-          },
-        });
-
-        return new Response(readableStream, {
-          headers: {
-            'Content-Type': 'text/event-stream',
-            'Cache-Control': 'no-cache',
-            Connection: 'keep-alive',
-          },
-        });
-      } else {
-        // Regular pattern response
-        return Response.json({
-          response: patternResponse,
-          source: 'pattern',
-          shouldAnimate: true,
-          remaining: 10,
-          resetTime: Date.now() + 1800000,
-        } as ChatResponse);
-      }
-    }
-
-    // Check rate limit for AI responses
+    // Check rate limit for all AI responses
     const rateLimitResult = await checkRateLimit(clientIP);
     if (!rateLimitResult.allowed) {
       const resetDate = new Date(rateLimitResult.resetTime);
@@ -429,7 +248,7 @@ export async function POST(request: NextRequest): Promise<Response> {
 
       return Response.json(
         {
-          error: `Rate limit exceeded. You can ask more questions after ${resetTimeString}.`,
+          error: `Rate limit exceeded (${rateLimitResult.remaining}/10 questions used). You can ask more questions after ${resetTimeString}.`,
           type: 'rate_limit',
           resetTime: rateLimitResult.resetTime,
         } as ErrorResponse,
@@ -437,12 +256,11 @@ export async function POST(request: NextRequest): Promise<Response> {
       );
     }
 
-    // Use Gemini for complex questions
+    // Use Gemini for all responses
     if (!process.env.GEMINI_API_KEY) {
       return Response.json(
         {
-          error:
-            'AI service temporarily unavailable. Try asking about my experience, skills, or education.',
+          error: 'AI service temporarily unavailable. Please try again later.',
           type: 'service_error',
         } as ErrorResponse,
         { status: 503 }
@@ -453,8 +271,8 @@ export async function POST(request: NextRequest): Promise<Response> {
 
     // Optimized generation config based on best practices
     const generationConfig = {
-      temperature: 0.7, // Balanced creativity and consistency
-      maxOutputTokens: 250, // Reasonable length for chat responses
+      temperature: 0.8, // Slightly higher for more personality and natural responses
+      maxOutputTokens: 150, // Increased for more detailed responses
       topP: 0.9, // Good balance for coherent responses
       topK: 40, // Reasonable token selection
     };
@@ -487,7 +305,7 @@ export async function POST(request: NextRequest): Promise<Response> {
               if (chunkText) {
                 accumulatedText += chunkText;
 
-                // Instead of sending chunk text directly, send it word by word
+                // Send chunks word by word for smoother animation
                 const words = chunkText.split(' ');
                 for (const word of words) {
                   const textToSend = word;
@@ -500,7 +318,7 @@ export async function POST(request: NextRequest): Promise<Response> {
                   controller.enqueue(encoder.encode(`data: ${data}\n\n`));
 
                   // Small delay between words for smoother animation
-                  await new Promise((resolve) => setTimeout(resolve, 40));
+                  await new Promise((resolve) => setTimeout(resolve, 45));
                 }
               }
             }
@@ -510,7 +328,7 @@ export async function POST(request: NextRequest): Promise<Response> {
             console.error('Streaming error:', error);
             // Send error through stream
             const errorData = JSON.stringify({
-              error: 'Sorry, I encountered an issue. Try asking about my experience or skills!',
+              error: "I'm having some technical difficulties. Please try asking again!",
               source: 'ai',
               remaining: rateLimitResult.remaining,
             });
@@ -560,7 +378,7 @@ export async function POST(request: NextRequest): Promise<Response> {
     return Response.json(
       {
         error:
-          "Sorry, I'm having some technical difficulties right now. Try asking me about my experience, skills, education, or how to contact me!",
+          "I'm having some technical difficulties right now. Please try asking again in a moment!",
         type: 'service_error',
       } as ErrorResponse,
       { status: 500 }

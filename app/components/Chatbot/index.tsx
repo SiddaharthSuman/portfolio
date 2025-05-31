@@ -9,7 +9,7 @@ interface Message {
   content: string;
   isError?: boolean;
   isTyping?: boolean;
-  source?: 'pattern' | 'ai';
+  source?: 'ai';
   suggestions?: string[];
   timestamp: Date;
   type: 'user' | 'bot' | 'suggestions';
@@ -20,7 +20,7 @@ interface ChatResponse {
   resetTime: number;
   response: string;
   shouldAnimate?: boolean;
-  source: 'pattern' | 'ai';
+  source: 'ai';
 }
 
 interface ErrorResponse {
@@ -34,7 +34,7 @@ export default function ChatBot() {
     {
       type: 'bot',
       content:
-        "Hi there! I'm Siddaharth Suman, and thanks for visiting my portfolio! I'm currently finishing my Master's at Northeastern here in Boston. Feel free to ask me about my experience, skills, education, or anything else you'd like to know!",
+        "Hi! I'm Siddaharth Suman, a Lead Software Engineer with 8+ years of experience actively seeking new opportunities. I've led frontend teams, built scalable applications, and delivered measurable business impact. I'm authorized to work in the US and ready to contribute immediately. What would you like to know about my background?",
       timestamp: new Date(),
     },
     {
@@ -42,12 +42,12 @@ export default function ChatBot() {
       content: '',
       timestamp: new Date(),
       suggestions: [
-        'Tell me about your experience',
-        'What are your technical skills?',
-        'Where did you study?',
-        'What leadership experience do you have?',
-        'How can I contact you?',
-        'What projects have you worked on?',
+        'Tell me about your technical leadership experience',
+        'What measurable impact have you delivered?',
+        'What are your core technical strengths?',
+        'When are you available to start?',
+        'How can I contact you about opportunities?',
+        'What type of role are you seeking?',
       ],
     },
   ]);
@@ -414,9 +414,6 @@ export default function ChatBot() {
                     {message.content}
                     {message.source === 'ai' && !message.isTyping && !message.isError && (
                       <span className={styles.aiIndicator}>✨ AI</span>
-                    )}
-                    {message.source === 'pattern' && !message.isTyping && !message.isError && (
-                      <span className={styles.aiIndicator}>⚡ Quick</span>
                     )}
                   </div>
                   <div className={styles.timestamp}>
