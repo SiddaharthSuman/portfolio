@@ -22,6 +22,11 @@
   @media (hover: none) {
     display: none;
   }
+
+  &.hover {
+    background-color: black;
+    mix-blend-mode: soft-light;
+  }
 }
 
 .cursorText {

@@ -185,31 +185,31 @@ const CustomCursor = () => {
     // Handle cursor states for interactive elements
     const onElementEnter = () => {
       // setIsHovering(true);
-      // cursor.classList.add(styles.hover);
+      cursor.classList.add(styles.hover);
 
       // Show the "View" text
-      gsap.to(cursorText, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.2,
-      });
+      // gsap.to(cursorText, {
+      //   opacity: 1,
+      //   scale: 1,
+      //   duration: 0.2,
+      // });
 
       gsap.to(cursor, {
-        scale: 4,
+        scale: 2,
         ...cursorOptions,
       });
     };
 
     const onElementLeave = () => {
       // setIsHovering(false);
-      // cursor.classList.remove(styles.hover);
+      cursor.classList.remove(styles.hover);
 
       // Hide the "View" text
-      gsap.to(cursorText, {
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.2,
-      });
+      // gsap.to(cursorText, {
+      //   opacity: 0,
+      //   scale: 0.8,
+      //   duration: 0.2,
+      // });
 
       gsap.to(cursor, {
         scale: 1,
