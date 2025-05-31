@@ -27,7 +27,7 @@ RESPONSE GUIDELINES:
 - Show personality - you're not just listing facts, you're having a conversation
 
 YOUR BACKGROUND SUMMARY:
-- Currently pursuing Master's in Informatics at Northeastern University, Boston (Jan 2024 - July 2025)
+- Currently pursuing Master's in Informatics at Northeastern University, Boston (Jan 2024 - Present)
 - Senior Software Engineer with 8+ years experience
 - Recently at Code and Theory (Nov 2021 - Nov 2023) leading frontend teams
 - Previously at FactSet (Dec 2018 - Oct 2021) developing financial tools
@@ -54,7 +54,7 @@ CURRENT FOCUS:
 - Interested in senior frontend/full-stack roles
 - Open to discussing exciting projects and opportunities`;
 
-// Resume data for context
+// // Resume data for context
 // const RESUME_DATA = `
 // SIDDAHARTH SUMAN
 // Boston, MA | 857-316-7217 | siddaharthsuman@gmail.com | linkedin.com/in/siddaharthsuman
@@ -88,7 +88,7 @@ CURRENT FOCUS:
 // Tools: Git, Jenkins, SVN
 
 // EDUCATION:
-// Master of Professional Studies - Informatics (Jan 2024 – July 2025) - Northeastern University, Boston, MA
+// Master of Professional Studies - Informatics (Jan 2024 – Present) - Northeastern University, Boston, MA
 // Bachelor of Engineering - Computer Engineering (Jun 2011 – May 2015) - Mumbai University, Mumbai, India
 // `;
 
@@ -390,6 +390,7 @@ export async function POST(request: NextRequest): Promise<Response> {
                 const data = JSON.stringify({
                   text: value,
                   source: 'pattern',
+                  remaining: 10, // Pattern responses don't count against rate limit
                 });
                 controller.enqueue(encoder.encode(`data: ${data}\n\n`));
               }
@@ -414,6 +415,7 @@ export async function POST(request: NextRequest): Promise<Response> {
           response: patternResponse,
           source: 'pattern',
           shouldAnimate: true,
+          remaining: 10,
           resetTime: Date.now() + 1800000,
         } as ChatResponse);
       }

@@ -183,6 +183,55 @@
       }
     }
   }
+
+  &.suggestions {
+    align-items: flex-start;
+    align-self: flex-start;
+    max-inline-size: 100%;
+
+    .suggestedQuestions {
+      padding: 16px;
+      background: var(--color-card-background);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+
+      p {
+        margin: 0 0 12px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--color-text-secondary);
+      }
+
+      .suggestionButton {
+        display: block;
+        inline-size: 100%;
+        padding: 10px 14px;
+        margin-block-end: 8px;
+        font-size: 14px;
+        color: var(--color-text-primary);
+        text-align: start;
+        cursor: pointer;
+        background: var(--color-secondary-bg);
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: var(--color-hover);
+          border-color: var(--color-accent);
+          transform: translateY(-1px);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+
+        &:last-child {
+          margin-block-end: 0;
+        }
+      }
+    }
+  }
 }
 
 .aiIndicator {
@@ -232,44 +281,6 @@
   30% {
     opacity: 1;
     transform: scale(1);
-  }
-}
-
-.suggestedQuestions {
-  flex-shrink: 0; /* Prevent the suggestions from shrinking */
-  padding: 12px 16px;
-  background: var(--color-card-background); /* Ensure it has a background */
-  border-block-start: 1px solid var(--color-border);
-
-  p {
-    margin: 0 0 8px;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--color-text-secondary);
-  }
-}
-
-.suggestionButton {
-  display: block;
-  inline-size: 100%;
-  padding: 8px 12px;
-  margin-block-end: 6px;
-  font-size: 13px;
-  color: var(--color-text-primary);
-  text-align: start;
-  cursor: pointer;
-  background: var(--color-secondary-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background: var(--color-hover);
-    border-color: var(--color-accent);
-  }
-
-  &:last-child {
-    margin-block-end: 0;
   }
 }
 

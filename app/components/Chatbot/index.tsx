@@ -10,8 +10,9 @@ interface Message {
   isError?: boolean;
   isTyping?: boolean;
   source?: 'pattern' | 'ai';
+  suggestions?: string[];
   timestamp: Date;
-  type: 'user' | 'bot';
+  type: 'user' | 'bot' | 'suggestions';
 }
 
 interface ChatResponse {
@@ -36,6 +37,19 @@ export default function ChatBot() {
         "Hi there! I'm Siddaharth Suman, and thanks for visiting my portfolio! I'm currently finishing my Master's at Northeastern here in Boston. Feel free to ask me about my experience, skills, education, or anything else you'd like to know!",
       timestamp: new Date(),
     },
+    {
+      type: 'suggestions',
+      content: '',
+      timestamp: new Date(),
+      suggestions: [
+        'Tell me about your experience',
+        'What are your technical skills?',
+        'Where did you study?',
+        'What leadership experience do you have?',
+        'How can I contact you?',
+        'What projects have you worked on?',
+      ],
+    },
   ]);
   const [inputMessage, setInputMessage] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -43,6 +57,7 @@ export default function ChatBot() {
   const [remainingQuestions, setRemainingQuestions] = useState<number>(10);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const scrollToBottom = (): void => {
     if (messagesContainerRef.current) {
@@ -50,9 +65,46 @@ export default function ChatBot() {
     }
   };
 
+  const focusInput = (): void => {
+    // Focus the input after a short delay to ensure DOM updates are complete
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, 100);
+  };
+
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Focus input when chat is opened
+  useEffect(() => {
+    if (isOpen) {
+      focusInput();
+    }
+  }, [isOpen]);
+
+  // Handle suggested question selection
+  const handleSuggestedQuestion = async (question: string): Promise<void> => {
+    if (isLoading) return;
+
+    // Remove suggestions from messages
+    setMessages((prev) => prev.filter((msg) => msg.type !== 'suggestions'));
+
+    // Add user message
+    const userMessage: Message = {
+      type: 'user',
+      content: question,
+      timestamp: new Date(),
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setIsLoading(true);
+
+    // Process the question
+    await processMessage(question);
+  };
 
   const sendMessage = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
@@ -65,10 +117,18 @@ export default function ChatBot() {
       timestamp: new Date(),
     };
 
+    // Remove suggestions if they still exist
+    setMessages((prev) => prev.filter((msg) => msg.type !== 'suggestions'));
     setMessages((prev) => [...prev, userMessage]);
+
+    const messageToProcess = inputMessage.trim();
     setInputMessage('');
     setIsLoading(true);
 
+    await processMessage(messageToProcess);
+  };
+
+  const processMessage = async (message: string): Promise<void> => {
     try {
       // Always try streaming first for better UX
       const streamResponse = await fetch('/api/chat', {
@@ -77,7 +137,7 @@ export default function ChatBot() {
           'Content-Type': 'application/json',
           Accept: 'text/stream', // Request streaming
         },
-        body: JSON.stringify({ message: userMessage.content }),
+        body: JSON.stringify({ message: message }),
       });
 
       if (
@@ -122,6 +182,7 @@ export default function ChatBot() {
                       )
                     );
                     setIsLoading(false);
+                    focusInput(); // Focus input after completion
                     return; // Exit the function
                   }
 
@@ -143,6 +204,7 @@ export default function ChatBot() {
                         )
                       );
                       setIsLoading(false);
+                      focusInput();
                       return;
                     }
 
@@ -191,16 +253,17 @@ export default function ChatBot() {
               )
             );
             setIsLoading(false);
+            focusInput();
           }
         }
       } else {
-        // Fallback to regular response if streaming fails
+        // Failback to regular response if streaming fails
         const response = await fetch('/api/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ message: userMessage.content }),
+          body: JSON.stringify({ message: message }),
         });
 
         if (!response.ok) {
@@ -226,6 +289,7 @@ export default function ChatBot() {
           // Animate typing effect
           await animateTyping(data.response);
           setIsLoading(false);
+          focusInput();
         } else {
           // Show response immediately for very short responses
           const botMessage: Message = {
@@ -238,6 +302,7 @@ export default function ChatBot() {
           setMessages((prev) => [...prev, botMessage]);
           setRemainingQuestions(data.remaining);
           setIsLoading(false);
+          focusInput();
         }
       }
     } catch (error) {
@@ -257,6 +322,7 @@ export default function ChatBot() {
 
       setMessages((prev) => [...prev, errorMessage]);
       setIsLoading(false);
+      focusInput();
     }
   };
 
@@ -293,19 +359,6 @@ export default function ChatBot() {
     );
   };
 
-  const suggestedQuestions: string[] = [
-    'Tell me about your experience',
-    'What are your technical skills?',
-    'Where did you study?',
-    'What leadership experience do you have?',
-    'How can I contact you?',
-    'What projects have you worked on?',
-  ];
-
-  const handleSuggestedQuestion = (question: string): void => {
-    setInputMessage(question);
-  };
-
   return (
     <div data-lenis-prevent className={styles.chatContainer}>
       {/* Chat Toggle Button */}
@@ -329,30 +382,52 @@ export default function ChatBot() {
 
           {/* Messages */}
           <div ref={messagesContainerRef} data-lenis-prevent className={styles.messagesContainer}>
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`${styles.message} ${styles[message.type]} ${message.isError ? styles.error : ''}`}
-              >
+            {messages.map((message, index) => {
+              if (message.type === 'suggestions') {
+                return (
+                  <div key={index} className={`${styles.message} ${styles.suggestions}`}>
+                    <div className={styles.suggestedQuestions}>
+                      <p>Try asking:</p>
+                      {message.suggestions?.map((question, qIndex) => (
+                        <button
+                          key={qIndex}
+                          className={styles.suggestionButton}
+                          type="button"
+                          onClick={() => handleSuggestedQuestion(question)}
+                        >
+                          {question}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+
+              return (
                 <div
-                  className={`${styles.messageContent} ${message.isError ? styles.error : ''} ${message.isTyping ? styles.typing : ''}`}
+                  key={index}
+                  className={`${styles.message} ${styles[message.type]} ${message.isError ? styles.error : ''}`}
                 >
-                  {message.content}
-                  {message.source === 'ai' && !message.isTyping && !message.isError && (
-                    <span className={styles.aiIndicator}>✨ AI</span>
-                  )}
-                  {message.source === 'pattern' && !message.isTyping && !message.isError && (
-                    <span className={styles.aiIndicator}>⚡ Quick</span>
-                  )}
+                  <div
+                    className={`${styles.messageContent} ${message.isError ? styles.error : ''} ${message.isTyping ? styles.typing : ''}`}
+                  >
+                    {message.content}
+                    {message.source === 'ai' && !message.isTyping && !message.isError && (
+                      <span className={styles.aiIndicator}>✨ AI</span>
+                    )}
+                    {message.source === 'pattern' && !message.isTyping && !message.isError && (
+                      <span className={styles.aiIndicator}>⚡ Quick</span>
+                    )}
+                  </div>
+                  <div className={styles.timestamp}>
+                    {message.timestamp.toLocaleTimeString([], {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })}
+                  </div>
                 </div>
-                <div className={styles.timestamp}>
-                  {message.timestamp.toLocaleTimeString([], {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  })}
-                </div>
-              </div>
-            ))}
+              );
+            })}
 
             {isLoading && (
               <div className={`${styles.message} ${styles.bot}`}>
@@ -369,26 +444,10 @@ export default function ChatBot() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Suggested Questions */}
-          {messages.length <= 1 && (
-            <div className={styles.suggestedQuestions}>
-              <p>Try asking:</p>
-              {suggestedQuestions.map((question, index) => (
-                <button
-                  key={index}
-                  className={styles.suggestionButton}
-                  type="button"
-                  onClick={() => handleSuggestedQuestion(question)}
-                >
-                  {question}
-                </button>
-              ))}
-            </div>
-          )}
-
           {/* Input Form */}
           <form className={styles.inputForm} onSubmit={sendMessage}>
             <input
+              ref={inputRef}
               className={styles.messageInput}
               disabled={isLoading}
               maxLength={500}
