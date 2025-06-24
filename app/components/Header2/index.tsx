@@ -71,10 +71,9 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className={styles.desktopNav}>
           <ul className={styles.navList}>
-            {navItems.map((item, index) => (
+            {navItems.map((item) => (
               <li key={item.name} className={styles.navItem}>
                 <Link className={styles.navLink} href={item.href} onClick={handleNavClick}>
-                  <span className={styles.navNumber}>0{index + 1}.</span>
                   {item.name}
                 </Link>
               </li>
@@ -123,10 +122,9 @@ const Header = () => {
         {/* Mobile Navigation Menu */}
         <nav className={`${styles.mobileNav} ${isMenuOpen ? styles.open : ''}`}>
           <ul className={styles.mobileNavList}>
-            {navItems.map((item, index) => (
+            {navItems.map((item) => (
               <li key={item.name} className={styles.mobileNavItem}>
                 <Link className={styles.mobileNavLink} href={item.href} onClick={handleNavClick}>
-                  <span className={styles.navNumber}>0{index + 1}.</span>
                   {item.name}
                 </Link>
               </li>

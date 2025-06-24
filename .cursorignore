@@ -1,0 +1,150 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Next.js build outputs
+.next/
+out/
+dist/
+build/
+
+# Production build artifacts
+*.tsbuildinfo
+.swc/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+.nyc_output
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js revalidation files
+.next/cache/
+
+# Storybook build outputs
+storybook-static/
+
+# Temporary folders
+tmp/
+temp/
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Package manager lock files (optional - uncomment if you want to ignore)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Testing
+.jest/
+__tests__/__snapshots__/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Vercel deployment files
+.vercel
+
+# Turbo
+.turbo
+
+# Contentful or other CMS generated files
+.contentful.json
+
+# Sentry
+.sentryclirc
+
+# Tailwind CSS
+**/*.css.map
+
+# Generated API documentation
+api-docs/
+
+# Backup files
+*.backup
+*.bak
+*.old
+
+# Large static assets (uncomment if needed)
+# public/images/
+# public/videos/
+# public/uploads/
+
+# Configuration files you might want to exclude
+# next.config.js
+# tailwind.config.js
+# postcss.config.js

@@ -64,7 +64,6 @@ export default function Header() {
                   href={link.path}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <span className={styles.navNumber}>0{index + 1}.</span>
                   {link.name}
                 </Link>
               </li>

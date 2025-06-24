@@ -123,9 +123,7 @@ const ContactSection = () => {
     <section ref={sectionRef} className={`${styles.contactSection}`} id="contact">
       <div className="container">
         <div ref={contentRef} className={styles.contactContent}>
-          <h2 className={styles.heading}>
-            <span className={styles.sectionNumber}>04.</span> Get In Touch
-          </h2>
+          <h2 className={styles.heading}>Get In Touch</h2>
           <p className={styles.subtitle}>
             I&apos;m currently open to new opportunities and my inbox is always open. Whether you
             have a question or just want to say hi, I&apos;ll try my best to get back to you!

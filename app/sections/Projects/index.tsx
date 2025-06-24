@@ -80,9 +80,7 @@ const ProjectsSection: React.FC = () => {
       <div className="container">
         {/* Section Heading */}
         <div ref={headingRef} className={styles.sectionHeading}>
-          <h2 className={styles.heading}>
-            <span className={styles.sectionNumber}>03.</span> Some Things I&apos;ve Built
-          </h2>
+          <h2 className={styles.heading}>Some Things I&apos;ve Built</h2>
           <div className={styles.headingLine}></div>
         </div>
 

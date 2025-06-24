@@ -57,9 +57,7 @@ const ExperienceSection: React.FC = () => {
     <section className={styles.experienceSection} id="experience">
       <div className="container">
         <div className={styles.sectionHeading}>
-          <h2 className={styles.heading}>
-            <span className={styles.sectionNumber}>02.</span> My Journey
-          </h2>
+          <h2 className={styles.heading}>My Journey</h2>
           <div className={styles.headingLine}></div>
         </div>
 

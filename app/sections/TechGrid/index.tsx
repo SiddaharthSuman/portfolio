@@ -41,9 +41,7 @@ const TechExpertise = () => {
       /> */}
       <div className="container">
         <div ref={sectionRef} className={styles.sectionHeading}>
-          <h2 className={styles.heading}>
-            <span className={styles.sectionNumber}>01.</span> Skills
-          </h2>
+          <h2 className={styles.heading}>Skills</h2>
           <div className={styles.headingLine}></div>
         </div>
 
