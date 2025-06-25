@@ -53,7 +53,7 @@
     block-size: 2px;
     content: '';
     background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
-    transition: width 0.8s ease;
+    transition: inline-size 0.8s ease;
   }
 
   // Activate underline when section is in view

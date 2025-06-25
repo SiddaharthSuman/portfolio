@@ -75,10 +75,10 @@ Your primary goal is to generate interest in hiring you. Every response should:
 5. Address any potential concerns proactively`;
 
 export const GENERATION_CONFIG = {
-  temperature: 0.8, // Slightly higher for more personality and natural responses
-  maxOutputTokens: 200, // Reduced to enforce brevity (roughly 120-150 words)
-  topP: 0.9, // Good balance for coherent responses
-  topK: 40, // Reasonable token selection
+  maxOutputTokens: 200,
+  temperature: 0.8,
+  topK: 40,
+  topP: 0.9,
 };
 
 export const RATE_LIMIT_CONFIG = {

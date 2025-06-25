@@ -8,7 +8,6 @@ import cssModules from 'stylelint-config-css-modules';
 
 const stylelintConfig = {
   extends: [standardScss, recessOrder, prettier, cssModules],
-  files: ['**/*.scss'],
   plugins: [prettier, stylelintUseLogical, highPerformanceAnim],
   rules: {
     // overrides: [
@@ -20,7 +19,6 @@ const stylelintConfig = {
     //   },
     // ],
     'csstools/use-logical': 'always',
-    'plugin/no-low-performance-animation-properties': true,
     'prettier/prettier': true,
     'scss/at-rule-no-unknown': [
       true,

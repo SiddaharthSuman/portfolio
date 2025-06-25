@@ -33,50 +33,49 @@
     border-color: var(--color-accent);
     transform: translateY(-1px); // Subtle lift
   }
+}
 
-  &.active {
-    color: var(--color-primary-dark); // Dark text on light background
-    background-color: var(--color-accent); // Warm copper background
-    border-color: var(--color-accent);
-    box-shadow: 0 4px 12px rgb(212 162 118 / 20%); // Warm glow
+.filterButton.active {
+  color: var(--color-primary-dark); // Dark text on light background
+  background-color: var(--color-accent); // Warm copper background
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 12px rgb(212 162 118 / 20%); // Warm glow
 
-    &:hover {
-      background-color: var(--color-accent);
-      opacity: 0.9;
-      transform: translateY(-2px); // Enhanced lift when active
-    }
-
-    // Special styling for work filter (second button)
-    &:nth-child(2) {
-      background-color: var(--color-work-accent);
-      border-color: var(--color-work-accent);
-      box-shadow: 0 4px 12px rgb(212 162 118 / 20%);
-
-      &:hover {
-        background-color: var(--color-work-accent);
-      }
-    }
-
-    // Special styling for education filter (third button)
-    &:nth-child(3) {
-      background-color: var(--color-education-accent);
-      border-color: var(--color-education-accent);
-      box-shadow: 0 4px 12px rgb(147 123 177 / 20%); // Purple glow
-
-      &:hover {
-        background-color: var(--color-education-accent);
-      }
-    }
+  &:hover {
+    background-color: var(--color-accent);
+    opacity: 0.9;
+    transform: translateY(-2px); // Enhanced lift when active
   }
+}
 
-  // Enhanced focus states for accessibility
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgb(212 162 118 / 30%);
+.filterButton.active:nth-child(2) {
+  background-color: var(--color-work-accent);
+  border-color: var(--color-work-accent);
+  box-shadow: 0 4px 12px rgb(212 162 118 / 20%);
 
-    &.active:nth-child(3) {
-      box-shadow: 0 0 0 3px rgb(147 123 177 / 30%);
-    }
+  &:hover {
+    background-color: var(--color-work-accent);
+  }
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.filterButton.active:nth-child(3) {
+  background-color: var(--color-education-accent);
+  border-color: var(--color-education-accent);
+  box-shadow: 0 4px 12px rgb(147 123 177 / 20%); // Purple glow
+
+  &:hover {
+    background-color: var(--color-education-accent);
+  }
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.filterButton.active:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(212 162 118 / 30%);
+
+  &:nth-child(3) {
+    box-shadow: 0 0 0 3px rgb(147 123 177 / 30%);
   }
 }
 

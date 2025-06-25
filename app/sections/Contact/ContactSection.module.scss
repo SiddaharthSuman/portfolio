@@ -78,6 +78,11 @@
   color: var(--color-text-primary);
 }
 
+.formTextarea {
+  min-block-size: 120px;
+  resize: vertical;
+}
+
 .formInput,
 .formTextarea {
   inline-size: 100%;
@@ -109,11 +114,6 @@
       box-shadow: 0 0 0 2px rgb(255 100 100 / 20%);
     }
   }
-}
-
-.formTextarea {
-  min-block-size: 120px;
-  resize: vertical;
 }
 
 .errorMessage {

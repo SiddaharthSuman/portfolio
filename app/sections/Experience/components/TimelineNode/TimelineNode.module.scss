@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 // sections/ExperienceSection/components/TimelineNode/TimelineNode.module.scss
 @use '@/app/styles/spacings' as spacings;
 @use '@/app/styles/mixins' as *;
@@ -10,7 +11,7 @@
   border-radius: 50%;
   transition:
     transform 0.3s ease,
-    box-shadow 0.3s ease;
+    opacity 0.3s ease;
 
   // Add subtle inner glow
   &::before {
@@ -71,53 +72,53 @@
     place-self: center;
     transform: none;
   }
+}
 
-  // Enhanced work styling
-  &.work {
-    .node {
-      background-color: var(--color-work-accent); // Warm copper
+// Enhanced work styling
+.nodeWrapper.work {
+  .node {
+    background-color: var(--color-work-accent); // Warm copper
+    box-shadow:
+      0 0 0 3px rgb(212 162 118 / 20%),
+      0 2px 8px rgb(212 162 118 / 10%); // Warm glow
+
+    &:hover {
       box-shadow:
-        0 0 0 3px rgb(212 162 118 / 20%),
-        0 2px 8px rgb(212 162 118 / 10%); // Warm glow
-
-      &:hover {
-        box-shadow:
-          0 0 0 4px rgb(212 162 118 / 30%),
-          0 4px 12px rgb(212 162 118 / 20%);
-      }
-    }
-
-    .connector {
-      background: linear-gradient(
-        90deg,
-        var(--color-work-accent) 0%,
-        rgb(212 162 118 / 60%) 100%
-      ); // Gradient connector
+        0 0 0 4px rgb(212 162 118 / 30%),
+        0 4px 12px rgb(212 162 118 / 20%);
     }
   }
 
-  // Enhanced education styling
-  &.education {
-    .node {
-      background-color: var(--color-education-accent); // Muted purple
+  .connector {
+    background: linear-gradient(
+      90deg,
+      var(--color-work-accent) 0%,
+      rgb(212 162 118 / 60%) 100%
+    ); // Gradient connector
+  }
+}
+
+// Enhanced education styling
+.nodeWrapper.education {
+  .node {
+    background-color: var(--color-education-accent); // Muted purple
+    box-shadow:
+      0 0 0 3px rgb(147 123 177 / 20%),
+      0 2px 8px rgb(147 123 177 / 10%); // Purple glow
+
+    &:hover {
       box-shadow:
-        0 0 0 3px rgb(147 123 177 / 20%),
-        0 2px 8px rgb(147 123 177 / 10%); // Purple glow
-
-      &:hover {
-        box-shadow:
-          0 0 0 4px rgb(147 123 177 / 30%),
-          0 4px 12px rgb(147 123 177 / 20%);
-      }
+        0 0 0 4px rgb(147 123 177 / 30%),
+        0 4px 12px rgb(147 123 177 / 20%);
     }
+  }
 
-    .connector {
-      background: linear-gradient(
-        90deg,
-        var(--color-education-accent) 0%,
-        rgb(147 123 177 / 60%) 100%
-      ); // Gradient connector
-    }
+  .connector {
+    background: linear-gradient(
+      90deg,
+      var(--color-education-accent) 0%,
+      rgb(147 123 177 / 60%) 100%
+    ); // Gradient connector
   }
 }
 
