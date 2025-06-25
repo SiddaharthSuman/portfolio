@@ -118,7 +118,7 @@ const LetterFx = ({
         container.innerHTML = originalContentRef.current;
       }
     };
-  }, [disabled, respectMotionPreference, mobileOptimized]);
+  }, [disabled, respectMotionPreference, mobileOptimized, ref]);
 
   // Determine which effects to apply
   const effectsToApply = effects.length > 0 ? effects : [effect];

@@ -88,5 +88,5 @@ export async function generateRegularResponse(message: string): Promise<string> 
     },
   });
 
-  return result.text;
+  return result.text || 'Sorry, I was unable to generate a response. Please try again.';
 }

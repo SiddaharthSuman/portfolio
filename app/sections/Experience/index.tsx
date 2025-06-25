@@ -37,7 +37,10 @@ const ExperienceSection: React.FC = () => {
           }
         });
       },
-      { threshold: 0.2, rootMargin: '0px 0px -100px 0px' }
+      {
+        rootMargin: '0px 0px -100px 0px',
+        threshold: 0.2,
+      }
     );
 
     // Observe timeline items after a small delay to allow rendering

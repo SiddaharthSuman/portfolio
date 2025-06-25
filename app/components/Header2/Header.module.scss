@@ -4,18 +4,19 @@
 
 .header {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset-block-start: 0;
+  inset-inline-start: 0;
   z-index: 100;
-  width: 100%;
+  inline-size: 100%;
   padding: spacings.spacing(md) 0;
   background-color: rgba(var(--color-background-rgb), 0.8);
   backdrop-filter: blur(10px);
+
   @include transition(all, 0.3s, ease);
-  
+
   &.scrolled {
     padding: spacings.spacing(sm) 0;
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px -10px rgb(0 0 0 / 30%);
   }
 }
 
@@ -26,15 +27,16 @@
 }
 
 .logo {
+  z-index: 110;
   display: flex;
   align-items: center;
-  z-index: 110;
   font-family: var(--font-geist-sans);
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--color-accent);
+
   @include transition;
-  
+
   &:hover {
     text-decoration: none;
     transform: translateY(-2px);
@@ -43,19 +45,19 @@
 
 .logoText {
   position: relative;
-  
+
   &::after {
-    content: '.';
     position: absolute;
-    bottom: 0;
+    inset-block-end: 0;
     color: var(--color-accent);
+    content: '.';
   }
 }
 
 // Desktop Navigation
 .desktopNav {
   display: none;
-  
+
   @include breakpoint(md) {
     display: block;
   }
@@ -64,13 +66,13 @@
 .navList {
   display: flex;
   align-items: center;
-  list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .navItem {
-  margin-left: spacings.spacing(lg);
+  margin-inline-start: spacings.spacing(lg);
 }
 
 .navLink {
@@ -79,34 +81,36 @@
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--color-text-primary);
+
   @include transition;
-  
+
   &:hover {
     color: var(--color-accent);
     text-decoration: none;
   }
-  
+
   &::after {
-    content: '';
     position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
+    inset-block-end: -4px;
+    inset-inline-start: 0;
+    inline-size: 0;
+    block-size: 2px;
+    content: '';
     background-color: var(--color-accent);
+
     @include transition;
   }
-  
+
   &:hover::after {
-    width: 100%;
+    inline-size: 100%;
   }
 }
 
 .navNumber {
-  color: var(--color-accent);
-  margin-right: spacings.spacing(xs);
+  margin-inline-end: spacings.spacing(xs);
   font-family: var(--font-geist-sans);
   font-weight: 400;
+  color: var(--color-accent);
 }
 
 .resumeButton {
@@ -119,10 +123,11 @@
   text-decoration: none;
   border: 1px solid var(--color-accent);
   border-radius: 4px;
+
   @include transition;
-  
+
   &:hover {
-    background-color: rgba(100, 255, 218, 0.1);
+    background-color: rgb(100 255 218 / 10%);
     transform: translateY(-2px);
   }
 }
@@ -131,16 +136,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  margin-left: spacings.spacing(md);
+  inline-size: 40px;
+  block-size: 40px;
+  margin-inline-start: spacings.spacing(md);
   color: var(--color-text-primary);
+  cursor: pointer;
   background: transparent;
   border: none;
   border-radius: 50%;
-  cursor: pointer;
+
   @include transition;
-  
+
   &:hover {
     color: var(--color-accent);
     background-color: var(--color-hover);
@@ -149,28 +155,29 @@
 
 // Mobile Navigation
 .mobileNavControls {
+  z-index: 110;
   display: flex;
   align-items: center;
-  z-index: 110;
-  
+
   @include breakpoint(md) {
     display: none;
   }
 }
 
 .menuToggle {
+  z-index: 110;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  margin-left: spacings.spacing(sm);
+  inline-size: 40px;
+  block-size: 40px;
+  margin-inline-start: spacings.spacing(sm);
   color: var(--color-accent);
   background: transparent;
   border: none;
-  z-index: 110;
+
   @include transition;
-  
+
   &:hover {
     color: var(--color-text-primary);
   }
@@ -178,25 +185,25 @@
 
 .mobileNav {
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 75%;
-  max-width: 400px;
+  inset-block: 0;
+  inset-inline-end: 0;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  inline-size: 75%;
+  max-inline-size: 400px;
   padding: spacings.spacing(xl);
   background-color: var(--color-card-background);
-  box-shadow: -10px 0 30px -15px rgba(0, 0, 0, 0.7);
+  box-shadow: -10px 0 30px -15px rgb(0 0 0 / 70%);
   transform: translateX(100%);
+
   @include transition(all, 0.3s, cubic-bezier(0.645, 0.045, 0.355, 1));
-  z-index: 100;
-  
+
   &.open {
     transform: translateX(0);
   }
-  
+
   @include breakpoint(md) {
     display: none;
   }
@@ -207,20 +214,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  list-style: none;
+  inline-size: 100%;
   padding: 0;
   margin: 0;
+  list-style: none;
 }
 
 .mobileNavItem {
-  margin-bottom: spacings.spacing(xl);
-  width: 100%;
+  inline-size: 100%;
+  margin-block-end: spacings.spacing(xl);
   text-align: center;
   counter-increment: item;
-  
+
   &:last-child {
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 }
 
@@ -232,15 +239,16 @@
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--color-text-primary);
+
   @include transition;
-  
+
   .navNumber {
     display: block;
-    margin-bottom: spacings.spacing(xs);
+    margin-block-end: spacings.spacing(xs);
     font-size: 0.9rem;
     color: var(--color-accent);
   }
-  
+
   &:hover {
     color: var(--color-accent);
     text-decoration: none;
@@ -250,7 +258,7 @@
 .mobileResumeButton {
   display: inline-block;
   padding: spacings.spacing(md) spacings.spacing(lg);
-  margin-top: spacings.spacing(md);
+  margin-block-start: spacings.spacing(md);
   font-family: var(--font-manrope);
   font-size: 1rem;
   font-weight: 500;
@@ -258,9 +266,10 @@
   text-decoration: none;
   border: 1px solid var(--color-accent);
   border-radius: 4px;
+
   @include transition;
-  
+
   &:hover {
-    background-color: rgba(100, 255, 218, 0.1);
+    background-color: rgb(100 255 218 / 10%);
   }
 }

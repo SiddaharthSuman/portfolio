@@ -4,51 +4,53 @@
 
 .emailSidebar {
   position: fixed;
-  bottom: 0;
-  right: spacings.spacing(lg);
+  inset-block-end: 0;
+  inset-inline-end: spacings.spacing(lg);
   z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
   opacity: 0;
   transform: translateY(20px);
+
   @include transition(all, 0.3s, cubic-bezier(0.645, 0.045, 0.355, 1));
-  
+
   @include breakpoint(lg) {
-    right: spacings.spacing(xl);
+    inset-inline-end: spacings.spacing(xl);
   }
-  
-  @media (max-width: 767px) {
+
+  @media (width <= 767px) {
     display: none;
   }
 }
 
 .emailLink {
   display: block;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  margin-bottom: spacings.spacing(xl);
-  letter-spacing: 0.1em;
+  margin-block-end: spacings.spacing(xl);
   font-family: var(--font-manrope);
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--color-text-secondary);
+  letter-spacing: 0.1em;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+
   @include transition;
-  
+
   &:hover {
     color: var(--color-accent);
-    transform: translateY(-5px);
     text-decoration: none;
+    transform: translateY(-5px);
   }
-  
+
   &:focus {
-    outline: none;
     color: var(--color-accent);
+    outline: none;
   }
 }
 
 .verticalLine {
-  width: 1px;
-  height: 100px;
+  inline-size: 1px;
+  block-size: 100px;
   background-color: var(--color-text-secondary);
 }

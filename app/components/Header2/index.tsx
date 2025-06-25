@@ -17,10 +17,10 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'Skills', href: '#skills' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
+    { href: '#skills', name: 'Skills' },
+    { href: '#experience', name: 'Experience' },
+    { href: '#projects', name: 'Projects' },
+    { href: '#contact', name: 'Contact' },
   ];
 
   const toggleMenu = () => {

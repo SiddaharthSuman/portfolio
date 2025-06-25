@@ -1,7 +1,7 @@
 // hooks/useScrollSections.js
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 /**
  * A hook to manage scrolling between sections with keyboard navigation
@@ -11,6 +11,30 @@ import { useEffect, useState } from 'react';
 const useScrollSections = (sectionIds: string[] = []) => {
   const [currentSection, setCurrentSection] = useState<number>(0);
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
+
+  // Function to scroll to a specific section
+  const scrollToSection = useCallback(
+    (index: number) => {
+      if (index < 0 || index >= sectionIds.length) return;
+
+      const targetSection = document.getElementById(sectionIds[index]);
+      if (!targetSection) return;
+
+      setIsScrolling(true);
+      setCurrentSection(index);
+
+      window.scrollTo({
+        behavior: 'smooth',
+        top: targetSection.offsetTop,
+      });
+
+      // Reset isScrolling after animation
+      setTimeout(() => {
+        setIsScrolling(false);
+      }, 1000);
+    },
+    [sectionIds]
+  );
 
   // Track scroll position and update current section
   useEffect(() => {
@@ -92,28 +116,7 @@ const useScrollSections = (sectionIds: string[] = []) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [currentSection, sectionIds]);
-
-  // Function to scroll to a specific section
-  const scrollToSection = (index: number) => {
-    if (index < 0 || index >= sectionIds.length) return;
-
-    const targetSection = document.getElementById(sectionIds[index]);
-    if (!targetSection) return;
-
-    setIsScrolling(true);
-    setCurrentSection(index);
-
-    window.scrollTo({
-      top: targetSection.offsetTop,
-      behavior: 'smooth',
-    });
-
-    // Reset isScrolling after animation
-    setTimeout(() => {
-      setIsScrolling(false);
-    }, 1000);
-  };
+  }, [currentSection, sectionIds, scrollToSection]);
 
   const nextSection = () => {
     scrollToSection(currentSection + 1);

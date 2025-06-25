@@ -10,10 +10,10 @@ const ContactSection = () => {
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
-    subject: '',
     message: '',
+    name: '',
+    subject: '',
   });
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -106,10 +106,10 @@ const ContactSection = () => {
 
       setSubmitSuccess(true);
       setFormData({
-        name: '',
         email: '',
-        subject: '',
         message: '',
+        name: '',
+        subject: '',
       });
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
