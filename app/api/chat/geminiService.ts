@@ -15,7 +15,7 @@ export async function generateStreamingResponse(
   rateLimitResult: RateLimitResult
 ): Promise<ReadableStream> {
   const stream = await genAI.models.generateContentStream({
-    model: 'gemini-1.5-flash',
+    model: 'gemini-flash-latest',
     contents: [
       {
         role: 'user',
